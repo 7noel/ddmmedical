@@ -81,6 +81,7 @@ class ProductsController extends Controller {
 		$data['id']=$id;
 		$data = $this->repo->prepareData($data);
 		$this->repo->save($data,$id);
+		//dd($data);
 		return \Redirect::route('products.index');
 	}
 

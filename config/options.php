@@ -108,10 +108,10 @@ return array(
 	// ],
 	// 'sales' => [
 		'orders' => [
-			'index'  => ['panel'=>'Ordenes', 'create'=>'Crear Orden'],
-			'create' => ['panel'=>'Nuevo Orden', 'create'=>'Crear Orden'],
-			'show'   => ['panel'=>'Vizualizando Orden:'],
-			'edit'   => ['panel'=>'Editar Orden: ', 'update'=>'Actualizar Orden', 'delete'=>'Eliminar Orden']
+			'index'  => ['panel'=>'Cotizaciones', 'create'=>'Crear Cotización'],
+			'create' => ['panel'=>'Nuevo Cotización', 'create'=>'Crear Cotización'],
+			'show'   => ['panel'=>'Vizualizando Cotización:'],
+			'edit'   => ['panel'=>'Editar Cotización: ', 'update'=>'Actualizar Cotización', 'delete'=>'Eliminar Cotización']
 		],
 	// ],
 	// 'guard' => [

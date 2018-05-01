@@ -19,9 +19,9 @@
 						</div>
 					</div>
 					<div class="form-group form-group-sm">
-						{!! Form::label('internal_code','Codigo Interno', ['class'=>'col-sm-2 control-label']) !!}
+						{!! Form::label('intern_code','Codigo Interno', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
-						{!! Form::text('internal_code', null, ['class'=>'form-control uppercase']) !!}
+						{!! Form::text('intern_code', null, ['class'=>'form-control uppercase']) !!}
 						</div>
 						{!! Form::label('provider_code','Codigo de Proveedor', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">

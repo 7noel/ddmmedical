@@ -99,12 +99,11 @@
               @php $i=0; @endphp
               @foreach($model->attributes as $key => $attribute)
               <tr data-id="{{ $attribute->id }}">
-                {!! Form::hidden("details[$i][id]", $attribute->id, ['class'=>'','data-accessoryid'=>'']) !!}
+                {!! Form::hidden("attributes[$i][id]", $attribute->id, ['class'=>'','data-accessoryid'=>'']) !!}
                 <td>{!! Form::text('attributes['.$i.'][name]', $attribute->name, ['class'=>"form-control input-sm"]) !!}</td>
                 <td>{!! Form::text('attributes['.$i.'][value]', $attribute->value, ['class'=>"form-control input-sm"]) !!}</td>
                 <td>
                   <div class="checkbox"><label>{!! Form::checkbox('attributes['.$i.'][is_deleted]', null, false, ['class'=>'isDeleted', 'data-isdeleted'=>'']); !!} Eliminar</label></div>
-                  <input type="hidden" name="attributes[{{ $key }}][id]" value="{{ $accessory->id }}">
                 </td>
               </tr>
               @php $i++; @endphp
