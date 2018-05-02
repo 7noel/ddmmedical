@@ -18,6 +18,8 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        setlocale(LC_TIME, 'Spanish');
+        \Carbon::setUtf8(true);
         $uri = \Request::server('REQUEST_URI');
         $uri = explode('?', $uri);
         $url = explode('/', $uri[0]);

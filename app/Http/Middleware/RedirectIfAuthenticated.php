@@ -18,8 +18,6 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            setlocale(LC_TIME, 'Spanish');
-            \Carbon::setUtf8(true);
 
             return redirect('/home');
         }
