@@ -82,7 +82,7 @@ class OrdersController extends Controller {
 		
 		//\Carbon::setUtf8(true);
 		$dt=\Carbon::now();
-		//dd($dt->formatLocalized('%A %d de %B de %Y'));
+		dd($dt->formatLocalized('%A %d de %B de %Y'));
 		/*var_dump(strftime ('%A %d de %B del %Y', strtotime('2018-01-02 14:02:01')) );
 		setlocale(LC_TIME, 'es_ES.UTF-8');
 		var_dump(strftime ('%A %d de %B del %Y', strtotime('2018-01-02 14:02:01')) );
