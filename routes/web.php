@@ -90,6 +90,7 @@ Route::group(['prefix'=>'humanresources', 'middleware'=>['auth', 'permissions'],
 
 Route::group(['prefix'=>'sales', 'middleware'=>['auth', 'permissions'], 'namespace'=>'Sales'], function(){
 	Route::resource('orders','OrdersController');
+	Route::get('orders/print/{id}', ['as' => 'print_order','uses' => 'OrdersController@print']);
 });
 
 Route::group(['prefix'=>'logistics', 'middleware'=>['auth', 'permissions'], 'namespace'=>'Logistics'], function(){

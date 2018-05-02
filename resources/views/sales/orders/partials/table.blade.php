@@ -15,6 +15,7 @@
 							<td>{{ $model->status }}</td>
 							<td>{{ $model->currency->symbol." ".$model->total}} </td>
 							<td>
+								<a href="{{ route( 'print_order' , $model->id ) }}" target="_blank" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Imprimir</a>
 								<a href="{{ route( str_replace('index', 'edit', Request::route()->getAction()['as']) , $model) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</a>
 								<a href="#" class="btn-delete btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar</a>
 							</td>

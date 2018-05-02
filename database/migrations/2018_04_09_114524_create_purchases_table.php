@@ -29,6 +29,7 @@ class CreatePurchasesTable extends Migration {
             $table->date('due_date');
             $table->integer('currency_id')->unsigned();
             $table->decimal('exchange', 10, 4);
+            $table->decimal('gross_value', 12,2);
             $table->decimal('subtotal',14,2);
             $table->decimal('tax',14,2);
             $table->decimal('total',14,2);

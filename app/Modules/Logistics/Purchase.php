@@ -9,7 +9,7 @@ class Purchase extends Model implements Auditable {
 	use \OwenIt\Auditing\Auditable;
 	use SoftDeletes;
 
-	protected $fillable = ['date', 'document_type_id', 'series', 'number', 'dispatch_note_date', 'dispatch_note_series', 'dispatch_note_number', 'company_id', 'payment_condition_id', 'due_date', 'currency_id', 'subtotal', 'igv', 'total'];
+	protected $fillable = ['date', 'document_type_id', 'series', 'number', 'dispatch_note_date', 'dispatch_note_series', 'dispatch_note_number', 'company_id', 'payment_condition_id', 'due_date', 'currency_id', 'gross_value', 'subtotal', 'tax', 'total'];
 
 	public function document_type()
 	{
@@ -27,14 +27,17 @@ class Purchase extends Model implements Auditable {
 	{
 		return $this->hasOne('App\Modules\Finances\Company','id','company_id');
 	}
-	public function purchase_details()
+	public function details()
 	{
 		return $this->hasMany('App\Modules\Logistics\PurchaseDetail');
+	}
+	public function expenses()
+	{
+		return $this->morphMany('App\Modules\Base\Expense', 'expense');
 	}
 	public function scopeDate($query, $name){
 		if (trim($name) != "") {
 			$query->where('date', 'LIKE', "%$name%");
 		}
 	}
-
 }

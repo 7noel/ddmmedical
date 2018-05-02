@@ -27,10 +27,10 @@ $(document).ready(function(){
 	$(document).on('change','.txtCantidad, .txtPrecio, .txtDscto', function (e) {
 		calcTotalItem(this);
 		calcTotalOrder();
-		calcCost();
 	});
 	$(document).on('change','.expense', function (e) {
-		validateItem(this, '.expense');
+		console.log(this.id);
+		validateItem(this, '#'+this.id);
 		calcCost();
 	});
 
@@ -90,21 +90,21 @@ function calcTotalOrder () {
 		//d = parseFloat($(vtr).find('.txtDscto').val());
 		d = 0;
 		gross_value = Math.round(q*p*100)/100 + gross_value;
-		discount = Math.round(q*p*d)/100 + discount;
+		//discount = Math.round(q*p*d)/100 + discount;
 	});
-	subtotal = gross_value - discount;
-	total = Math.round(subtotal * (100 + 18))/100;
-
 
 	$('#mGrossValue').text(gross_value.toFixed(2));
 	$('#mDiscount').text(discount.toFixed(2));
-	$('#mSubTotal').text(subtotal.toFixed(2));
-	$('#mTotal').text(total.toFixed(2));
+	calcCost();
 }
 
 function calcFactor() {
 	var e = parseFloat($('#e1').val()) + parseFloat($('#e2').val()) + parseFloat($('#e3').val()) + parseFloat($('#e4').val()) + parseFloat($('#e5').val()) + parseFloat($('#e6').val()) + parseFloat($('#e7').val()) + parseFloat($('#e8').val());
 	var exw = parseFloat($('#mGrossValue').text());
+	var subtotal = exw + parseFloat($('#e1').val()) + parseFloat($('#e2').val()) + parseFloat($('#e3').val());
+	var total = Math.round(subtotal * (100 + 18))/100;
+	$('#mSubTotal').text(subtotal.toFixed(2));
+	$('#mTotal').text(total.toFixed(2));
 	if (exw > 0) {
 		return (exw + e)/(exw);
 	} else {
@@ -115,7 +115,8 @@ function calcCost() {
 	$factor = calcFactor();
 	$('#tableItems tr .txtPrecio').each(function (index, d) {
 		$(d).parent().parent().find('.txtCost').val( ($(d).val() * $factor).toFixed(2) );
-	});	
+	});
+
 }
 
 function activateTemplate (id) {

@@ -1,6 +1,6 @@
 						<a href="#" id="btnAddProduct" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a></td>
 						@php $i=0; @endphp
-						
+						<div class="table-responsive">
 						<table class="table table-condensed">
 							<thead>
 								<tr>
@@ -37,6 +37,7 @@
 							@endif
 							</tbody>
 						</table>
+						</div>
 						<template id="template-row-item">
 							<tr>
 								{!! Form::hidden('data1', null, ['class'=>'productId','data-productid'=>'']) !!}
@@ -45,7 +46,7 @@
 								<td>{!! Form::text('data3', null, ['class'=>'form-control input-sm txtProduct', 'data-product'=>'', 'required'=>'required']); !!}</td>
 								<td>{!! Form::text('data4', null, ['class'=>'form-control input-sm txtCantidad text-right', 'data-cantidad'=>'']) !!}</td>
 								<td>{!! Form::text('data5', null, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
-								<td>{!! Form::text('data6', null, ['class'=>'form-control input-sm txtCost text-right', 'data-cost'=>'']) !!}</td>
+								<td>{!! Form::text('data6', null, ['class'=>'form-control input-sm txtCost text-right', 'data-cost'=>'', 'readonly'=>'readonly']) !!}</td>
 								<td> <span class='form-control input-sm txtTotal text-right' data-total></span> </td>
 								<td class="text-center form-inline">
 									<div class="checkbox">
@@ -55,25 +56,19 @@
 							</tr>
 						</template>
 						{!! Form::hidden('items', $i, ['id'=>'items']) !!}
-						<table class="table table-condensed">
+						<table class="table table-condensed table-responsive">
 							<thead>
 								<tr>
-									<th class="text-center">V.Bruto</th>
-									<th class="text-center">Dscto</th>
-									<th class="text-center">SubTotal</th>
-									<th class="text-center">Total</th>
+									<th class="text-center">V.Bruto (EXW)</th>
+									<th class="text-center">SubTotal (CIF)</th>
+									<th class="text-center">Total (CIF+IGV)</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td class="text-center"><span id="mGrossValue">{{ (isset($model)) ? $model->gross_value : "0.00" }}</span></td>
-									<td class="text-center"><span id="mDiscount">{{ (isset($model)) ? $model->discount : "0.00" }}</span></td>
 									<td class="text-center"><span id="mSubTotal">{{ (isset($model)) ? $model->subtotal : "0.00" }}</span></td>
 									<td class="text-center"><span id="mTotal">{{ (isset($model)) ? $model->total : "0.00" }}</span></td>
 								</tr>
 							</tbody>
 						</table>
-
-<template id="template-li-accessory">
-											<li><a href="#" data-accessoryId=""> </a></li>
-</template>

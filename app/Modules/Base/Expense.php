@@ -11,7 +11,7 @@ class Expense extends Model implements Auditable
 	use \OwenIt\Auditing\Auditable;
 	use SoftDeletes;
 
-	protected $fillable = ['currency', 'value', 'exchange', 'national_value', 'expense_id', 'expense_type'];
+	protected $fillable = ['currency_id', 'value', 'exchange', 'name', 'expense_id', 'expense_type'];
 
 	public function expense()
     {

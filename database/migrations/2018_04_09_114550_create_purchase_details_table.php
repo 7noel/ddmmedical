@@ -13,8 +13,7 @@ class CreatePurchaseDetailsTable extends Migration {
      */
     public function up()
     {
-        Schema::create('purchase_details', function(Blueprint $table)
-        {
+        Schema::create('purchase_details', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('purchase_id')->unsigned();
             $table->integer('product_id')->unsigned();
@@ -24,7 +23,8 @@ class CreatePurchaseDetailsTable extends Migration {
             $table->decimal('quantity', 15, 2);
             $table->decimal('discount', 15, 2);
             $table->decimal('cost', 15, 2);
-
+            $table->decimal('total',15,2);
+            $table->text('comment');
 
             $table->foreign('purchase_id')->references('id')->on('purchases');
             $table->foreign('product_id')->references('id')->on('products');

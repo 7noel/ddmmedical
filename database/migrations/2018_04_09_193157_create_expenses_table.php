@@ -18,7 +18,7 @@ class CreateExpensesTable extends Migration
             $table->integer('currency_id')->unsigned();
             $table->decimal('value', 12 ,4);
             $table->decimal('exchange', 10 ,4);
-            $table->decimal('national_value', 12 ,4);
+            $table->string('name', 20);
             $table->integer('expense_id');
             $table->string('expense_type');
 

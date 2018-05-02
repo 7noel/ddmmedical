@@ -186,6 +186,9 @@ return [
         //View Composer for share routes, views and labels
         App\Providers\ComposerServiceProvider::class,
 
+        //DomPDF
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -237,6 +240,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        //DomPDF
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

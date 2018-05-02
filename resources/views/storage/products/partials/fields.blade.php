@@ -37,21 +37,21 @@
 						<div class="col-sm-2">
 							{!! Form::select('currency_id', $currencies, null, ['class'=>'form-control']); !!}
 						</div>
-						{!! Form::label('name','Costo', ['class'=>'col-sm-2 control-label']) !!}
+						{!! Form::label('last_purchase','Costo', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
-							{!! Form::text('last_purchase', null, ['class'=>'form-control']) !!}
+							{!! Form::text('last_purchase', null, ['class'=>'form-control', 'readonly'=>'readonly']) !!}
 						</div>
 						{!! Form::label('profit_margin','Utilidad (%)', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
-						{!! Form::text('profit_margin', null, ['class'=>'form-control']) !!}
+							{!! Form::text('profit_margin', null, ['class'=>'form-control']) !!}
 						</div>
 					</div>
 					<div class="form-group form-group-sm">
 						{!! Form::label('price','Precio Automático', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
-							{!! Form::text('price', null, ['class'=>'form-control']) !!}
+							{!! Form::text('price', null, ['class'=>'form-control', 'readonly'=>'readonly']) !!}
 						</div>
-						{!! Form::label('price','Precio Asignado', ['class'=>'col-sm-2 control-label']) !!}
+						{!! Form::label('set_price','Precio Asignado', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
 								<div class="input-group">
 									<span class="input-group-addon">

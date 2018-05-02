@@ -19,6 +19,10 @@ $(document).ready(function(){
 		};
 	});
 
+	$('#profit_margin').change(function (e) {
+		$('#price').val(parseFloat($('#last_purchase').val()) * (100 + parseFloat($('#profit_margin').val()))/100).toFixed(2);
+	})
+
 	$(document).on('focus','.txtAccessory', function (e) {
 		//console.log($(this));
 		if ( !$(this).data("autocomplete") ) {

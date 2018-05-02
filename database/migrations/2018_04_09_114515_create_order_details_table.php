@@ -17,6 +17,7 @@ class CreateOrderDetailsTable extends Migration
             $table->increments('id');
             $table->integer('order_id')->unsigned();
             $table->integer('product_id')->unsigned();
+            $table->integer('stock_id')->unsigned();
             $table->integer('unit_id')->unsigned();
             $table->decimal('price',15,2);
             $table->decimal('quantity',15,2);

@@ -86,4 +86,12 @@
 
 .expenses .form-group {
     margin-bottom: 0.5em;
+}/*
+body {
+  background: #c3c3c3 url('/img/logo_lg.png') no-repeat  center center !important;
+  background-size: auto;
+}*/
+.navbar-header .navbar-brand{
+    padding-top: 0;
+    padding-bottom: 0;
 }

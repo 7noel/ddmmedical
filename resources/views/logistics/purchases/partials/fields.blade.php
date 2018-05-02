@@ -65,51 +65,49 @@
 					</div>
 					<div class="expenses">
 						<div class="form-group form-group-sm">
-							{!! Form::label('currency_id','Gastos FOB', ['class'=>'col-sm-2 control-label']) !!}
+							{!! Form::label('expenses[0][value]','Gastos FOB', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::text('value', null, ['class'=>'form-control expense text-right', 'placeholder'=>'Monto', 'id'=>'e1']) !!}
+								{!! Form::hidden('expenses[0][name]', 'fob') !!}
+								{!! Form::text('expenses[0][value]', ((isset($model->expenses[0]['value'])) ? $model->expenses[0]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e1']) !!}
+							</div>
+							{!! Form::label('expenses[1][value]','Flete', ['class'=>'col-sm-2 control-label']) !!}
+							<div class="col-sm-2">
+								{!! Form::hidden('expenses[1][name]', 'flete') !!}
+								{!! Form::text('expenses[1][value]', ((isset($model->expenses[1]['value'])) ? $model->expenses[1]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e2']) !!}
+							</div>
+							{!! Form::label('expenses[2][value]','Seguro', ['class'=>'col-sm-2 control-label']) !!}
+							<div class="col-sm-2">
+								{!! Form::hidden('expenses[2][name]', 'seguro') !!}
+								{!! Form::text('expenses[2][value]', ((isset($model->expenses[2]['value'])) ? $model->expenses[2]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e3']) !!}
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
-							{!! Form::label('currency_id','Flete', ['class'=>'col-sm-2 control-label']) !!}
+							{!! Form::label('expenses[3][value]','Ad Valorem', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::text('value', null, ['class'=>'form-control expense text-right', 'placeholder'=>'Monto', 'id'=>'e2']) !!}
+								{!! Form::hidden('expenses[3][name]', 'advalorem') !!}
+								{!! Form::text('expenses[3][value]', ((isset($model->expenses[3]['value'])) ? $model->expenses[3]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e4']) !!}
+							</div>
+							{!! Form::label('expenses[4][value]','Handling', ['class'=>'col-sm-2 control-label']) !!}
+							<div class="col-sm-2">
+								{!! Form::hidden('expenses[4][name]', 'handling') !!}
+								{!! Form::text('expenses[4][value]', ((isset($model->expenses[4]['value'])) ? $model->expenses[4]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e5']) !!}
+							</div>
+							{!! Form::label('expenses[5][value]','Almacen', ['class'=>'col-sm-2 control-label']) !!}
+							<div class="col-sm-2">
+								{!! Form::hidden('expenses[5][name]', 'almacen') !!}
+								{!! Form::text('expenses[5][value]', ((isset($model->expenses[5]['value'])) ? $model->expenses[5]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e6']) !!}
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
-							{!! Form::label('currency_id','Seguro', ['class'=>'col-sm-2 control-label']) !!}
+							{!! Form::label('expenses[6][value]','Transporte local', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::text('value', null, ['class'=>'form-control expense text-right', 'placeholder'=>'Monto', 'id'=>'e3']) !!}
+								{!! Form::hidden('expenses[6][name]', 'transporte') !!}
+								{!! Form::text('expenses[6][value]', ((isset($model->expenses[6]['value'])) ? $model->expenses[6]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e7']) !!}
 							</div>
-						</div>
-						<div class="form-group form-group-sm">
-							{!! Form::label('currency_id','Ad Valorem', ['class'=>'col-sm-2 control-label']) !!}
+							{!! Form::label('expenses[7][value]','Agencia de Aduanas', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::text('value', null, ['class'=>'form-control expense text-right', 'placeholder'=>'Monto', 'id'=>'e4']) !!}
-							</div>
-						</div>
-						<div class="form-group form-group-sm">
-							{!! Form::label('currency_id','Handling', ['class'=>'col-sm-2 control-label']) !!}
-							<div class="col-sm-2">
-								{!! Form::text('value', null, ['class'=>'form-control expense text-right', 'placeholder'=>'Monto', 'id'=>'e5']) !!}
-							</div>
-						</div>
-						<div class="form-group form-group-sm">
-							{!! Form::label('currency_id','Almacen', ['class'=>'col-sm-2 control-label']) !!}
-							<div class="col-sm-2">
-								{!! Form::text('value', null, ['class'=>'form-control expense text-right', 'placeholder'=>'Monto', 'id'=>'e6']) !!}
-							</div>
-						</div>
-						<div class="form-group form-group-sm">
-							{!! Form::label('currency_id','Transporte local', ['class'=>'col-sm-2 control-label']) !!}
-							<div class="col-sm-2">
-								{!! Form::text('value', null, ['class'=>'form-control expense text-right', 'placeholder'=>'Monto', 'id'=>'e7']) !!}
-							</div>
-						</div>
-						<div class="form-group form-group-sm">
-							{!! Form::label('currency_id','Agencia de Aduanas', ['class'=>'col-sm-2 control-label']) !!}
-							<div class="col-sm-2">
-								{!! Form::text('value', null, ['class'=>'form-control expense text-right', 'placeholder'=>'Monto', 'id'=>'e8']) !!}
+								{!! Form::hidden('expenses[7][name]', 'aduana') !!}
+								{!! Form::text('expenses[7][value]', ((isset($model->expenses[7]['value'])) ? $model->expenses[7]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e8']) !!}
 							</div>
 						</div>
 					</div>
