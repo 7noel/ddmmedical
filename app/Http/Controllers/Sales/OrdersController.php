@@ -79,11 +79,11 @@ class OrdersController extends Controller {
 	 */
 	public function print($id)
 	{
-		setlocale(LC_TIME, 'spanish');
+		/*setlocale(LC_TIME, 'spanish');
 		var_dump(strftime ('%A %d de %B del %Y', strtotime('2018-01-02 14:02:01')) );
 		setlocale(LC_TIME, 'es_ES.UTF-8');
 		var_dump(strftime ('%A %d de %B del %Y', strtotime('2018-01-02 14:02:01')) );
-		setlocale(LC_TIME,'es_ES');
+		setlocale(LC_TIME,'es_ES');*/
 		dd(strftime ('%A %d de %B del %Y', strtotime('2018-01-02 14:02:01')) );
 		$model = $this->repo->findOrFail($id);
 		$pdf = \PDF::loadView('pdfs.order_pdf', compact('model'));
