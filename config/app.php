@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Lima',
 
     /*
     |--------------------------------------------------------------------------
@@ -242,6 +242,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         //DomPDF
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Carbon' => Illuminate\Support\Carbon::class,
 
     ],
 
