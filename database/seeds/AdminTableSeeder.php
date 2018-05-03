@@ -31,14 +31,9 @@ class AdminTableSeeder extends Seeder {
     public function run()
     {
         User::create(['name' => 'Noel', 'email' => 'noel.logan@gmail.com', 'password' => '123', 'is_superuser' => true]);
-        User::create(['name' => 'Hugo Caldas', 'email' => 'hcaldas@dfiomig.com', 'password' => '123',
+        User::create(['name' => 'Camila', 'email' => 'asistente@ddmmedical.com', 'password' => '123',
             'is_superuser' => true]);
-        User::create(['name' => 'Norma Alva', 'email' => 'nalva@dfiomig.com', 'password' => '123', 'is_superuser' => true]);
-        User::create(['name' => 'Rossy Cabrera', 'email' => 'ventas@dfiomig.com', 'password' => '123', 'is_superuser' => true]);
-        User::create(['name' => 'Jorge Perez', 'email' => 'admin@dfiomig.com', 'password' => '123', 'is_superuser' => true]);
-        User::create(['name' => 'Moises Soto', 'email' => 'moisesoto@dfiomig.com', 'password' => '123', 'is_superuser' => true]);
-        User::create(['name' => 'Jhony Saavedra', 'email' => 'jhonysaavedra@dfiomig.com', 'password' => '123',
-            'is_superuser' => true]);
+
         Role::create(['name' => 'ADMINISTRADOR DE SISTEMA']);
         Role::create(['name' => 'GERENTE GENERAL']);
         Role::create(['name' => 'ADMINISTRADOR']);
@@ -67,13 +62,7 @@ class AdminTableSeeder extends Seeder {
         Job::create(['name' => 'VENDEDOR']);
 
         Employee::create(['name' => 'NOEL', 'paternal_surname'=>'HUILLCA', 'maternal_surname'=>'HUAMANI', 'full_name'=>'HUILLCA HUAMANI NOEL', 'id_type_id'=>'2', 'doc'=>'44243484', 'job_id'=>'1', 'gender'=>'0', 'address'=>'JR. LAS GROSELLAS 910', 'ubigeo_id'=>'1306', 'user_id'=>'1']);
-        Employee::create(['name' => 'HUGO DAVID', 'paternal_surname'=>'CALDAS', 'maternal_surname'=>'VIA', 'full_name'=>'CALDAS VIA HUGO DAVID', 'id_type_id'=>'2', 'doc'=>'10426606', 'job_id'=>'2', 'gender'=>'0', 'address'=>'CAL.JUAN PITCHER MZA. Y LOTE. 1 URB. EL PACIFICO 2DA ETAPA', 'ubigeo_id'=>'1309', 'user_id'=>'2']);
-        Employee::create(['name' => 'NORMA BERTHA', 'paternal_surname'=>'ALVA', 'maternal_surname'=>'LUIS', 'full_name'=>'ALVA LUIS NORMA BERTHA', 'id_type_id'=>'2', 'doc'=>'09909418', 'job_id'=>'3', 'gender'=>'0', 'address'=>'CAL.JUAN PITCHER MZA. Y LOTE. 1 URB. EL PACIFICO 2DA ETAPA', 'ubigeo_id'=>'1309', 'user_id'=>'3']);
-        Employee::create(['name' => 'ROSSY PILAR', 'paternal_surname'=>'CABRERA', 'maternal_surname'=>'ROJAS', 'full_name'=>'CABRERA ROJAS ROSSY PILAR', 'id_type_id'=>'2', 'doc'=>'40302893', 'job_id'=>'4', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1309', 'user_id'=>'4']);
-        Employee::create(['name' => 'JORGE', 'paternal_surname'=>'PEREZ', 'maternal_surname'=>'PANDURO', 'full_name'=>'PEREZ PANDURO JORGE', 'id_type_id'=>'2', 'doc'=>'10130732', 'job_id'=>'5', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1309', 'user_id'=>'5']);
-        Employee::create(['name' => 'MOISES', 'paternal_surname'=>'SOTO', 'maternal_surname'=>'RAMIREZ', 'full_name'=>'SOTO RAMIREZ MOISES', 'id_type_id'=>'2', 'doc'=>'80443146', 'job_id'=>'6', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1309', 'user_id'=>'6']);
-        Employee::create(['name' => 'JHONY ABEL', 'paternal_surname'=>'SAAVEDRA', 'maternal_surname'=>'ENCISO', 'full_name'=>'SAAVEDRA ENCISO, JHONY ABEL', 'id_type_id'=>'2', 'doc'=>'07625951', 'job_id'=>'6', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1309', 'user_id'=>'7']);
-        //Employee::create(['name' => '', 'paternal_surname'=>'', 'maternal_surname'=>'', 'full_name'=>'', 'id_type_id'=>'2', 'doc'=>'', 'job_id'=>'', 'gender'=>'', 'address'=>'', 'ubigeo_id'=>''])
+
         Company::create(['company_name'=>'HUILLCA HUAMANI NOEL', 'id_type_id'=>'2', 'doc'=>'44243484', 'address'=>'JR. LAS GROSELLAS 910', 'ubigeo_id'=>'1306', 'country_id' => 1461]);
 
 
@@ -118,25 +107,25 @@ class AdminTableSeeder extends Seeder {
         UnitType::create(['name' => 'UNIDAD']);
 
         Unit::create(['name' => 'UNIDAD', 'symbol' => 'und', 'unit_type_id' => 4, 'value' => 1, 'code' => '']);
-        Unit::create(['name' => 'MILLAR', 'symbol' => 'mill', 'unit_type_id' => 4, 'value' => 1000, 'code' => '13']);
-        Unit::create(['name' => 'CENTIMETRO', 'symbol' => 'cm', 'unit_type_id' => 1, 'value' => 1, 'code' => '']);
-        Unit::create(['name' => 'METRO', 'symbol' => 'mt', 'unit_type_id' => 1, 'value' => 100, 'code' => '15']);
-        Unit::create(['name' => 'KILOMETRO', 'symbol' => 'km', 'unit_type_id' => 1, 'value' => 100000, 'code' => '']);
-        Unit::create(['name' => 'PULGADA', 'symbol' => 'pulg', 'unit_type_id' => 1, 'value' => 2.54, 'code' => '']);
-        Unit::create(['name' => 'PIE', 'symbol' => 'pie', 'unit_type_id' => 1, 'value' => 30.48, 'code' => '']);
-        Unit::create(['name' => 'YARDA', 'symbol' => 'yar', 'unit_type_id' => 1, 'value' => 91.44, 'code' => '']);
-        Unit::create(['name' => 'MILLA', 'symbol' => 'milla', 'unit_type_id' => 1, 'value' => 160934, 'code' => '']);
-        Unit::create(['name' => 'MILILITRO', 'symbol' => 'ml', 'unit_type_id' => 2, 'value' => 1, 'code' => '']);
-        Unit::create(['name' => 'LITRO', 'symbol' => 'lt', 'unit_type_id' => 2, 'value' => 1000, 'code' => '08']);
-        Unit::create(['name' => 'METRO CUBICO', 'symbol' => 'm3', 'unit_type_id' => 2, 'value' => 1000000, 'code' => '']);
-        Unit::create(['name' => 'PULGADA CUBICA', 'symbol' => 'pulg3', 'unit_type_id' => 2, 'value' => 16.3871, 'code' => '']);
-        Unit::create(['name' => 'PIE CUBICO', 'symbol' => 'pie3', 'unit_type_id' => 2, 'value' => 28317, 'code' => '']);
-        Unit::create(['name' => 'GALON', 'symbol' => 'gal', 'unit_type_id' => 2, 'value' => 3785.4, 'code' => '09']);
-        Unit::create(['name' => 'GRAMO', 'symbol' => 'gr', 'unit_type_id' => 3, 'value' => 1, 'code' => '06']);
-        Unit::create(['name' => 'KILOGRAMO', 'symbol' => 'kg', 'unit_type_id' => 3, 'value' => 1000, 'code' => '01']);
-        Unit::create(['name' => 'TONELADA', 'symbol' => 'ton', 'unit_type_id' => 3, 'value' => 1000000, 'code' => '04']);
-        Unit::create(['name' => 'ONZA', 'symbol' => 'oz', 'unit_type_id' => 3, 'value' => 28.349, 'code' => '']);
-        Unit::create(['name' => 'LIBRA', 'symbol' => 'lb', 'unit_type_id' => 3, 'value' => 453.59, 'code' => '02']);
+        // Unit::create(['name' => 'MILLAR', 'symbol' => 'mill', 'unit_type_id' => 4, 'value' => 1000, 'code' => '13']);
+        // Unit::create(['name' => 'CENTIMETRO', 'symbol' => 'cm', 'unit_type_id' => 1, 'value' => 1, 'code' => '']);
+        // Unit::create(['name' => 'METRO', 'symbol' => 'mt', 'unit_type_id' => 1, 'value' => 100, 'code' => '15']);
+        // Unit::create(['name' => 'KILOMETRO', 'symbol' => 'km', 'unit_type_id' => 1, 'value' => 100000, 'code' => '']);
+        // Unit::create(['name' => 'PULGADA', 'symbol' => 'pulg', 'unit_type_id' => 1, 'value' => 2.54, 'code' => '']);
+        // Unit::create(['name' => 'PIE', 'symbol' => 'pie', 'unit_type_id' => 1, 'value' => 30.48, 'code' => '']);
+        // Unit::create(['name' => 'YARDA', 'symbol' => 'yar', 'unit_type_id' => 1, 'value' => 91.44, 'code' => '']);
+        // Unit::create(['name' => 'MILLA', 'symbol' => 'milla', 'unit_type_id' => 1, 'value' => 160934, 'code' => '']);
+        // Unit::create(['name' => 'MILILITRO', 'symbol' => 'ml', 'unit_type_id' => 2, 'value' => 1, 'code' => '']);
+        // Unit::create(['name' => 'LITRO', 'symbol' => 'lt', 'unit_type_id' => 2, 'value' => 1000, 'code' => '08']);
+        // Unit::create(['name' => 'METRO CUBICO', 'symbol' => 'm3', 'unit_type_id' => 2, 'value' => 1000000, 'code' => '']);
+        // Unit::create(['name' => 'PULGADA CUBICA', 'symbol' => 'pulg3', 'unit_type_id' => 2, 'value' => 16.3871, 'code' => '']);
+        // Unit::create(['name' => 'PIE CUBICO', 'symbol' => 'pie3', 'unit_type_id' => 2, 'value' => 28317, 'code' => '']);
+        // Unit::create(['name' => 'GALON', 'symbol' => 'gal', 'unit_type_id' => 2, 'value' => 3785.4, 'code' => '09']);
+        // Unit::create(['name' => 'GRAMO', 'symbol' => 'gr', 'unit_type_id' => 3, 'value' => 1, 'code' => '06']);
+        // Unit::create(['name' => 'KILOGRAMO', 'symbol' => 'kg', 'unit_type_id' => 3, 'value' => 1000, 'code' => '01']);
+        // Unit::create(['name' => 'TONELADA', 'symbol' => 'ton', 'unit_type_id' => 3, 'value' => 1000000, 'code' => '04']);
+        // Unit::create(['name' => 'ONZA', 'symbol' => 'oz', 'unit_type_id' => 3, 'value' => 28.349, 'code' => '']);
+        // Unit::create(['name' => 'LIBRA', 'symbol' => 'lb', 'unit_type_id' => 3, 'value' => 453.59, 'code' => '02']);
 
         Currency::create(['name' => 'SOLES', 'symbol' => 'S/.', 'code' => 'PEN']);
         Currency::create(['name' => 'DOLARES AMERICANOS', 'symbol' => 'US$', 'code' => 'USD']);
@@ -144,23 +133,24 @@ class AdminTableSeeder extends Seeder {
         Exchange::create(['date' => date('Y-m-d'), 'currency_id' => 1, 'sales' => 3, 'purchase' => 3]);
 
         Category::create(['name' => 'PRODUCTO FINAL', 'code' => '01']);
-        Category::create(['name' => 'PRODUCTO TERMINADO', 'code' => '02']);
-        Category::create(['name' => 'MATERIA PRIMA', 'code' => '03']);
-        Category::create(['name' => 'ENVASES Y EMBALAJES', 'code' => '04']);
-        Category::create(['name' => 'SUMINISTROS DIVERSOS', 'code' => '05']);
-        Category::create(['name' => 'HERRAMIENTAS', 'code' => '']);
-        Category::create(['name' => 'SERVICIOS', 'code' => '']);
+        // Category::create(['name' => 'PRODUCTO TERMINADO', 'code' => '02']);
+        // Category::create(['name' => 'MATERIA PRIMA', 'code' => '03']);
+        // Category::create(['name' => 'ENVASES Y EMBALAJES', 'code' => '04']);
+        // Category::create(['name' => 'SUMINISTROS DIVERSOS', 'code' => '05']);
+        // Category::create(['name' => 'HERRAMIENTAS', 'code' => '']);
+        // Category::create(['name' => 'SERVICIOS', 'code' => '']);
 
-        SubCategory::create(['name' => 'PIJAMA', 'category_id' => 1]);
-        SubCategory::create(['name' => 'BATA', 'category_id' => 1]);
-        SubCategory::create(['name' => 'BABY DOLL´S', 'category_id' => 1]);
-        SubCategory::create(['name' => 'BEBECRECE', 'category_id' => 1]);
-        SubCategory::create(['name' => 'CAMISÓN', 'category_id' => 1]);
-        SubCategory::create(['name' => 'CONJUNTO', 'category_id' => 1]);
-        SubCategory::create(['name' => 'ENTERIZO', 'category_id' => 1]);
-        SubCategory::create(['name' => 'JGO. MATERNO', 'category_id' => 1]);
-        SubCategory::create(['name' => 'JGO. BATA CAMISÓN', 'category_id' => 1]);
-        SubCategory::create(['name' => 'VESTIDO', 'category_id' => 1]);
+        SubCategory::create(['name' => 'MONITOR', 'category_id' => 1]);
+        // SubCategory::create(['name' => 'PIJAMA', 'category_id' => 1]);
+        // SubCategory::create(['name' => 'BATA', 'category_id' => 1]);
+        // SubCategory::create(['name' => 'BABY DOLL´S', 'category_id' => 1]);
+        // SubCategory::create(['name' => 'BEBECRECE', 'category_id' => 1]);
+        // SubCategory::create(['name' => 'CAMISÓN', 'category_id' => 1]);
+        // SubCategory::create(['name' => 'CONJUNTO', 'category_id' => 1]);
+        // SubCategory::create(['name' => 'ENTERIZO', 'category_id' => 1]);
+        // SubCategory::create(['name' => 'JGO. MATERNO', 'category_id' => 1]);
+        // SubCategory::create(['name' => 'JGO. BATA CAMISÓN', 'category_id' => 1]);
+        // SubCategory::create(['name' => 'VESTIDO', 'category_id' => 1]);
 
         Product::create(['name' => 'PRODUCTO 1', 'intern_code' => '1002345', 'description' => 'PRODUCTO', 'sub_category_id' => '1', 'unit_id' => '1', 'currency_id' => '1']);
         Product::create(['name' => 'PRODUCTO 2', 'intern_code' => '1002345', 'description' => 'PRODUCTO', 'sub_category_id' => '1', 'unit_id' => '1', 'currency_id' => '1']);
@@ -176,8 +166,8 @@ class AdminTableSeeder extends Seeder {
         ProductAccessory::create(['product_id' => 2, 'accessory_id' => 6]);
 
         Warehouse::create(['name' => 'ALMACEN LIMA', 'ubigeo_id' => 1309, 'address' => 'DIRECCION']);
-        Warehouse::create(['name' => 'ALMACEN TRUJILLO', 'ubigeo_id' => 1309, 'address' => 'DIRECCION']);
-        Warehouse::create(['name' => 'ALMACEN CHICLAYO', 'ubigeo_id' => 1309, 'address' => 'DIRECCION']);
+        // Warehouse::create(['name' => 'ALMACEN TRUJILLO', 'ubigeo_id' => 1309, 'address' => 'DIRECCION']);
+        // Warehouse::create(['name' => 'ALMACEN CHICLAYO', 'ubigeo_id' => 1309, 'address' => 'DIRECCION']);
 
         // Brand::create(['name' => 'NINGUNO', 'is_car' => '0']);
         // Brand::create(['name' => 'HONDA', 'is_car' => '1']);
