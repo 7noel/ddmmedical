@@ -79,7 +79,7 @@ class MenuController extends Controller
                 ['name' => 'Medios de Pago', 'route' => 'payment_conditions.index' ],
             ],
             'Ventas'=>[
-                ['name' => 'Cotizaciones', 'route' => 'orders.index' ],
+                ['name' => 'Notas de Pedido', 'route' => 'orders.index' ],
                 ['name' => 'Validar Notas de Pedido', 'url' => '#' ],
                 ['name' => 'Facturación', 'url' => '#' ],
             ],
