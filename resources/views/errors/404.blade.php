@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> DDMMEDICAL / Error 404 </title>
+    <title> {{ config('app.name', 'Laravel') }} / Error 404 </title>
     
 	{!! Html::style('css/app.css') !!}
     

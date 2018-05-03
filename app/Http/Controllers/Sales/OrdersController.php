@@ -78,20 +78,10 @@ class OrdersController extends Controller {
 	 */
 	public function print($id)
 	{
-		//setlocale(LC_TIME, 'spanish');
-		
-		//\Carbon::setUtf8(true);
-		$dt=\Carbon::now();
-		dd($dt->formatLocalized('%A %d de %B de %Y'));
-		/*var_dump(strftime ('%A %d de %B del %Y', strtotime('2018-01-02 14:02:01')) );
-		setlocale(LC_TIME, 'es_ES.UTF-8');
-		var_dump(strftime ('%A %d de %B del %Y', strtotime('2018-01-02 14:02:01')) );
-		setlocale(LC_TIME,'es_ES');*/
-		//dd(ucwords(strftime ('%A %d de %B del %Y', strtotime('2018-01-02 14:02:01'))) );
 		$model = $this->repo->findOrFail($id);
 		//return view('pdfs.order_pdf', compact('model'));
+		\PDF::setOptions(['isPhpEnabled' => true]);
 		$pdf = \PDF::loadView('pdfs.order_pdf', compact('model'));
-
 		return $pdf->stream();
 	}
 
