@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Cotización {{ $model->id }}</title>
 	<style>
 		
 	</style>
@@ -11,7 +11,7 @@
 <body>
 	<script type="text/php">
 	if (isset($pdf)) {
-		$x = 260;
+		$x = 280;
         $y = 770;
         $text = "Página {PAGE_NUM} de {PAGE_COUNT}";
         $font = null;
@@ -33,13 +33,13 @@
 				<img src="./img/logo.png" alt="" width="200px">
 			</div>
 			<p>Sres.:</p>
-			<div>CLINICA LIMA NORTE</div>
+			<div>{{ $model->company->company_name }}</div>
 			<div>Atencion: Dr. José Luis Huerta</div>
 			<div>Presente:</div>
 		</div>
 		<div class="part">
 			<div class="ruc">RUC: 20600096622</div>
-			<div>Cotización:</div>
+			<div>Cotización: {{ $model->id }}</div>
 			<div>Tel.</div>
 			<div>+51-1-683-0884</div>
 			<div>Cel.</div>
@@ -116,7 +116,7 @@
 		<table>
 			<tr>
 				<td>Forma de Pago:</td>
-				<td>Contado</td>
+				<td>{{ $model->payment_condition->name }}</td>
 			</tr>
 			<tr>
 				<td>Cuenta Corriente Dólares Interbank:</td>
@@ -140,8 +140,14 @@
 		</table>
 		
 	</div>
+	<p>Les saluda atentamente</p>
 	<div class="firma">
-		
+		<div>Alfonso Serrano</div>
+		<div>Proyectos y Licitaciones</div>
+		<div>Teléfono: +51-1-6830884</div>
+		<div>Móvil: +51-955593510</div>
+		<div>email: pyl1@ddmmedical.com</div>
+		<div>{{ $model->audits->first()->user->name }}</div>
 	</div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-
+use App\Modules\Sales\Order;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -97,3 +97,21 @@ Route::group(['prefix'=>'sales', 'middleware'=>['auth', 'permissions'], 'namespa
 Route::group(['prefix'=>'logistics', 'middleware'=>['auth', 'permissions'], 'namespace'=>'Logistics'], function(){
 	Route::resource('purchases','PurchasesController');
 });
+
+Route::get('enviar', ['as' => 'enviar', function () {
+	//obtener modelo
+	$model = Order::findOrFail(1);
+	//preparar pdf
+	$pdf = \PDF::loadView('pdfs.order_pdf', compact('model'));
+	//preparar mail
+    $data = ['link' => 'http://styde.net'];
+
+    \Mail::send('emails.notificacion', $data, function ($message) use ($pdf) {
+        $message->from('email@styde.net', 'Styde.Net');
+        $message->to('noel.logan@gmail.com')->subject('Notificación');
+        $message->attachData($pdf->output(), 'name.pdf', ['mime' => 'application/pdf']);
+
+    });
+
+    return "Se envío el email";
+}]);
