@@ -3,9 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Cotización {{ $model->id }}</title>
-	<style>
-		
-	</style>
 	<link rel="stylesheet" href="./css/print_pdf.css">
 </head>
 <body>

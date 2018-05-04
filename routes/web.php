@@ -107,7 +107,7 @@ Route::get('enviar', ['as' => 'enviar', function () {
     $data = ['link' => 'http://styde.net'];
 
     \Mail::send('emails.notificacion', $data, function ($message) use ($pdf) {
-        $message->from('email@styde.net', 'Styde.Net');
+        $message->from('sistema@masaki.com.pe', 'Logan');
         $message->to('noel.logan@gmail.com')->subject('Notificación');
         $message->attachData($pdf->output(), 'name.pdf', ['mime' => 'application/pdf']);
 
