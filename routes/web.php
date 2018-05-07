@@ -108,7 +108,7 @@ Route::get('enviar', ['as' => 'enviar', function () {
 
     \Mail::send('emails.notificacion', $data, function ($message) use ($pdf) {
         $message->from('sistema@masaki.com.pe', 'Logan');
-        $message->to('noel.logan@gmail.com')->subject('Notificación');
+        $message->to('noel.logan@gmail.com')->subject('Notificación Logan');
         $message->attachData($pdf->output(), 'name.pdf', ['mime' => 'application/pdf']);
 
     });
