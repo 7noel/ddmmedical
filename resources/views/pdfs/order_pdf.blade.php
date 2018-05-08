@@ -24,16 +24,19 @@
 		<div class="center">Av. Alfredo Benavides Nº1555 - Oficina 306 - Miraflores, Lima - Perú</div>
 		<div class="center"><strong>T:</strong> (511) 6833-0884 <strong>E:</strong> contactenos@ddmmedical.com <strong>W:</strong> www.ddmmedical.com</div>
 	</footer>
+	<div>
+		<img src="./img/logo.png" alt="" width="200px">
+	</div>
 	<div class="">
 		<div class="part">
-			<div>
-				<img src="./img/logo.png" alt="" width="200px">
-			</div>
 			<p>Sres.:</p>
 			<div>{{ $model->company->company_name }}</div>
 			<div>Atencion: Dr. José Luis Huerta</div>
-			<div>Presente:</div>
+			<div>Presente.-</div>
+			<div>
+			</div>
 		</div>
+	<br><br>
 		<div class="part">
 			<div class="ruc">RUC: 20600096622</div>
 			<div>Cotización: {{ $model->id }}</div>
@@ -46,10 +49,10 @@
 			<p>Lima, {{ $model->created_at->formatLocalized('%A %d de %B de %Y') }}</p>
 		</div>
 	</div>
-	<br><br>
 	<div class="asunto">
-		<p>Asunto:</p>
-		<p>MONITOR DE SIGNOS VITALES - ADVANCED</p>
+	<br><br>
+				<p>Asunto:</p>
+				<p>MONITOR DE SIGNOS VITALES - ADVANCED</p>
 		<p>Estimados Sras. /Sres.</p>
 		<p>Tomando como referencia su solicitud arriba mencionada, le adjuntamos la correspondiente oferta. Contiene una descripcion de los productos solicitados. Si tiene alguna consulta, por favor no dude en contactarnos.</p>
 	</div>
@@ -71,7 +74,7 @@
 					<td class="border">
 						<span>{{ $detail->product->name }}</span>
 						<div>
-							{!! nl2br($detail->product->description) !!} <br /> hola
+							{!! nl2br($detail->product->description) !!}
 						</div>
 					</td>
 					<td class="border center">{{ $detail->quantity }}</td>
@@ -118,6 +121,10 @@
 			<tr>
 				<td>Cuenta Corriente Dólares Interbank:</td>
 				<td>631-3001268591 <strong>CCI</strong> 003-631-003001268591-90</td>
+			</tr>
+			<tr>
+				<td>Cuenta Corriente Soles Interbank:</td>
+				<td>631-3001268584 <strong>CCI</strong> 003-631-003001268584-95</td>
 			</tr>
 			<tr>
 				<td>Validez de la oferta</td>

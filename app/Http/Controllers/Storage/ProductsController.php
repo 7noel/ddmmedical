@@ -14,6 +14,7 @@ use App\Modules\Storage\SubCategoryRepo;
 use App\Modules\Storage\ProductRepo;
 use App\Modules\Storage\Product;
 use App\Modules\Base\CurrencyRepo;
+use App\Modules\Base\SunatRepo;
 
 use App\Http\Requests\Logistics\FormProductRequest;
 use App\Modules\Storage\Stock;
@@ -26,14 +27,16 @@ class ProductsController extends Controller {
 	protected $unitRepo;
 	protected $unitTypeRepo;
 	protected $currencyRepo;
+	protected $sunatRepo;
 
-	public function __construct(ProductRepo $repo, SubCategoryRepo $subCategoryRepo, CategoryRepo $categoryRepo, UnitRepo $unitRepo, UnitTypeRepo $unitTypeRepo, CurrencyRepo $currencyRepo) {
+	public function __construct(ProductRepo $repo, SubCategoryRepo $subCategoryRepo, CategoryRepo $categoryRepo, UnitRepo $unitRepo, UnitTypeRepo $unitTypeRepo, CurrencyRepo $currencyRepo, SunatRepo $sunatRepo) {
 		$this->repo = $repo;
 		$this->categoryRepo = $categoryRepo;
 		$this->subCategoryRepo = $subCategoryRepo;
 		$this->unitRepo = $unitRepo;
 		$this->unitTypeRepo = $unitTypeRepo;
 		$this->currencyRepo = $currencyRepo;
+		$this->sunatRepo = $sunatRepo;
 	}
 
 	public function index()
@@ -47,8 +50,10 @@ class ProductsController extends Controller {
 		$sub_categories = $this->subCategoryRepo->getListGroup('category');
 		$units = $this->unitRepo->getListGroup('unit_type');
 		$currencies = $this->currencyRepo->getList('symbol');
+		$brands = [];
+		$countries = $this->sunatRepo->getList2('FE', 4);
 		
-		return view('partials.create', compact('sub_categories', 'units', 'currencies', 'sizes', 'colors', 'materials'));
+		return view('partials.create', compact('sub_categories', 'units', 'currencies', 'brands', 'countries'));
 	}
 
 	public function store(FormProductRequest $request)
@@ -65,14 +70,12 @@ class ProductsController extends Controller {
 	public function edit($id)
 	{
 		$model = $this->repo->findOrFail($id);
-		//$ac = $this->repo->findOrFail($id)->accesories;
-		//$ac = Product::with('accesories.accessory')->find($id);
-
-		//dd($ac);
 		$currencies = $this->currencyRepo->getList('symbol');
 		$sub_categories = $this->subCategoryRepo->getListGroup('category');
 		$units = $this->unitRepo->getListGroup('unit_type');
-		return view('partials.edit', compact('model', 'sub_categories', 'units', 'currencies'));
+		$brands = [];
+		$countries = $this->sunatRepo->getList2('FE', 4);
+		return view('partials.edit', compact('model', 'sub_categories', 'units', 'currencies', 'brands', 'countries'));
 	}
 
 	public function update($id, FormProductRequest $request)

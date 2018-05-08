@@ -12,6 +12,6 @@ class SunatRepo extends BaseRepo{
 	}
 	public function getList2($catalog, $table)
 	{
-		return SunatTable::where('catalog', $catalog)->where('table', $table)->where('is_activated', true)->pluck('description', 'id')->toArray();
+		return [""=>'Seleccionar'] + SunatTable::where('catalog', $catalog)->where('table', $table)->where('is_activated', true)->pluck('description', 'id')->toArray();
 	}
 }

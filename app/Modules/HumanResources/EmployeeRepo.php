@@ -36,6 +36,6 @@ class EmployeeRepo extends BaseRepo{
 	}
 	public function getListSellers()
 	{
-		return [""=>"Seleccionar"] + Employee::where('job_id', 2)->pluck('full_name', 'id')->toArray();
+		return [""=>"Seleccionar"] + Employee::where('job_id', 6)->pluck('full_name', 'id')->toArray();
 	}
 }

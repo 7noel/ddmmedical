@@ -36,7 +36,6 @@ class CreateCompaniesTable extends Migration {
 
 			$table->foreign('id_type_id')->references('id')->on('id_types');
 			$table->foreign('ubigeo_id')->references('id')->on('ubigeos');
-			$table->foreign('country_id')->references('id')->on('ubigeos');
 			$table->timestamps();
 			$table->softDeletes();
 		});

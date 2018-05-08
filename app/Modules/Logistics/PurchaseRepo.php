@@ -13,9 +13,9 @@ class PurchaseRepo extends BaseRepo{
 	public function index($filter = false, $search = false)
 	{
 		if ($filter and $search) {
-			return Purchase::$filter($search)->with('company', 'document_type', 'payment_condition', 'currency', 'purchase_details')->orderBy("$filter", 'ASC')->paginate();
+			return Purchase::$filter($search)->with('company', 'document_type', 'payment_condition', 'currency')->orderBy("$filter", 'ASC')->paginate();
 		} else {
-			return Purchase::orderBy('id', 'DESC')->with('company', 'document_type', 'payment_condition', 'currency', 'purchase_details')->paginate();
+			return Purchase::orderBy('id', 'DESC')->with('company', 'document_type', 'payment_condition', 'currency')->paginate();
 		}
 	}
 	/*public function prepareData($data)

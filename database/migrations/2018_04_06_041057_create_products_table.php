@@ -20,6 +20,9 @@ class CreateProductsTable extends Migration {
 			$table->string('manufacturer_code');
 			$table->string('name');
 			$table->text('description');
+			$table->integer('country_id')->unsigned();
+			$table->integer('brand_id')->unsigned();
+			$table->string('model');
 			$table->integer('sub_category_id')->unsigned();
 			$table->integer('unit_id')->unsigned();
 			$table->integer('currency_id')->unsigned();

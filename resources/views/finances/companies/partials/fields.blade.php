@@ -6,9 +6,9 @@
 							{!! Form::text('doc', null, ['class'=>'form-control uppercase', 'id'=>'doc', 'required']) !!}
 							</div>
 						</div>
-						{!! Form::label('country','País', ['class'=>'col-sm-2 control-label']) !!}
+						{!! Form::label('country_id','País', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-3">
-							{!! Form::select('country', $countries, 1461, ['class'=>'form-control', 'id'=>'lstCountry', 'required'=>'required']) !!}
+							{!! Form::select('country_id', $countries, 1461, ['class'=>'form-control', 'id'=>'lstCountry', 'required'=>'required']) !!}
 						</div>
 					</div>
 					<div class="form-group form-group-sm div_ruc">
