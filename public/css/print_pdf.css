@@ -5,20 +5,12 @@ body{
 	font-size: 12px;
 	/*border: solid 1px black;*/
 }
-.part{
-	width: 50%;
-	float:left;
-	/*border: solid 1px black;*/
-}
 .ruc{
+	margin-bottom: 20px;
+	margin-left: 300px;
 	border: solid 1px black;
 	padding: 5px;
-	display: inline-block;
-	margin: 5px 0px;
-}
-.asunto{
-	/*border: solid 1px green;*/
-	margin-top: 190px;
+
 }
 .border{
 	border: solid 1px black;
@@ -49,7 +41,22 @@ body{
 .th5{
 	width: 12%;
 }
-@page { margin-bottom: 80px; }
-/*header { position: fixed; top: -60px; left: 0px; right: 0px; background-color: lightblue; height: 50px; }*/
+@page { margin-bottom: 80px; margin-top: 100px; }
+header { position: fixed; top: -90px; left: 0px; right: 0px; height: 90px;}
 /*footer { position: fixed; bottom: -60px; left: 0px; right: 0px; background-color: lightblue; height: 50px; }*/
 footer { position: fixed; bottom: -60px; left: 0px; right: 0px; height: 50px; }
+
+.margin-condition{
+	margin-left: 20px;
+}
+.title-condition{
+
+}
+img{
+	/*border:solid 1px red;*/
+}
+.header1, .header2{
+	display: inline-block;
+	/*border: solid 1px black;*/
+	margin-top: 10px;
+}

@@ -6,6 +6,19 @@ return array(
 		'3'=>'A pedido',
 		'2'=>'Inactivo'
 	],
+	'tax' => [
+		'igv' => 18
+	],
+	'bank_accounts' => [
+		['label' => 'Cuenta Corriente Dólares Interbank',
+			'number' => '631-3001268591',
+			'cci' => '003-631-003001268591-90'
+		],
+		['label' => 'Cuenta Corriente Soles Interbank',
+			'number' => '631-3001268584',
+			'cci' => '003-631-003001268584-95'
+		]
+	],
 //	'admin' => [
 		'id_types' => [
 			'index'  => ['panel'=>'Tipos de Documento', 'create'=>'Crear Tipo de Documento'],

@@ -1,11 +1,32 @@
 $(document).ready(function(){
-
+	if ($('#is_import').val()==1) {
+		$('.expenses').hide();
+		$('.dam').hide();
+	} else {
+		$('.expenses').show();
+		$('.dam').show();
+	}
+	if ($('#payment_condition_id').val()==1) {
+		$('.due_date').hide();
+	} else {
+		$('.due_date').show();
+	}
 	$('#txtCompany').autocomplete({
 		source: "/api/companies/autocompleteAjax/",
 		minLength: 4,
 		select: function(event, ui){
+			console.log(ui.item)
 			$('#company_id').val(ui.item.id);
 			$('#lstSeller').focus();
+			if (ui.item.country_id==1461) {
+				$('#is_import').val(0);
+				$('.expenses').hide();
+				$('.dam').hide();
+			} else {
+				$('#is_import').val(1);
+				$('.expenses').show();				
+				$('.dam').show();				
+			}
 		}
 	});
 
@@ -29,9 +50,15 @@ $(document).ready(function(){
 		calcTotalOrder();
 	});
 	$(document).on('change','.expense', function (e) {
-		console.log(this.id);
 		validateItem(this, '#'+this.id);
 		calcCost();
+	});
+	$(document).on('change','#payment_condition_id', function (e) {
+		if ($('#payment_condition_id').val()==1) {
+			$('.due_date').hide();
+		} else {
+			$('.due_date').show();
+		}
 	});
 
 	$('#btnAddProduct').click(function(e){
@@ -40,7 +67,6 @@ $(document).ready(function(){
 });
 
 function setRowProduct($this, $p) {
-	//console.log($this)
 	if(isDesignEnabled($this, $p.id)){
 		$($this).parent().parent().find('.productId').val($p.id);
 		$($this).parent().parent().find('.txtProduct').val($p.name);

@@ -79,6 +79,7 @@ class OrdersController extends Controller {
 	public function print($id)
 	{
 		$model = $this->repo->findOrFail($id);
+		// dd($model);
 		//return view('pdfs.order_pdf', compact('model'));
 		\PDF::setOptions(['isPhpEnabled' => true]);
 		$pdf = \PDF::loadView('pdfs.order_pdf', compact('model'));

@@ -96,6 +96,7 @@ Route::group(['prefix'=>'sales', 'middleware'=>['auth', 'permissions'], 'namespa
 
 Route::group(['prefix'=>'logistics', 'middleware'=>['auth', 'permissions'], 'namespace'=>'Logistics'], function(){
 	Route::resource('purchases','PurchasesController');
+	Route::resource('brands','BrandsController');
 });
 
 Route::get('enviar', ['as' => 'enviar', function () {

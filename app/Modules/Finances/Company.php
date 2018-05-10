@@ -15,9 +15,13 @@ class Company extends Model implements Auditable {
     {
         return $this->hasOne('App\Modules\Base\IdType', 'id', 'id_type_id');
     }
-    public function ubigeo()
+	public function ubigeo()
 	{
 		return $this->hasOne('App\Modules\Base\Ubigeo','id','ubigeo_id');
+	}
+	public function country()
+	{
+		return $this->hasOne('App\Modules\Base\SunatTable','id','country_id');
 	}
 
 	public function scopeName($query, $name){

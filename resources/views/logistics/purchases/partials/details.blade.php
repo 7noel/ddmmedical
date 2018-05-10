@@ -7,9 +7,9 @@
 									<th class="col-sm-1">#</th>
 									<th class="col-sm-5">Descripción</th>
 									<th class="col-sm-1">Cantidad</th>
-									<th class="col-sm-1">Precio</th>
+									<th class="col-sm-1">V. Unit</th>
 									<th class="col-sm-1">Costo</th>
-									<th class="col-sm-1">V.Venta</th>
+									<th class="col-sm-1 import">V. Tot</th>
 									<th class="col-sm-2">Acciones</th>
 								</tr>
 							</thead>
@@ -25,7 +25,7 @@
 									<td>{!! Form::text("details[$i][quantity]", $detail->quantity, ['class'=>'form-control input-sm txtCantidad text-right', 'data-cantidad'=>'']) !!}</td>
 									<td>{!! Form::text("details[$i][price]", $detail->price, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
 									<td>{!! Form::text("details[$i][cost]", $detail->cost, ['class'=>'form-control input-sm txtCost text-right', 'data-cost'=>'']) !!}</td>
-									<td> <span class='form-control input-sm txtTotal text-right' data-total>{{ $detail->total }}</span> </td>
+									<td> <span class='form-control input-sm txtTotal text-right import' data-total>{{ $detail->total }}</span> </td>
 									<td class="text-center form-inline">
 										<div class="checkbox">
 											<label><input type="checkbox" name="details[{{$i}}][is_deleted]" data-isdeleted class="isdeleted"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></label>
@@ -47,7 +47,7 @@
 								<td>{!! Form::text('data4', null, ['class'=>'form-control input-sm txtCantidad text-right', 'data-cantidad'=>'']) !!}</td>
 								<td>{!! Form::text('data5', null, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
 								<td>{!! Form::text('data6', null, ['class'=>'form-control input-sm txtCost text-right', 'data-cost'=>'', 'readonly'=>'readonly']) !!}</td>
-								<td> <span class='form-control input-sm txtTotal text-right' data-total></span> </td>
+								<td> <span class='form-control input-sm txtTotal text-right import' data-total></span> </td>
 								<td class="text-center form-inline">
 									<div class="checkbox">
 										<label><input type="checkbox" name="data7" data-isdeleted class="isdeleted"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></label>

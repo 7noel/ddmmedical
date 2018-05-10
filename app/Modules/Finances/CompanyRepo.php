@@ -20,11 +20,14 @@ class CompanyRepo extends BaseRepo{
 		$data['brand_name'] = trim($data['brand_name']);
 		$data['paternal_surname'] = trim($data['paternal_surname']);
 		$data['maternal_surname'] = trim($data['maternal_surname']);
-		if($data['id_type_id'] != 1){
+		if($data['id_type_id'] != 1 and $data['id_type_id'] != 6){
 			$data['company_name'] = $data['paternal_surname'].' '.$data['maternal_surname'].' '.$data['name'];
 		}
 		if(!isset($data['is_provider'])){
 			$data['is_provider'] = false;
+		}
+		if (isset($data['country_id']) and $data['country_id'] != 1461) {
+			$data['ubigeo_id'] == 1868;
 		}
 		return $data;
 	}

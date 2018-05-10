@@ -19,6 +19,12 @@ $(document).ready(function(){
 		} else{
 			$('.div_ruc, .div_dni').hide();
 		}
+		if (doc == 6) {
+			$('#lstCountry').attr('disabled', false);
+		} else {
+			$('#lstCountry').val(1461);
+			$('#lstCountry').attr('disabled', true);
+		}
 	});
 	$('#doc').change(function(){
 		var ruc = trim($('#doc').val());

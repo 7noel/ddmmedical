@@ -46,7 +46,7 @@ class CompaniesController extends Controller {
 		if (isset($data['last_page']) && $data['last_page'] != '') {
 			return \Redirect::to($data['last_page']);
 		}
-		return \Redirect::route('finances.companies.index');
+		return \Redirect::route('companies.index');
 	}
 
 	public function show($id)
@@ -74,14 +74,14 @@ class CompaniesController extends Controller {
 		if (isset($data['last_page']) && $data['last_page'] != '') {
 			return \Redirect::to($data['last_page']);
 		}
-		return \Redirect::route('finances.companies.index');
+		return \Redirect::route('companies.index');
 	}
 
 	public function destroy($id)
 	{
 		$model = $this->repo->destroy($id);
 		if (\Request::ajax()) {	return $model; }
-		return redirect()->route('finances.companies.index');
+		return redirect()->route('companies.index');
 	}
 	public function ajaxAutocomplete()
 	{
@@ -92,6 +92,7 @@ class CompaniesController extends Controller {
 			$result[]=[
 				'value' => $model->company_name,
 				'id' => $model->id,
+				'country_id' =>$model->country_id,
 				'label' => $model->id_type->symbol.' '.$model->doc.' '.$model->company_name
 			];
 		}

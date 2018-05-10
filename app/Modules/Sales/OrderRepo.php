@@ -9,6 +9,9 @@ class OrderRepo extends BaseRepo{
 	public function getModel(){
 		return new Order;
 	}
+	public function findOrFail($id){
+		return Order::with('details.product.brand')->findOrFail($id);
+	}
 	public function save($data, $id=0)
 	{
 		$gross_value = 0;
@@ -16,16 +19,14 @@ class OrderRepo extends BaseRepo{
 		if (isset($data['details'])) {
 			foreach ($data['details'] as $key => $detail) {
 				$data['details'][$key]['total'] = round($detail['price']*$detail['quantity']*(100-$detail['discount']))/100;
-				if (isset($detail['is_deleted'])) {
-					unset($data['details'][$key]);
-				} else {
+				if (!isset($detail['is_deleted'])) {
 					$gross_value += round($detail['price']*$detail['quantity'], 2);
 					$discount += round($detail['price']*$detail['quantity']*$detail['discount'])/100;
 				}
 				$data['gross_value'] = $gross_value;
 				$data['discount'] = $discount;
 				$data['subtotal'] = $gross_value - $discount;
-				$data['total'] = round(1.18*$data['subtotal'], 2);
+				$data['total'] = round($data['subtotal'] * (100 + config('options.tax.igv')) / 100, 2);
 				$data['tax'] = $data['total'] - $data['subtotal'];
 			}
 		}

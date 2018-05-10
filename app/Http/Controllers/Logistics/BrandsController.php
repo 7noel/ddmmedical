@@ -28,7 +28,7 @@ class BrandsController extends Controller {
 	public function store()
 	{
 		$this->repo->save(\Request::all());
-		return \Redirect::route('logistics.brands.index');
+		return \Redirect::route('brands.index');
 	}
 
 	public function show($id)
@@ -45,7 +45,7 @@ class BrandsController extends Controller {
 	public function update($id)
 	{
 		$this->repo->save(\Request::all(), $id);
-		return \Redirect::route('logistics.brands.index');
+		return \Redirect::route('brands.index');
 	}
 
 	public function destroy($id)

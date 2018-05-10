@@ -86,7 +86,7 @@ class MenuController extends Controller
             'Logística'=>[
                 //['name' => 'Ordenes de Compra', 'url' => '#' ],
                 ['name' => 'Compras', 'route' => 'purchases.index' ],
-                //['name' => 'Marca', 'route' => 'brands.index', 'div' => '1' ],
+                ['name' => 'Marca', 'route' => 'brands.index', 'div' => '1' ],
             ],
         ];
         return $links;

@@ -17,11 +17,10 @@ class CreatePurchasesTable extends Migration {
         {
             $table->increments('id');
             $table->date('date');
+            $table->boolean('is_import');
             $table->integer('document_type_id')->unsigned();
-            $table->string('series');
             $table->string('number');
             $table->date('dispatch_note_date');
-            $table->string('dispatch_note_series');
             $table->string('dispatch_note_number');
             $table->string('dam');
             $table->integer('company_id')->unsigned();

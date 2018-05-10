@@ -31,8 +31,14 @@ class AdminTableSeeder extends Seeder {
     public function run()
     {
         User::create(['name' => 'Noel', 'email' => 'noel.logan@gmail.com', 'password' => '123', 'is_superuser' => true]);
-        User::create(['name' => 'Camila', 'email' => 'asistente@ddmmedical.com', 'password' => '123',
-            'is_superuser' => true]);
+        User::create(['name' => 'ESTELLE LITA CAMILA', 'email' => 'asistente@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
+        User::create(['name' => 'CRUZ KAREN LORENA', 'email' => 'pyl3@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
+        User::create(['name' => 'SERRANO ALFONSO JESUS', 'email' => 'pyl1@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
+        User::create(['name' => 'MORAZZANI GIOVANNI CARLOS', 'email' => 'pyl5@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
+        User::create(['name' => 'SANCHEZ ERIC ENRIQUE', 'email' => 'py6@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
+        User::create(['name' => 'CHU JUAN ALEJANDRO', 'email' => 'Jchu@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
+        User::create(['name' => 'NAVARRO OTONIEL', 'email' => 'onavarro@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
+        User::create(['name' => 'PERAMAS  CARLA ROCIO', 'email' => 'cperamas@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
 
         Role::create(['name' => 'ADMINISTRADOR DE SISTEMA']);
         Role::create(['name' => 'GERENTE GENERAL']);
@@ -61,9 +67,19 @@ class AdminTableSeeder extends Seeder {
         Job::create(['name' => 'MARKETING']);
         Job::create(['name' => 'VENDEDOR']);
 
-        Employee::create(['name' => 'NOEL', 'paternal_surname'=>'HUILLCA', 'maternal_surname'=>'HUAMANI', 'full_name'=>'HUILLCA HUAMANI NOEL', 'id_type_id'=>'2', 'doc'=>'44243484', 'job_id'=>'1', 'gender'=>'0', 'address'=>'JR. LAS GROSELLAS 910', 'ubigeo_id'=>'1306', 'user_id'=>'1']);
+        Employee::create(['name' => 'NOEL', 'paternal_surname'=>'HUILLCA', 'maternal_surname'=>'HUAMANI', 'full_name'=>'HUILLCA HUAMANI NOEL', 'id_type_id'=>'2', 'doc'=>'44243484', 'job_id'=>'1', 'gender'=>'0', 'address'=>'JR. LAS GROSELLAS 910', 'ubigeo_id'=>'1306', 'user_id'=>'1', 'email_company' => '']);
+        Employee::create(['name' => 'LITA CAMILA', 'paternal_surname'=>'ESTELLE', 'maternal_surname'=>'DA SILVA', 'full_name'=>'ESTELLE DA SILVA LITA CAMILA', 'id_type_id'=>'2', 'doc'=>'71138144', 'job_id'=>'4', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1306', 'user_id'=>'2', 'email_company' => 'asistente@ddmmedical.com', 'mobile_company' => '936124737']);
+        Employee::create(['name' => 'KAREN LORENA', 'paternal_surname'=>'CRUZ', 'maternal_surname'=>'ARELLANO', 'full_name'=>'CRUZ ARELLANO KAREN LORENA', 'id_type_id'=>'2', 'doc'=>'001018558', 'job_id'=>'6', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1306', 'user_id'=>'3', 'email_company' => 'pyl3@ddmmedical.com', 'mobile_company' => '942176767']);
+        Employee::create(['name' => 'ALFONSO JESUS', 'paternal_surname'=>'SERRANO', 'maternal_surname'=>'VALDEZ', 'full_name'=>'SERRANO VALDEZ ALFONSO JESUS', 'id_type_id'=>'2', 'doc'=>'40428589', 'job_id'=>'6', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1306', 'user_id'=>'4', 'email_company' => 'pyl1@ddmmedical.com', 'mobile_company' => '955593510']);
+        Employee::create(['name' => 'GIOVANNI CARLOS', 'paternal_surname'=>'MORAZZANI', 'maternal_surname'=>'LLOSA', 'full_name'=>'MORAZZANI LLOSA GIOVANNI CARLOS', 'id_type_id'=>'2', 'doc'=>'07724159', 'job_id'=>'6', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1306', 'user_id'=>'5', 'email_company' => 'pyl5@ddmmedical.com', 'mobile_company' => '922415573']);
+        Employee::create(['name' => 'ERIC ENRIQUE', 'paternal_surname'=>'SANCHEZ', 'maternal_surname'=>'ESPINOSA', 'full_name'=>'SANCHEZ ESPINOSA ERIC ENRIQUE', 'id_type_id'=>'2', 'doc'=>'29638670', 'job_id'=>'6', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1306', 'user_id'=>'6', 'email_company' => 'py6@ddmmedical.com', 'mobile_company' => '974346719']);
+        Employee::create(['name' => 'JUAN ALEJANDRO', 'paternal_surname'=>'CHU', 'maternal_surname'=>'FONG', 'full_name'=>'CHU FONG JUAN ALEJANDRO', 'id_type_id'=>'2', 'doc'=>'10058296', 'job_id'=>'2', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1306', 'user_id'=>'7', 'email_company' => 'Jchu@ddmmedical.com', 'mobile_company' => '983509797']);
+        Employee::create(['name' => 'OTONIEL', 'paternal_surname'=>'NAVARRO', 'maternal_surname'=>'CARNERO', 'full_name'=>'NAVARRO CARNERO OTONIEL', 'id_type_id'=>'2', 'doc'=>'02665016', 'job_id'=>'6', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1306', 'user_id'=>'8', 'email_company' => 'onavarro@ddmmedical.com', 'mobile_company' => '960713970']);
+        Employee::create(['name' => 'CARLA ROCIO', 'paternal_surname'=>'PERAMAS ', 'maternal_surname'=>'BENAVIDES', 'full_name'=>'PERAMAS  BENAVIDES CARLA ROCIO', 'id_type_id'=>'2', 'doc'=>'10320548', 'job_id'=>'2', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1306', 'user_id'=>'9', 'email_company' => 'cperamas@ddmmedical.com', 'mobile_company' => '960173935']);
 
-        Company::create(['company_name'=>'HUILLCA HUAMANI NOEL', 'id_type_id'=>'2', 'doc'=>'44243484', 'address'=>'JR. LAS GROSELLAS 910', 'ubigeo_id'=>'1306', 'country_id' => 1461]);
+
+        Company::create(['company_name'=>'HUILLCA HUAMANI NOEL', 'name'=>'NOEL', 'paternal_surname'=>'HUILLCA', 'maternal_surname'=>'HUAMANI', 'id_type_id'=>'2', 'doc'=>'44243484', 'address'=>'JR. LAS GROSELLAS 910', 'ubigeo_id'=>'1306', 'country_id' => 1461]);
+        Company::create(['company_name'=>'EMPRESA EXTRANJERA', 'id_type_id'=>'6', 'doc'=>'654321321', 'address'=>'JR. LAS GROSELLAS 910', 'ubigeo_id'=>'1868', 'country_id' => 1462]);
 
 
         PermissionGroup::create(['name' => 'SISTEMAS']);
@@ -129,6 +145,7 @@ class AdminTableSeeder extends Seeder {
 
         Currency::create(['name' => 'SOLES', 'symbol' => 'S/.', 'code' => 'PEN']);
         Currency::create(['name' => 'DOLARES AMERICANOS', 'symbol' => 'US$', 'code' => 'USD']);
+        Currency::create(['name' => 'EUROS', 'symbol' => '€', 'code' => 'EUR']);
 
         Exchange::create(['date' => date('Y-m-d'), 'currency_id' => 1, 'sales' => 3, 'purchase' => 3]);
 
@@ -200,9 +217,10 @@ class AdminTableSeeder extends Seeder {
         // Brand::create(['name' => 'YOKOHAMA', 'is_car' => '0']);
 
         DocumentType::create(['name' => 'FACTURA', 'to_sales' => '1', 'to_purchases' => '1']);
-        DocumentType::create(['name' => 'BOLETA', 'to_sales' => '1', 'to_purchases' => '1']);
+        DocumentType::create(['name' => 'BOLETA', 'to_sales' => '1']);
         DocumentType::create(['name' => 'NOTA DE CREDITO', 'to_sales' => '1', 'to_purchases' => '1']);
         DocumentType::create(['name' => 'NOTA DE DEBITO', 'to_sales' => '1', 'to_purchases' => '1']);
+        DocumentType::create(['name' => 'INVOICE', 'to_purchases' => '1']);
 
         PaymentCondition::create(['name' => 'CONTADO', 'to_sales' => '1', 'to_purchases' => '1']);
         PaymentCondition::create(['name' => 'CRÉDITO', 'to_sales' => '1', 'to_purchases' => '1']);

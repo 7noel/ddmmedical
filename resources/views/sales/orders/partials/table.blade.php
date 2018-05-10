@@ -10,7 +10,7 @@
 						@foreach($models as $model)
 						<tr data-id="{{ $model->id }}">
 							<td>{{ $model->id }}</td>
-							<td>{{ date("d/m/Y",strtotime($model->created_at)) }} </td>
+							<td>{{ $model->created_at->formatLocalized('%d/%m/%Y') }}</td>
 							<td>{{ $model->company->company_name }} </td>
 							<td>{{ $model->status }}</td>
 							<td>{{ $model->currency->symbol." ".$model->total}} </td>

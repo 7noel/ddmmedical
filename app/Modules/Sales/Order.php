@@ -11,7 +11,7 @@ class Order extends Model implements Auditable
 	use \OwenIt\Auditing\Auditable;
 	use SoftDeletes;
 
-	protected $fillable = ['note', 'company_id', 'payment_condition_id', 'currency_id', 'seller_id', 'approved_at', 'checked_at', 'invoiced_at', 'sent_at', 'canceled_at', 'gross_value', 'discount', 'subtotal', 'tax', 'total', 'amortization', 'exchange', 'exchange_sunat', 'comment', 'status'];
+	protected $fillable = ['note', 'company_id', 'payment_condition_id', 'currency_id', 'seller_id', 'attention', 'matter', 'approved_at', 'checked_at', 'invoiced_at', 'sent_at', 'canceled_at', 'gross_value', 'discount', 'subtotal', 'tax', 'total', 'amortization', 'exchange', 'exchange_sunat', 'comment', 'status', 'delivery_period', 'installation_period', 'delivery_place', 'offer_period'];
 
 	public function scopeName($query, $name){
 		if (trim($name) != "") {
@@ -37,5 +37,9 @@ class Order extends Model implements Auditable
 	public function details()
 	{
 		return $this->hasMany('App\Modules\Sales\OrderDetail');
+	}
+	public function attributes()
+	{
+		return $this->morphMany('App\Modules\Base\Attribute', 'attribute');
 	}
 }

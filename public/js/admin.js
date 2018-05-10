@@ -1,4 +1,12 @@
 $(document).ready(function () {
+
+	if (parseInt($('#listDoc').val()) == 6) {
+		$('#div-ubigeo').hide();
+		$('#lstDistrito').attr( "required", "required" );
+	} else {
+		$('#lstCountry').attr('disabled', true);
+		$('#lstDistrito').removeAttr( "required" );
+	}
 	$(document).bind('keydown', 'ctrl+l', function(){
 		//alert("Has pulsado ctrl+l");
 	});
@@ -23,7 +31,7 @@ $(document).ready(function () {
 			$('#lstDistrito').attr( "required", "required" );
 		} else {
 			$('#div-ubigeo').hide();
-			$('#lstDistrito').removeAttr( "required" )
+			$('#lstDistrito').removeAttr( "required" );
 		}
 	});
 

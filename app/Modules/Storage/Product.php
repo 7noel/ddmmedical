@@ -33,9 +33,9 @@ class Product extends Model implements Auditable {
 	{
 		return $this->hasOne('App\Modules\Base\Currency','id','currency_id');
 	}
-	public function basic_design()
+	public function brand()
 	{
-		return $this->belongsTo('App\Modules\Storage\BasicDesign');
+		return $this->belongsTo('App\Modules\Logistics\Brand');
 	}
 	public function accessories()
 	{
@@ -57,4 +57,9 @@ class Product extends Model implements Auditable {
 	{
 		return $this->hasMany('App\Modules\Logistics\PurchaseDetail');
 	}
+	public function country()
+	{
+		return $this->hasOne('App\Modules\Base\SunatTable','id','country_id');
+	}
+
 }

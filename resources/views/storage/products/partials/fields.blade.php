@@ -21,7 +21,7 @@
 					<div class="form-group form-group-sm">
 						{!! Form::label('model','Modelo', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
-							{!! Form::text('modelo', null, ['class'=>'form-control', 'required'=>'required']) !!}
+							{!! Form::text('model', null, ['class'=>'form-control', 'required'=>'required']) !!}
 						</div>
 						{!! Form::label('brand_id','Marca', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
@@ -82,6 +82,6 @@
 						</div>
 					</div>
 
-					@if(isset($model))
+					@if(isset($model) or 1==1)
 						@include('storage.products.partials.accordion')
 					@endif

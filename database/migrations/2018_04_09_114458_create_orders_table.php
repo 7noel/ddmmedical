@@ -19,6 +19,12 @@ class CreateOrdersTable extends Migration
             $table->integer('company_id')->unsigned();
             $table->integer('payment_condition_id')->unsigned();
             $table->integer('currency_id')->unsigned();
+            $table->string('attention');
+            $table->string('matter');
+            $table->string('delivery_period');
+            $table->string('installation_period');
+            $table->string('delivery_place');
+            $table->string('offer_period');
             $table->integer('seller_id')->unsigned();
             $table->dateTime('approved_at')->nullable();
             $table->dateTime('checked_at')->nullable();

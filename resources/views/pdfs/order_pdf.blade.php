@@ -8,9 +8,9 @@
 <body>
 	<script type="text/php">
 	if (isset($pdf)) {
-		$x = 280;
-        $y = 770;
-        $text = "Página {PAGE_NUM} de {PAGE_COUNT}";
+		$x = 540;
+        $y = 765;
+        $text = "Pág. {PAGE_NUM} de {PAGE_COUNT}";
         $font = null;
         $size = 8;
         $color = array(0, 0, 0);
@@ -20,39 +20,52 @@
         $pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
 	}
 	</script>
+	<header class="">
+		<div class="header1">
+			<img src="./img/logo.png" alt="" width="180px">
+		</div>
+		<div class="header2">
+			<div class="ruc">RUC: 20600096622</div>
+		</div>
+	</header>
 	<footer>
 		<div class="center">Av. Alfredo Benavides Nº1555 - Oficina 306 - Miraflores, Lima - Perú</div>
 		<div class="center"><strong>T:</strong> (511) 6833-0884 <strong>E:</strong> contactenos@ddmmedical.com <strong>W:</strong> www.ddmmedical.com</div>
+		<div class="center">Cotización Nº: {{ $model->id }} / Creado por: {{ $model->audits->first()->user->name }}</div>
 	</footer>
 	<div>
-		<img src="./img/logo.png" alt="" width="200px">
-	</div>
-	<div class="">
-		<div class="part">
-			<p>Sres.:</p>
-			<div>{{ $model->company->company_name }}</div>
-			<div>Atencion: Dr. José Luis Huerta</div>
-			<div>Presente.-</div>
-			<div>
-			</div>
-		</div>
-	<br><br>
-		<div class="part">
-			<div class="ruc">RUC: 20600096622</div>
-			<div>Cotización: {{ $model->id }}</div>
-			<div>Tel.</div>
-			<div>+51-1-683-0884</div>
-			<div>Cel.</div>
-			<div>+51-983509797</div>
-			<div>E-mail</div>
-			<div>contactenos@ddmmedical.com</div>
-			<p>Lima, {{ $model->created_at->formatLocalized('%A %d de %B de %Y') }}</p>
-		</div>
+		<table class="table-items">
+			<tbody>
+				<tr>
+					<td width="60%" class="" valign="bottom">
+						<p>Sres.:</p>
+						<div>{{ $model->company->company_name }}</div>
+						@if(trim($model->attention)!="")
+						<div>Atención: {{ $model->attention }}</div>
+						@endif
+						<p>Presente.-</p>
+						@if(trim($model->matter)!="")
+						<div>Asunto:</div>
+						@endif
+					</td>
+					<td class="">
+						<div><strong>Cotización: {{ $model->id }}</strong></div>
+						<div>Tel.</div>
+						<div>+51-1-683-0884</div>
+						<div>Cel.</div>
+						<div>+51-983509797</div>
+						<div>E-mail</div>
+						<div>contactenos@ddmmedical.com</div>
+						<p align="right">Lima, {{ $model->created_at->formatLocalized('%A %d de %B de %Y') }}</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<div class="asunto">
-	<br><br>
-				<p>Asunto:</p>
-				<p>MONITOR DE SIGNOS VITALES - ADVANCED</p>
+		@if(trim($model->matter)!="")
+		<p>{{ $model->matter }}</p>
+		@endif
 		<p>Estimados Sras. /Sres.</p>
 		<p>Tomando como referencia su solicitud arriba mencionada, le adjuntamos la correspondiente oferta. Contiene una descripcion de los productos solicitados. Si tiene alguna consulta, por favor no dude en contactarnos.</p>
 	</div>
@@ -72,7 +85,16 @@
 				<tr>
 					<td class="border center">{{ $key + 1 }}</td>
 					<td class="border">
-						<span>{{ $detail->product->name }}</span>
+						<div><strong>{{ $detail->product->name }}</strong></div>
+						@if(trim($detail->product->model)!="")
+						<div><strong>MODELO: {{ $detail->product->model }}</strong></div>
+						@endif
+						@if(isset($detail->product->brand))
+						<div><strong>MARCA: {{ $detail->product->brand->name }}</strong></div>
+						@endif
+						@if(isset($detail->product->country))
+						<div><strong>PROCEDENCIA: {{ $detail->product->country->description }}</strong></div>
+						@endif
 						<div>
 							{!! nl2br($detail->product->description) !!}
 						</div>
@@ -111,37 +133,53 @@
 		</table>
 
 	</div>
+	@if(trim($model->comment)!="")
+	<p><strong>Comentario:</strong> {{$model->comment}}</p>
+	@endif
 	<div class="condiciones">
-		<p>CONDICIONES DE PAGO</p>
-		<table>
+		<p><strong><em><u>CONDICIONES DE PAGO</u></em></strong></p>
+		<table class="margin-condition">
 			<tr>
 				<td>Forma de Pago:</td>
 				<td>{{ $model->payment_condition->name }}</td>
 			</tr>
+			@foreach(config('options.bank_accounts') as $key => $account)
 			<tr>
-				<td>Cuenta Corriente Dólares Interbank:</td>
-				<td>631-3001268591 <strong>CCI</strong> 003-631-003001268591-90</td>
+				<td>{{ $account['label'] }}:</td>
+				<td>{{ $account['number'] }} <strong>CCI</strong> {{ $account['cci'] }}</td>
 			</tr>
+			@endforeach
 			<tr>
-				<td>Cuenta Corriente Soles Interbank:</td>
-				<td>631-3001268584 <strong>CCI</strong> 003-631-003001268584-95</td>
-			</tr>
-			<tr>
-				<td>Validez de la oferta</td>
+				<td>Validéz de la oferta:</td>
 				<td>30 días</td>
 			</tr>
 		</table>
-		<p>CONDICIONES COMERCIALES</p>
-		<table>
+		<p><strong><em><u>CONDICIONES COMERCIALES</u></em></strong></p>
+		<table class="margin-condition">
 			<tr>
-				<td>Plazo de Entrega</td>
-				<td>30 :días (Previa confirmación de la transferencia)</td>
+				<td>Plazo de Entrega:</td>
+				<td>{{ $model->delivery_period }}</td>
 			</tr>
 			<tr>
 				<td>Lugar de Entrega:</td>
-				<td>Lima</td>
+				<td>{{ $model->delivery_place }}</td>
+			</tr>
+			@if( trim($model->installation_period)!='' )
+			<tr>
+				<td>Lugar de Entrega:</td>
+				<td>{{ $model->installation_period }}</td>
+			</tr>
+			@endif
+		</table>
+		@if( trim($model->offer_period)!='' )
+		<p><strong><em><u>CONDICIONES DE GARANTÍA</u></em></strong></p>
+		<table class="margin-condition">
+			<tr>
+				<td>Plazo Ofertado:</td>
+				<td>{{ $model->offer_period }}</td>
 			</tr>
 		</table>
+		@endif
 		
 	</div>
 	<p>Les saluda atentamente</p>
@@ -151,7 +189,6 @@
 		<div>Teléfono: +51-1-6830884</div>
 		<div>Móvil: +51-955593510</div>
 		<div>email: pyl1@ddmmedical.com</div>
-		<div>{{ $model->audits->first()->user->name }}</div>
 	</div>
 </body>
 </html>

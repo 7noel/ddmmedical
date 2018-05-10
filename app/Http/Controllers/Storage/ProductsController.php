@@ -15,6 +15,7 @@ use App\Modules\Storage\ProductRepo;
 use App\Modules\Storage\Product;
 use App\Modules\Base\CurrencyRepo;
 use App\Modules\Base\SunatRepo;
+use App\Modules\Logistics\BrandRepo;
 
 use App\Http\Requests\Logistics\FormProductRequest;
 use App\Modules\Storage\Stock;
@@ -28,8 +29,9 @@ class ProductsController extends Controller {
 	protected $unitTypeRepo;
 	protected $currencyRepo;
 	protected $sunatRepo;
+	protected $brandRepo;
 
-	public function __construct(ProductRepo $repo, SubCategoryRepo $subCategoryRepo, CategoryRepo $categoryRepo, UnitRepo $unitRepo, UnitTypeRepo $unitTypeRepo, CurrencyRepo $currencyRepo, SunatRepo $sunatRepo) {
+	public function __construct(ProductRepo $repo, SubCategoryRepo $subCategoryRepo, CategoryRepo $categoryRepo, UnitRepo $unitRepo, UnitTypeRepo $unitTypeRepo, CurrencyRepo $currencyRepo, SunatRepo $sunatRepo, BrandRepo $brandRepo) {
 		$this->repo = $repo;
 		$this->categoryRepo = $categoryRepo;
 		$this->subCategoryRepo = $subCategoryRepo;
@@ -37,6 +39,7 @@ class ProductsController extends Controller {
 		$this->unitTypeRepo = $unitTypeRepo;
 		$this->currencyRepo = $currencyRepo;
 		$this->sunatRepo = $sunatRepo;
+		$this->brandRepo = $brandRepo;
 	}
 
 	public function index()
@@ -50,7 +53,7 @@ class ProductsController extends Controller {
 		$sub_categories = $this->subCategoryRepo->getListGroup('category');
 		$units = $this->unitRepo->getListGroup('unit_type');
 		$currencies = $this->currencyRepo->getList('symbol');
-		$brands = [];
+		$brands = $this->brandRepo->getList();
 		$countries = $this->sunatRepo->getList2('FE', 4);
 		
 		return view('partials.create', compact('sub_categories', 'units', 'currencies', 'brands', 'countries'));
@@ -73,7 +76,7 @@ class ProductsController extends Controller {
 		$currencies = $this->currencyRepo->getList('symbol');
 		$sub_categories = $this->subCategoryRepo->getListGroup('category');
 		$units = $this->unitRepo->getListGroup('unit_type');
-		$brands = [];
+		$brands = $this->brandRepo->getList();
 		$countries = $this->sunatRepo->getList2('FE', 4);
 		return view('partials.edit', compact('model', 'sub_categories', 'units', 'currencies', 'brands', 'countries'));
 	}

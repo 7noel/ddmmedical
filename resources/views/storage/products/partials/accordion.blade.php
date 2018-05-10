@@ -6,34 +6,53 @@
           Stock
         </a>
       </h4>
+
     </div>
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
-          <input type="hidden" value="{{ $model->stocks->count() }}" id="items">
           <table class="table table-hover table-condensed" id="tableStocks">
             <thead>
               <tr>
-                <th>Almacén</th>
+                <th>Almacén <button type="button" class="btn btn-default btn-xs" id="btnNewStock"><i class="fas fa-plus"></i></button></th>
                 <th>Stock</th>
                 <th>Stock Mínimo</th>
                 <th>Stock Máximo</th>
-                <th>Valor</th>
+                <th>Valor (S/)</th>
               </tr>
             </thead>
             <tbody id="tbodyStocks">
+              @php $i=0; @endphp
+              @if(!isset($model))
+              @php $i++; @endphp
+              <tr data-id="">
+                <input type="hidden" name="stocks[1][warehouse_id]" value="1">
+                <td align="center">1</td>
+                <td align="center">0</td>
+                <!-- <td><input type="text" name="stocks[1][stock_min]" value="" class="form-control input-sm"></td> -->
+                <td>{!! Form::number('stocks['.$i.'][stock_min]', 0, ['class'=>"form-control input-sm"]) !!}</td>
+                <!-- <td><input type="text" name="stocks[1][stock_max]" value="" class="form-control input-sm"></td> -->
+                <td>{!! Form::number('stocks['.$i.'][stock_max]', 0, ['class'=>"form-control input-sm"]) !!}</td>
+                <td align="center">0.00</td>
+              </tr>
+              @else
               @foreach($model->stocks as $key => $stock)
               <tr data-id="{{ $stock->id }}">
                 <input type="hidden" name="stocks[{{ $key }}][id]" value="{{ $stock->id }}">
                 <input type="hidden" name="stocks[{{ $key }}][warehouse_id]" value="{{ $stock->warehouse_id }}">
-                <td>{{ $stock->warehouse_id }}</td>
-                <td>{{ $stock->stock }}</td>
-                <td><input type="text" name="stocks[{{ $key }}][stock_min]" value="{{ $stock->stock_min }}" class="form-control input-sm"></td>
-                <td><input type="text" name="stocks[{{ $key }}][stock_max]" value="{{ $stock->stock_max }}" class="form-control input-sm"></td>
-                <td>{{ $stock->avarage_value }}</td>
+                <td align="center">{{ $stock->warehouse_id }}</td>
+                <td align="center">{{ $stock->stock }}</td>
+                <!-- <td><input type="text" name="stocks[{{ $key }}][stock_min]" value="{{ $stock->stock_min }}" class="form-control input-sm"></td> -->
+                <td>{!! Form::number('stocks['.$i.'][stock_min]', $stock->stock_min, ['class'=>"form-control input-sm"]) !!}</td>
+                <!-- <td><input type="text" name="stocks[{{ $key }}][stock_max]" value="{{ $stock->stock_max }}" class="form-control input-sm"></td> -->
+                <td>{!! Form::number('stocks['.$i.'][stock_max]', $stock->stock_max, ['class'=>"form-control input-sm"]) !!}</td>
+                <td align="center">{{ $stock->avarage_value }}</td>
               </tr>
+              @php $i++; @endphp
               @endforeach
+              @endif
             </tbody>
           </table>
+          {!! Form::hidden('items', $i, ['id'=>'items']) !!}
       </div>
     </div>
   </div>
@@ -47,17 +66,17 @@
     </div>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
-          <input type="hidden" value="{{ $model->accessories->count() }}" id="accessories">
           <table class="table table-hover table-condensed" id="tableAccessories">
             <thead>
               <tr>
-                <th>Código <button type="button" class="btn btn-default btn-sm" id="btnNewAccessory">Nuevo</button></th>
+                <th>Código <button type="button" class="btn btn-default btn-sm btn-xs" id="btnNewAccessory"><i class="fas fa-plus"></i></button></th>
                 <th>Accesorio</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody id="tbodyAccessories">
               @php $i=0; @endphp
+              @if(isset($model))
               @foreach($model->accessories as $key => $accessory)
               <tr data-id="{{ $accessory->id }}">
                 {!! Form::hidden("details[$i][id]", $accessory->id, ['class'=>'','data-accessoryid'=>'']) !!}
@@ -71,6 +90,7 @@
               </tr>
               @php $i++; @endphp
               @endforeach
+              @endif
               {!! Form::hidden('items-accessory', $i, ['id'=>'items-accessory']) !!}
             </tbody>
           </table>
@@ -90,13 +110,14 @@
           <table class="table table-hover table-condensed" id="tableAttributes">
             <thead>
               <tr>
-                <th>Nombre <button type="button" class="btn btn-default btn-sm" id="btnNewAttribute">Nuevo</button></th>
+                <th>Nombre <button type="button" class="btn btn-default btn-sm btn-xs" id="btnNewAttribute"><i class="fas fa-plus"></i></button></th>
                 <th>Valor</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody id="tbodyAttributes">
               @php $i=0; @endphp
+              @if(isset($model))
               @foreach($model->attributes as $key => $attribute)
               <tr data-id="{{ $attribute->id }}">
                 {!! Form::hidden("attributes[$i][id]", $attribute->id, ['class'=>'','data-accessoryid'=>'']) !!}
@@ -108,6 +129,7 @@
               </tr>
               @php $i++; @endphp
               @endforeach
+              @endif
               {!! Form::hidden('items-attribute', $i, ['id'=>'items-attribute']) !!}
             </tbody>
           </table>

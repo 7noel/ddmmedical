@@ -11,7 +11,7 @@ class UbigeoRepo extends BaseRepo{
 	}
 	public function listDepartamentos()
 	{
-		return Ubigeo::groupBy('departamento')->pluck('departamento','departamento')->toArray();
+		return Ubigeo::where('id', '!=', 1868)->groupBy('departamento')->pluck('departamento','departamento')->toArray();
 	}
 	public function listProvincias($departamento='LIMA')
 	{
