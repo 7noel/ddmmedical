@@ -1,4 +1,4 @@
-						<a href="#" id="btnAddProduct" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a></td>
+						<a href="#" id="btnAddProduct" class="btn btn-success btn-sm pull-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a>{!! Form::select('currency_id',$currencies , 2, ['class'=>'col-sm-2 col-md-offset-3']) !!} <br> <br>
 						@php $i=0; @endphp
 						<div class="table-responsive">
 						<table class="table table-condensed">

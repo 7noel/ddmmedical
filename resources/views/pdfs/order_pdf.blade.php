@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Cotización {{ $model->id }}</title>
+	<title>Cotización {{ $model->id }}-{{ $model->created_at->formatLocalized('%Y') }}</title>
 	<link rel="stylesheet" href="./css/print_pdf.css">
 </head>
 <body>
@@ -31,13 +31,13 @@
 	<footer>
 		<div class="center">Av. Alfredo Benavides Nº1555 - Oficina 306 - Miraflores, Lima - Perú</div>
 		<div class="center"><strong>T:</strong> (511) 6833-0884 <strong>E:</strong> contactenos@ddmmedical.com <strong>W:</strong> www.ddmmedical.com</div>
-		<div class="center">Cotización Nº: {{ $model->id }} / Creado por: {{ $model->audits->first()->user->name }}</div>
 	</footer>
 	<div>
 		<table class="table-items">
 			<tbody>
 				<tr>
 					<td width="60%" class="" valign="bottom">
+						<p></p>
 						<p>Sres.:</p>
 						<div>{{ $model->company->company_name }}</div>
 						@if(trim($model->attention)!="")
@@ -49,14 +49,15 @@
 						@endif
 					</td>
 					<td class="">
-						<div><strong>Cotización: {{ $model->id }}</strong></div>
+						<p></p>
+						<div><strong>Cotización: {{ str_pad($model->id, 3, '0', STR_PAD_LEFT) }} - {{ $model->created_at->formatLocalized('%Y') }}</strong></div>
 						<div>Tel.</div>
 						<div>+51-1-683-0884</div>
 						<div>Cel.</div>
 						<div>+51-983509797</div>
 						<div>E-mail</div>
-						<div>contactenos@ddmmedical.com</div>
-						<p align="right">Lima, {{ $model->created_at->formatLocalized('%A %d de %B de %Y') }}</p>
+						<div>jchu@ddmmedical.com</div>
+						<p align="right">Lima, {{ $model->created_at->formatLocalized('%A %d de %B de %Y') }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 					</td>
 				</tr>
 			</tbody>
@@ -138,7 +139,7 @@
 	@endif
 	<div class="condiciones">
 		<p><strong><em><u>CONDICIONES DE PAGO</u></em></strong></p>
-		<table class="margin-condition">
+		<table class="pmargin-condition">
 			<tr>
 				<td>Forma de Pago:</td>
 				<td>{{ $model->payment_condition->name }}</td>
@@ -155,7 +156,7 @@
 			</tr>
 		</table>
 		<p><strong><em><u>CONDICIONES COMERCIALES</u></em></strong></p>
-		<table class="margin-condition">
+		<table class="pmargin-condition">
 			<tr>
 				<td>Plazo de Entrega:</td>
 				<td>{{ $model->delivery_period }}</td>
@@ -166,17 +167,25 @@
 			</tr>
 			@if( trim($model->installation_period)!='' )
 			<tr>
-				<td>Lugar de Entrega:</td>
+				<td>Plazo de Instalación:</td>
 				<td>{{ $model->installation_period }}</td>
 			</tr>
 			@endif
 		</table>
 		@if( trim($model->offer_period)!='' )
 		<p><strong><em><u>CONDICIONES DE GARANTÍA</u></em></strong></p>
-		<table class="margin-condition">
+		<table class="pmargin-condition">
 			<tr>
 				<td>Plazo Ofertado:</td>
 				<td>{{ $model->offer_period }}</td>
+			</tr>
+			<tr>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr>
+				<td><strong>Elaborado por: </strong></td>
+				<td><strong>{{ $model->audits->first()->user->name }}</strong></td>
 			</tr>
 		</table>
 		@endif
