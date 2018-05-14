@@ -14,7 +14,8 @@ $(document).ready(function(){
 
 	$('.currency').each(function () {
 		$currency = $(this);
-		setCurrencyExpense($currency);
+		newCurrency = $currency.val();
+		setCurrencyExpense($currency, newCurrency);
 	});
 	$('#txtCompany').autocomplete({
 		source: "/api/companies/autocompleteAjax/",
@@ -58,7 +59,9 @@ $(document).ready(function(){
 	$(document).on('click','.expenses .btn', function (e) {
 		e.preventDefault();
 		$currency = $(this).parent().find('.currency');
-		setCurrencyExpense();
+		newCurrency = parseInt($currency.val()) + 1;
+		if (newCurrency > 3) {newCurrency = 1;}
+		setCurrencyExpense($currency, newCurrency);
 	});
 	
 	$(document).on('change','.expense', function (e) {
@@ -78,15 +81,16 @@ $(document).ready(function(){
 	});
 });
 
-function setCurrencyExpense($currency) {
+function setCurrencyExpense($currency, newCurrency) {
 	currency = $currency.val();
-	if (currency == 1) {
+	if (newCurrency == 1) {
 		$currency.parent().find('.labelCurrency').text('S/');
-	} else if (currency == 2) {
+	} else if (newCurrency == 2) {
 		$currency.parent().find('.labelCurrency').text('$');
 	} else {
 		$currency.parent().find('.labelCurrency').text('€');
 	}
+	$currency.val(newCurrency);
 }
 function setRowProduct($this, $p) {
 	if(isDesignEnabled($this, $p.id)){

@@ -13,13 +13,6 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Contraseña Actual</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="current_password">
-							</div>
-						</div>
-
-						<div class="form-group">
 							<label class="col-md-4 control-label">Nueva Contraseña</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password">
