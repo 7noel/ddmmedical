@@ -11,6 +11,11 @@ $(document).ready(function(){
 	} else {
 		$('.due_date').show();
 	}
+
+	$('.currency').each(function () {
+		$currency = $(this);
+		setCurrencyExpense($currency);
+	});
 	$('#txtCompany').autocomplete({
 		source: "/api/companies/autocompleteAjax/",
 		minLength: 4,
@@ -49,6 +54,13 @@ $(document).ready(function(){
 		calcTotalItem(this);
 		calcTotalOrder();
 	});
+
+	$(document).on('click','.expenses .btn', function (e) {
+		e.preventDefault();
+		$currency = $(this).parent().find('.currency');
+		setCurrencyExpense();
+	});
+	
 	$(document).on('change','.expense', function (e) {
 		validateItem(this, '#'+this.id);
 		calcCost();
@@ -66,6 +78,16 @@ $(document).ready(function(){
 	});
 });
 
+function setCurrencyExpense($currency) {
+	currency = $currency.val();
+	if (currency == 1) {
+		$currency.parent().find('.labelCurrency').text('S/');
+	} else if (currency == 2) {
+		$currency.parent().find('.labelCurrency').text('$');
+	} else {
+		$currency.parent().find('.labelCurrency').text('€');
+	}
+}
 function setRowProduct($this, $p) {
 	if(isDesignEnabled($this, $p.id)){
 		$($this).parent().parent().find('.productId').val($p.id);

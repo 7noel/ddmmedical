@@ -58,47 +58,79 @@
 						<div class="form-group form-group-sm">
 							{!! Form::label('expenses[0][value]','Gastos FOB', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::hidden('expenses[0][name]', 'fob') !!}
-								{!! Form::text('expenses[0][value]', ((isset($model->expenses[0]['value'])) ? $model->expenses[0]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e1']) !!}
+								<div class="input-group">
+									{!! Form::hidden('expenses[0][name]', 'fob') !!}
+									{!! Form::hidden('expenses[0][currency_id]', ((isset($model->expenses[0]['currency_id'])) ? $model->expenses[0]['value'] : '2'), ['class' => 'currency']) !!}
+									<a href="#" class="input-group-addon btn labelCurrency">{{ ((isset($model->expenses[0]['currency_id'])) ? $model->expenses[0]['value'] : '$') }}</a>
+									{!! Form::text('expenses[0][value]', ((isset($model->expenses[0]['value'])) ? $model->expenses[0]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e1']) !!}
+								</div>
 							</div>
 							{!! Form::label('expenses[1][value]','Flete', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::hidden('expenses[1][name]', 'flete') !!}
-								{!! Form::text('expenses[1][value]', ((isset($model->expenses[1]['value'])) ? $model->expenses[1]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e2']) !!}
+								<div class="input-group">
+									{!! Form::hidden('expenses[1][name]', 'flete') !!}
+									{!! Form::hidden('expenses[1][currency_id]', ((isset($model->expenses[1]['currency_id'])) ? $model->expenses[1]['value'] : '2'), ['class' => 'currency']) !!}
+									<a href="#" class="input-group-addon btn labelCurrency">{{ ((isset($model->expenses[1]['currency_id'])) ? $model->expenses[1]['value'] : '$') }}</a>
+									{!! Form::text('expenses[1][value]', ((isset($model->expenses[1]['value'])) ? $model->expenses[1]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e2']) !!}
+								</div>
 							</div>
 							{!! Form::label('expenses[2][value]','Seguro', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::hidden('expenses[2][name]', 'seguro') !!}
-								{!! Form::text('expenses[2][value]', ((isset($model->expenses[2]['value'])) ? $model->expenses[2]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e3']) !!}
+								<div class="input-group">
+									{!! Form::hidden('expenses[2][name]', 'seguro') !!}
+									{!! Form::hidden('expenses[2][currency_id]', ((isset($model->expenses[2]['currency_id'])) ? $model->expenses[2]['value'] : '2'), ['class' => 'currency']) !!}
+									<a href="#" class="input-group-addon btn labelCurrency">{{ ((isset($model->expenses[2]['currency_id'])) ? $model->expenses[2]['value'] : '$') }}</a>
+									{!! Form::text('expenses[2][value]', ((isset($model->expenses[2]['value'])) ? $model->expenses[2]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e3']) !!}
+								</div>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
 							{!! Form::label('expenses[3][value]','Ad Valorem', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::hidden('expenses[3][name]', 'advalorem') !!}
-								{!! Form::text('expenses[3][value]', ((isset($model->expenses[3]['value'])) ? $model->expenses[3]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e4']) !!}
+								<div class="input-group">
+									{!! Form::hidden('expenses[3][name]', 'advalorem') !!}
+									{!! Form::hidden('expenses[3][currency_id]', ((isset($model->expenses[3]['currency_id'])) ? $model->expenses[3]['value'] : '2'), ['class' => 'currency']) !!}
+									<a href="#" class="input-group-addon btn labelCurrency">{{ ((isset($model->expenses[3]['currency_id'])) ? $model->expenses[3]['value'] : '$') }}</a>
+									{!! Form::text('expenses[3][value]', ((isset($model->expenses[3]['value'])) ? $model->expenses[3]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e4']) !!}
+								</div>
 							</div>
 							{!! Form::label('expenses[4][value]','Handling', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::hidden('expenses[4][name]', 'handling') !!}
-								{!! Form::text('expenses[4][value]', ((isset($model->expenses[4]['value'])) ? $model->expenses[4]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e5']) !!}
+								<div class="input-group">
+									{!! Form::hidden('expenses[4][name]', 'handling') !!}
+									{!! Form::hidden('expenses[4][currency_id]', ((isset($model->expenses[4]['currency_id'])) ? $model->expenses[4]['value'] : '2'), ['class' => 'currency']) !!}
+									<a href="#" class="input-group-addon btn labelCurrency">{{ ((isset($model->expenses[4]['currency_id'])) ? $model->expenses[4]['value'] : '$') }}</a>
+									{!! Form::text('expenses[4][value]', ((isset($model->expenses[4]['value'])) ? $model->expenses[4]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e5']) !!}
+								</div>
 							</div>
 							{!! Form::label('expenses[5][value]','Almacen', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::hidden('expenses[5][name]', 'almacen') !!}
-								{!! Form::text('expenses[5][value]', ((isset($model->expenses[5]['value'])) ? $model->expenses[5]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e6']) !!}
+								<div class="input-group">
+									{!! Form::hidden('expenses[5][name]', 'almacen') !!}
+									{!! Form::hidden('expenses[5][currency_id]', ((isset($model->expenses[5]['currency_id'])) ? $model->expenses[5]['value'] : '2'), ['class' => 'currency']) !!}
+									<a href="#" class="input-group-addon btn labelCurrency">{{ ((isset($model->expenses[5]['currency_id'])) ? $model->expenses[5]['value'] : '$') }}</a>
+									{!! Form::text('expenses[5][value]', ((isset($model->expenses[5]['value'])) ? $model->expenses[5]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e6']) !!}
+								</div>
 							</div>
 						</div>
 						<div class="form-group form-group-sm">
 							{!! Form::label('expenses[6][value]','Transporte local', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::hidden('expenses[6][name]', 'transporte') !!}
-								{!! Form::text('expenses[6][value]', ((isset($model->expenses[6]['value'])) ? $model->expenses[6]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e7']) !!}
+								<div class="input-group">
+									{!! Form::hidden('expenses[6][name]', 'transporte') !!}
+									{!! Form::hidden('expenses[6][currency_id]', ((isset($model->expenses[6]['currency_id'])) ? $model->expenses[6]['value'] : '2'), ['class' => 'currency']) !!}
+									<a href="#" class="input-group-addon btn labelCurrency">{{ ((isset($model->expenses[6]['currency_id'])) ? $model->expenses[6]['value'] : '$') }}</a>
+									{!! Form::text('expenses[6][value]', ((isset($model->expenses[6]['value'])) ? $model->expenses[6]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e7']) !!}
+								</div>
 							</div>
 							{!! Form::label('expenses[7][value]','Agencia de Aduanas', ['class'=>'col-sm-2 control-label']) !!}
 							<div class="col-sm-2">
-								{!! Form::hidden('expenses[7][name]', 'aduana') !!}
-								{!! Form::text('expenses[7][value]', ((isset($model->expenses[7]['value'])) ? $model->expenses[7]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e8']) !!}
+								<div class="input-group">
+									{!! Form::hidden('expenses[7][name]', 'aduana') !!}
+									{!! Form::hidden('expenses[7][currency_id]', ((isset($model->expenses[7]['currency_id'])) ? $model->expenses[7]['value'] : '2'), ['class' => 'currency']) !!}
+									<a href="#" class="input-group-addon btn labelCurrency">{{ ((isset($model->expenses[7]['currency_id'])) ? $model->expenses[7]['value'] : '$') }}</a>
+									{!! Form::text('expenses[7][value]', ((isset($model->expenses[7]['value'])) ? $model->expenses[7]['value'] : 0.00), ['class'=>'form-control expense text-right', 'id'=>'e8']) !!}
+								</div>
 							</div>
 						</div>
 					</div>
