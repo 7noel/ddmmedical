@@ -24,7 +24,7 @@ $(document).ready(function(){
 			console.log(ui.item)
 			$('#company_id').val(ui.item.id);
 			$('#lstSeller').focus();
-			if (ui.item.country_id==1461) {
+			if (ui.item.country_id==1465) {
 				$('#is_import').val(0);
 				$('.expenses').hide();
 				$('.dam').hide();

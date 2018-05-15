@@ -22,7 +22,7 @@ $(document).ready(function(){
 		if (doc == 6) {
 			$('#lstCountry').attr('disabled', false);
 		} else {
-			$('#lstCountry').val(1461);
+			$('#lstCountry').val(1465);
 			$('#lstCountry').attr('disabled', true);
 		}
 	});

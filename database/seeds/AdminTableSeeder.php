@@ -78,8 +78,39 @@ class AdminTableSeeder extends Seeder {
         Employee::create(['name' => 'CARLA ROCIO', 'paternal_surname'=>'PERAMAS ', 'maternal_surname'=>'BENAVIDES', 'full_name'=>'PERAMAS  BENAVIDES CARLA ROCIO', 'id_type_id'=>'2', 'doc'=>'10320548', 'job_id'=>'2', 'gender'=>'0', 'address'=>'DIRECCION', 'ubigeo_id'=>'1306', 'user_id'=>'9', 'email_company' => 'cperamas@ddmmedical.com', 'mobile_company' => '960173935']);
 
 
-        Company::create(['company_name'=>'HUILLCA HUAMANI NOEL', 'name'=>'NOEL', 'paternal_surname'=>'HUILLCA', 'maternal_surname'=>'HUAMANI', 'id_type_id'=>'2', 'doc'=>'44243484', 'address'=>'JR. LAS GROSELLAS 910', 'ubigeo_id'=>'1306', 'country_id' => 1461]);
-        Company::create(['company_name'=>'EMPRESA EXTRANJERA', 'id_type_id'=>'6', 'doc'=>'654321321', 'address'=>'JR. LAS GROSELLAS 910', 'ubigeo_id'=>'1868', 'country_id' => 1462]);
+        Company::create(['company_name'=>'CENTRO DERMATOLOGICO GIOVANNI BOJANINI SOCIEDAD AN...', 'id_type_id'=>'1', 'doc'=>'20600304721', 'address'=>'CAL. ELIAS AGUIRRE NRO. 605 INT. 201', 'ubigeo_id'=>'1296', 'country_id' => 1465]);
+        Company::create(['company_name'=>'CLINICA PRIMAVERA S.A.C.', 'id_type_id'=>'1', 'doc'=>'20544106971', 'address'=>'AV. PRIMAVERA NRO. 999 URB. CHACARILLA', 'ubigeo_id'=>'1304', 'country_id' => 1465]);
+        Company::create(['company_name'=>'DARDAY MEDICA E.I.R.L.', 'id_type_id'=>'1', 'doc'=>'20523807821', 'address'=>'JR. CORONEL FRANCISCO BOLOGNE NRO. 463', 'ubigeo_id'=>'688', 'country_id' => 1465]);
+        Company::create(['company_name'=>'VENTYMONT SAC', 'id_type_id'=>'1', 'doc'=>'20508577193', 'address'=>'CAL. DANIEL HERNANDEZ NRO. 344 URB. PRIMAVERA', 'ubigeo_id'=>'1294', 'country_id' => 1465]);
+        Company::create(['company_name'=>'GOLDEN INVESTMENT S.A.', 'id_type_id'=>'1', 'doc'=>'20346662612', 'address'=>'AV. REPUBLICA DE PANAMA NRO. 3030', 'ubigeo_id'=>'1305', 'country_id' => 1465]);
+        Company::create(['company_name'=>'ORAZUL ENERGY EGENOR SOCIEDAD EN COMANDI TA POR AC...', 'id_type_id'=>'1', 'doc'=>'20338646802', 'address'=>'AV. DIONISIO DERTEANO NRO. 144 INT. 1901', 'ubigeo_id'=>'1305', 'country_id' => 1465]);
+        Company::create(['company_name'=>'ORGANIZACION PANAMERICANA DE LA SALUD', 'id_type_id'=>'1', 'doc'=>'20289015699', 'address'=>'CAL. LOS PINOS NRO. 251 URB. CAMACHO', 'ubigeo_id'=>'1288', 'country_id' => 1465]);
+        Company::create(['company_name'=>'AMEZAGA ARELLANO S.A.C.INGENIEROS', 'id_type_id'=>'1', 'doc'=>'20131308095', 'address'=>'AV. PASEO DE LA REPUBLIC NRO. 3245', 'ubigeo_id'=>'1305', 'country_id' => 1465]);
+        Company::create(['company_name'=>'MEQUIM S.A.', 'id_type_id'=>'1', 'doc'=>'20123294662', 'address'=>'AV. GUARDIA CIVIL NRO. 645', 'ubigeo_id'=>'1304', 'country_id' => 1465]);
+        Company::create(['company_name'=>'CLINICA SAN PABLO S.A.C.', 'id_type_id'=>'1', 'doc'=>'20107463705', 'address'=>'CAL. LA CONQUISTA NRO. 145 URB. EL DERBY', 'ubigeo_id'=>'1314', 'country_id' => 1465]);
+        Company::create(['company_name'=>'LABORATORIO SCIENTIFIC E.I.R.L.', 'id_type_id'=>'1', 'doc'=>'20557590901', 'address'=>'JR. LOS MELOCOTONES NRO. 237 URB. NARANJAL', 'ubigeo_id'=>'1309', 'country_id' => 1465]);
+        Company::create(['company_name'=>'MD TECHNOLOGIES AND SERVICES S.A.C.', 'id_type_id'=>'1', 'doc'=>'20548666741', 'address'=>'CAL. A.TOVAR DE ALBERTIS NRO. 132', 'ubigeo_id'=>'1310', 'country_id' => 1465]);
+        Company::create(['company_name'=>'TECNOHEALTH S.A.C.', 'id_type_id'=>'1', 'doc'=>'20602063624', 'address'=>'JR. REPUBLICA DE ECUADOR NRO. 495 INT. B', 'ubigeo_id'=>'1275', 'country_id' => 1465]);
+        Company::create(['company_name'=>'NEUSOFT MEDICAL PERU SOCIEDAD ANONIMA CERRADA', 'id_type_id'=>'1', 'doc'=>'20548614199', 'address'=>'AV. CONQUISTADORES NRO. 175 INT. A', 'ubigeo_id'=>'1305', 'country_id' => 1465]);
+        Company::create(['company_name'=>'GOBIERNO REGIONAL DE LIMA', 'id_type_id'=>'1', 'doc'=>'20530688390', 'address'=>'AV. TUPAC AMARU NRO. 403', 'ubigeo_id'=>'1395', 'country_id' => 1465]);
+        Company::create(['company_name'=>'IMPORTADORA GLOBAL MEDICAL SOCIEDAD ANONIMA CERRAD...', 'id_type_id'=>'1', 'doc'=>'20514326062', 'address'=>'AV. INCA GARCILAZO DE LA VEGA NRO. 1976 INT. K-1', 'ubigeo_id'=>'1275', 'country_id' => 1465]);
+        Company::create(['company_name'=>'PLATINIUM MEDICA S.A.C.', 'id_type_id'=>'1', 'doc'=>'20512390081', 'address'=>'CAL. T M LINCH NRO. 109 URB. SAN ROQUE', 'ubigeo_id'=>'1314', 'country_id' => 1465]);
+        Company::create(['company_name'=>'REGION TACNA HOSPITAL DE APOYO H.UNANUE', 'id_type_id'=>'1', 'doc'=>'20453223788', 'address'=>'CAL. BLONDELL NRO. S/N', 'ubigeo_id'=>'1810', 'country_id' => 1465]);
+        Company::create(['company_name'=>'HOSPITAL REZOLA', 'id_type_id'=>'1', 'doc'=>'20170983816', 'address'=>'CAL. SAN MARTIN NRO. 124', 'ubigeo_id'=>'1335', 'country_id' => 1465]);
+        Company::create(['company_name'=>'SEGURO SOCIAL DE SALUD', 'id_type_id'=>'1', 'doc'=>'20131257750', 'address'=>'AV. DOMINGO CUETO NRO. 120', 'ubigeo_id'=>'1287', 'country_id' => 1465]);
+        Company::create(['company_name'=>'PISCIFACTORIAS DE LOS ANDES S.A', 'id_type_id'=>'1', 'doc'=>'20129561263', 'address'=>'---- PARAJE ATAQUICHQUE NRO. S/N', 'ubigeo_id'=>'1049', 'country_id' => 1465]);
+        Company::create(['company_name'=>'ROAYA S.A.C CONTRATISTAS GENERALES', 'id_type_id'=>'1', 'doc'=>'20120046307', 'address'=>'CAL. AUGUSTO ANGULO NRO. 230 URB. AURORA', 'ubigeo_id'=>'1296', 'country_id' => 1465]);
+        Company::create(['company_name'=>'CLINICA SANTA ISABEL S.A.C.', 'id_type_id'=>'1', 'doc'=>'20100375061', 'address'=>'AV. GUARDIA CIVIL NRO. 135 URB. CORPAC', 'ubigeo_id'=>'1304', 'country_id' => 1465]);
+        Company::create(['company_name'=>'ENDOSALUD SERVICIOS MEDICOS Y EQUIPOS E.I.R.L.', 'id_type_id'=>'1', 'doc'=>'20601429391', 'address'=>'PJ. 4 NRO. S/N DPTO. 402 URB. MONTERRICO NORTE', 'ubigeo_id'=>'1304', 'country_id' => 1465]);
+        Company::create(['company_name'=>'ANSILANS MEDICAL S.A.C.', 'id_type_id'=>'1', 'doc'=>'20601136415', 'address'=>'CAL. 03 MZA. C LOTE 05 DPTO. 01 URB. EL RETABLO', 'ubigeo_id'=>'1284', 'country_id' => 1465]);
+        Company::create(['company_name'=>'OR MAQUINARIAS S.A.C.', 'id_type_id'=>'1', 'doc'=>'20521937531', 'address'=>'AV. ASTURIAS NRO. 315 URB. MAYORAZGO', 'ubigeo_id'=>'1277', 'country_id' => 1465]);
+        Company::create(['company_name'=>'MEDICAL DIGITAL EIRL', 'id_type_id'=>'1', 'doc'=>'20512551191', 'address'=>'CAL. LAS PALOMAS NRO. 392 DPTO. 86 URB. LIMATAMBO', 'ubigeo_id'=>'1315', 'country_id' => 1465]);
+        Company::create(['company_name'=>'CORPORACION GOLDWAY PERU S.A.C.', 'id_type_id'=>'1', 'doc'=>'20492587550', 'address'=>'CAL. LOS LAURELES NRO. 125 URB. VALLE HERMOSO', 'ubigeo_id'=>'1314', 'country_id' => 1465]);
+        Company::create(['company_name'=>'GRUPO SALGUE E.I.R.L.', 'id_type_id'=>'1', 'doc'=>'20486764997', 'address'=>'JR. SAN JUDAS TADEO NRO. 535', 'ubigeo_id'=>'1030', 'country_id' => 1465]);
+        Company::create(['company_name'=>'INVERCONSULT  S.A.', 'id_type_id'=>'1', 'doc'=>'20477983708', 'address'=>'CAL. CARLOS GONZALES NRO. 250 URB. MARANGA', 'ubigeo_id'=>'1310', 'country_id' => 1465]);
+        Company::create(['company_name'=>'COMERCIALIZADORA Y SERVICIOS HAMBERT E.I.R.L.', 'id_type_id'=>'1', 'doc'=>'20462004380', 'address'=>'CAL. ROBLES APARICIO NRO. 1599', 'ubigeo_id'=>'1275', 'country_id' => 1465]);
+        Company::create(['company_name'=>'VASCULAR S.R.L.', 'id_type_id'=>'1', 'doc'=>'20338896825', 'address'=>'CAL. SAN MIGUELITO NRO. 144 URB. SAN MIGUELITO', 'ubigeo_id'=>'1310', 'country_id' => 1465]);
+
 
 
         PermissionGroup::create(['name' => 'SISTEMAS']);

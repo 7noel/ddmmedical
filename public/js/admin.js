@@ -26,7 +26,7 @@ $(document).ready(function () {
 	//carga departamentos
 	$('#lstCountry').change(function(){
 		var country = $('#lstCountry').val();
-		if (country == 1461) {
+		if (country == 1465) {
 			$('#div-ubigeo').show();
 			$('#lstDistrito').attr( "required", "required" );
 		} else {

@@ -27,6 +27,22 @@ class CompaniesController extends Controller {
 
 	public function index()
 	{
+		// set_time_limit(0);
+  //       $ar = ['20338896825'];
+  //       foreach ($ar as $key => $a) {
+  //           $p = json_decode(file_get_contents("http://api.noelhh.com/sunat/ruc/$a"), true);
+  //           $data['company_name'] = $p['razon_social'];
+  //           $data['id_type_id'] = 1;
+  //           $data['doc'] = $p['ruc'];
+  //           $data['address'] = $p['direccion'];
+  //           $data['ubigeo_id'] = $p['ubigeo']['id'];
+  //           $data['country_id'] = 1465;
+  //           $data['brand_name'] = "";
+	 //        $data['paternal_surname'] = "";
+	 //        $data['maternal_surname'] = "";
+  //           $this->repo->save($data);
+  //       }
+  //       dd("listo");
 		$models = $this->repo->index('name', \Request::get('name'));
 		return view('partials.index',compact('models'));
 	}
