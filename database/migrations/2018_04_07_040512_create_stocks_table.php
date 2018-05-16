@@ -18,12 +18,12 @@ class CreateStocksTable extends Migration {
 
 			$table->integer('warehouse_id')->unsigned();
 			$table->integer('product_id')->unsigned();
-			$table->decimal('stock_initial',15,4);
-			$table->decimal('stock_min',15,4);
-			$table->decimal('stock_max',15,4);
-			$table->decimal('stock',15,4);
+			$table->decimal('stock_initial',15,2);
+			$table->decimal('stock_min',15,2);
+			$table->decimal('stock_max',15,2);
+			$table->decimal('stock',15,2);
 			$table->integer('currency_id')->unsigned()->default(1);
-			$table->decimal('avarage_value',15,4);
+			$table->decimal('avarage_value',15,2);
 
 			$table->foreign('warehouse_id')->references('id')->on('warehouses');
 			$table->foreign('product_id')->references('id')->on('products');

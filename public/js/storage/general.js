@@ -1,5 +1,8 @@
 $(document).ready(function(){
-
+	console.log($('#useSetPrice').val() == 1);
+	if ($('#useSetPrice').is(':checked')) {
+		$('#price').removeAttr("readonly");
+	}
 	$('#btnNewAccessory').click(function() {
 		var items = $('#items-accessory').val();
 		if (items>0 && $("input[name='accessories["+(items-1)+"][accessory_id]']").val() == "") {
@@ -20,8 +23,10 @@ $(document).ready(function(){
 	});
 
 	$('#profit_margin').change(function (e) {
-		$('#price').val(parseFloat($('#last_purchase').val()) * (100 + parseFloat($('#profit_margin').val()))/100).toFixed(2);
-	})
+		if (!$('#useSetPrice').is(':checked')) {
+			$('#price').val(parseFloat($('#last_purchase').val()) * (100 + parseFloat($('#profit_margin').val()))/100).toFixed(2);
+		}
+	});
 
 	$(document).on('focus','.txtAccessory', function (e) {
 		//console.log($(this));
@@ -31,7 +36,7 @@ $(document).ready(function(){
 				source: "/api/products/autocompleteAjax",
 				minLength: 4,
 				select: function(event, ui){
-					if(isDesignEnabled(this, ui.item.id.code_cut)){
+					if(isDesignEnabled(this, ui.item.id.internCode)){
 						$(this).parent().parent().find('.internCode').text(ui.item.id.intern_code);
 						$(this).parent().parent().find('.accessoryId').val(ui.item.id.id);
 						$('#btnNewAccessory').focus();
@@ -39,6 +44,16 @@ $(document).ready(function(){
 				}
 			});
 		}
+	});
+	$(document).on('change','#useSetPrice', function (e) {
+		if ($('#useSetPrice').is(':checked')) {
+			$('#price').removeAttr("readonly");
+			$('#price').focus();
+		} else {
+			$('#price').val(parseFloat($('#last_purchase').val()) * (100 + parseFloat($('#profit_margin').val()))/100).toFixed(2);
+			$('#price').attr( "readonly", "readonly" );
+		}
+
 	});
 
 });

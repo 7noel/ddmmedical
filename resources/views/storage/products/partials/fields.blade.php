@@ -61,17 +61,13 @@
 						</div>
 					</div>
 					<div class="form-group form-group-sm">
-						{!! Form::label('price','Precio Automático', ['class'=>'col-sm-2 control-label']) !!}
-						<div class="col-sm-2">
-							{!! Form::text('price', 0.00, ['class'=>'form-control', 'readonly'=>'readonly']) !!}
-						</div>
-						{!! Form::label('set_price','Precio Asignado', ['class'=>'col-sm-2 control-label']) !!}
+						{!! Form::label('price','Precio', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
 								<div class="input-group">
 									<span class="input-group-addon">
-										{!! Form::checkbox('use_set_price', '1', null) !!}
+										{!! Form::checkbox('use_set_price', '1', null, ['id'=>'useSetPrice']) !!}
 									</span>
-									{!! Form::text('set_price', null, ['class'=>'form-control']) !!}
+									{!! Form::text('price', null, ['class'=>'form-control', 'readonly'=>'readonly']) !!}
 								</div>
 						</div>
 					</div>

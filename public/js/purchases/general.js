@@ -21,17 +21,18 @@ $(document).ready(function(){
 		source: "/api/companies/autocompleteAjax/",
 		minLength: 4,
 		select: function(event, ui){
-			console.log(ui.item)
 			$('#company_id').val(ui.item.id);
 			$('#lstSeller').focus();
 			if (ui.item.country_id==1465) {
 				$('#is_import').val(0);
 				$('.expenses').hide();
 				$('.dam').hide();
+				$('#document_type_id').val('1');
 			} else {
 				$('#is_import').val(1);
 				$('.expenses').show();				
 				$('.dam').show();				
+				$('#document_type_id').val('5');
 			}
 		}
 	});
@@ -189,6 +190,8 @@ function calcFactor() {
 function currencyConverter($c0, $c, $e) {
 	const $tc1 = parseFloat($('#exchange').val());
 	const $tc2 = parseFloat($('#exchange2').val());
+	if (isNaN($tc1)) {$tc1=1}
+	if (isNaN($tc2)) {$tc2=1}
 	if ($c0 == '1') {
 		if ($c == '1') {
 			return $e;
