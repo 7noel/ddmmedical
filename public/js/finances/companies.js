@@ -2,7 +2,7 @@ $(document).ready(function(){
 	if (parseInt($('#listDoc').val()) == 1 || parseInt($('#listDoc').val()) == 6) {
 		$('.div_ruc').show();
 		$('.div_dni').hide();
-	} else if (parseInt($('#listDoc').val()) > 1 || parseInt($('#listDoc').val()) > 6) {
+	} else if (parseInt($('#listDoc').val()) > 1 && parseInt($('#listDoc').val()) < 6) {
 		$('.div_ruc').hide();
 		$('.div_dni').show();
 	} else{

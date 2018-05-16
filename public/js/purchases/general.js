@@ -68,6 +68,9 @@ $(document).ready(function(){
 		validateItem(this, '#'+this.id);
 		calcCost();
 	});
+	$(document).on('change','#exchange, #exchange2, #c1, #c2, #c3, #c4, #c5, #c6, #c7, #c8', function (e) {
+		calcCost();
+	});
 	$(document).on('change','#payment_condition_id', function (e) {
 		if ($('#payment_condition_id').val()==1) {
 			$('.due_date').hide();
@@ -151,9 +154,22 @@ function calcTotalOrder () {
 }
 
 function calcFactor() {
-	var e = parseFloat($('#e1').val()) + parseFloat($('#e2').val()) + parseFloat($('#e3').val()) + parseFloat($('#e4').val()) + parseFloat($('#e5').val()) + parseFloat($('#e6').val()) + parseFloat($('#e7').val()) + parseFloat($('#e8').val());
+	const $c0 = $('#currency_id').val();
+	const $c1 = $('#c1').val(), $c2 = $('#c2').val(), $c3 = $('#c3').val(), $c4 = $('#c4').val(), $c5 = $('#c5').val(), $c6 = $('#c6').val(), $c7 = $('#c7').val(), $c8 = $('#c8').val();
+	var $e1 = parseFloat($('#e1').val()), $e2 = parseFloat($('#e2').val()), $e3 = parseFloat($('#e3').val()), $e4 = parseFloat($('#e4').val()), $e5 = parseFloat($('#e5').val()), $e6 = parseFloat($('#e6').val()), $e7 = parseFloat($('#e7').val()), $e8 = parseFloat($('#e8').val());
+
+	$e1 = currencyConverter($c1, $c0, $e1);
+	$e2 = currencyConverter($c2, $c0, $e2);
+	$e3 = currencyConverter($c3, $c0, $e3);
+	$e4 = currencyConverter($c4, $c0, $e4);
+	$e5 = currencyConverter($c5, $c0, $e5);
+	$e6 = currencyConverter($c6, $c0, $e6);
+	$e7 = currencyConverter($c7, $c0, $e7);
+	$e8 = currencyConverter($c8, $c0, $e8);
+
+	var e = $e1 + $e2 + $e3 + $e4 + $e5 + $e6 + $e7 + $e8;
 	var exw = parseFloat($('#mGrossValue').text());
-	var subtotal = exw + parseFloat($('#e1').val()) + parseFloat($('#e2').val()) + parseFloat($('#e3').val());
+	var subtotal = exw + $e1 + $e2 + $e3;
 	var total = Math.round(subtotal * (100 + 18))/100;
 	$('#mSubTotal').text(subtotal.toFixed(2));
 	$('#mTotal').text(total.toFixed(2));
@@ -163,10 +179,57 @@ function calcFactor() {
 		return 1;
 	}
 }
+/**
+ * [Convierte $e de la moneda $c0 a la moneda $c]
+ * @param  {string} $c0 [moneda original]
+ * @param  {string} $c  [nueva moneda]
+ * @param  {decimal} $e  [monto]
+ * @return {decimal}     [monto en la nueva moneda]
+ */
+function currencyConverter($c0, $c, $e) {
+	const $tc1 = parseFloat($('#exchange').val());
+	const $tc2 = parseFloat($('#exchange2').val());
+	if ($c0 == '1') {
+		if ($c == '1') {
+			return $e;
+		} else if ($c == '2') {
+			return $e*$tc1;
+		} else if ($c == '3') {
+			return $e*$tc2;
+		} else {
+			return $e;
+		}
+	} else if ($c0 == '2') {
+		if ($c == '1') {
+			return $e/$tc1;
+		} else if ($c == '2') {
+			return $e;
+		} else if ($c == '3') {
+			return $e*$tc2/$tc1;
+		} else {
+			return $e;
+		}
+	} else if ($c0 == '3') {
+		if ($c == '1') {
+			return $e/$tc2;
+		} else if ($c == '2') {
+			return $e*$tc1/$tc2;
+		} else if ($c == '3') {
+			return $e;
+		} else {
+			return $e;
+		}
+	} else {
+		return $e;
+	}
+}
 function calcCost() {
 	$factor = calcFactor();
+	const $c0 = $('#currency_id').val();
+	const $cc = $('#currency_cost').val();
 	$('#tableItems tr .txtPrecio').each(function (index, d) {
-		$(d).parent().parent().find('.txtCost').val( ($(d).val() * $factor).toFixed(2) );
+		$(d).parent().parent().find('.cost').val( ($(d).val() * $factor).toFixed(2) );
+		$(d).parent().parent().find('.txtCost').val( ( currencyConverter($c0, $cc, $(d).val()) * $factor).toFixed(2) );
 	});
 
 }
@@ -191,6 +254,7 @@ function renderTemplateRowProduct (data) {
 	clone.querySelector("[data-cantidad]").setAttribute("name", "details[" + items + "][quantity]");
 	clone.querySelector("[data-precio]").setAttribute("name", "details[" + items + "][price]");
 	clone.querySelector("[data-cost]").setAttribute("name", "details[" + items + "][cost]");
+	clone.querySelector("[data-textcost]").setAttribute("name", "details[" + items + "][text_cost]");
 	clone.querySelector("[data-isdeleted]").setAttribute("name", "details[" + items + "][is_deleted]");
 	if (items>0) {$("input[name='details["+(items-1)+"][txtProduct]']").attr('disabled', true);};
 	

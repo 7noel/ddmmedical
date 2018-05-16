@@ -1,4 +1,4 @@
-						<a href="#" id="btnAddProduct" class="btn btn-success btn-sm pull-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a> Costo Expresado en : <div class="col-xs-2">{!! Form::select('currency_id',$currencies , 2, ['class'=>'col-sm-2 form-control input-sm']) !!}</div><br> <br>
+						<a href="#" id="btnAddProduct" class="btn btn-success btn-sm pull-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a> Costo Expresado en : <div class="col-xs-2">{!! Form::select('currency_cost',$currencies , 2, ['class'=>'col-sm-2 form-control input-sm', 'id'=>'currency_cost']) !!}</div><br> <br>
 						@php $i=0; @endphp
 						<div class="table-responsive">
 						<table class="table table-condensed">
@@ -24,7 +24,10 @@
 									<td>{!! Form::text("details[$i][txtProduct]", $detail->product->name, ['class'=>'form-control input-sm txtProduct', 'data-product'=>'', 'required'=>'required', 'disabled']); !!}</td>
 									<td>{!! Form::text("details[$i][quantity]", $detail->quantity, ['class'=>'form-control input-sm txtCantidad text-right', 'data-cantidad'=>'']) !!}</td>
 									<td>{!! Form::text("details[$i][price]", $detail->price, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
-									<td>{!! Form::text("details[$i][cost]", $detail->cost, ['class'=>'form-control input-sm txtCost text-right', 'data-cost'=>'']) !!}</td>
+									<td>
+										{!! Form::hidden("details[$i][cost]", $detail->cost, ['class'=>'form-control input-sm cost text-right', 'data-cost'=>'']) !!}
+										{!! Form::text("details[$i][text_cost]", $detail->cost, ['class'=>'form-control input-sm txtCost text-right', 'data-textcost'=>'']) !!}
+									</td>
 									<td> <span class='form-control input-sm txtTotal text-right import' data-total>{{ $detail->total }}</span> </td>
 									<td class="text-center form-inline">
 										<div class="checkbox">
@@ -46,7 +49,10 @@
 								<td>{!! Form::text('data3', null, ['class'=>'form-control input-sm txtProduct', 'data-product'=>'', 'required'=>'required']); !!}</td>
 								<td>{!! Form::text('data4', null, ['class'=>'form-control input-sm txtCantidad text-right', 'data-cantidad'=>'']) !!}</td>
 								<td>{!! Form::text('data5', null, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
-								<td>{!! Form::text('data6', null, ['class'=>'form-control input-sm txtCost text-right', 'data-cost'=>'', 'readonly'=>'readonly']) !!}</td>
+								<td>
+									{!! Form::hidden('data6', null, ['class'=>'form-control input-sm cost text-right', 'data-cost'=>'', 'readonly'=>'readonly']) !!}
+									{!! Form::text('data7', null, ['class'=>'form-control input-sm txtCost text-right', 'data-textcost'=>'', 'readonly'=>'readonly']) !!}
+								</td>
 								<td> <span class='form-control input-sm txtTotal text-right import' data-total></span> </td>
 								<td class="text-center form-inline">
 									<div class="checkbox">

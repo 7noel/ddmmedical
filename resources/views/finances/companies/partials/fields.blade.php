@@ -8,7 +8,7 @@
 						</div>
 						{!! Form::label('country_id','País', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-3">
-							{!! Form::select('country_id', $countries, 1461, ['class'=>'form-control', 'id'=>'lstCountry', 'required'=>'required']) !!}
+							{!! Form::select('country_id', $countries, (isset($model) ? $model->country_id: 1465), ['class'=>'form-control', 'id'=>'lstCountry', 'required'=>'required']) !!}
 						</div>
 					</div>
 					<div class="form-group form-group-sm div_ruc">

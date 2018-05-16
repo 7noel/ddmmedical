@@ -1,10 +1,21 @@
 $(document).ready(function () {
 
 	if (parseInt($('#listDoc').val()) == 6) {
-		$('#div-ubigeo').hide();
-		$('#lstDistrito').attr( "required", "required" );
+		$('#lstCountry').attr('disabled', false);
+		//$('#lstDistrito').removeAttr( "required" );
 	} else {
 		$('#lstCountry').attr('disabled', true);
+		//$('#lstDistrito').attr( "required", "required" );
+	}
+	if (parseInt($('#lstCountry').val()) == 1465) {
+		$('#div-ubigeo').show();
+		$('#lstDepartamento').attr( "required", "required" );
+		$('#lstProvincia').attr( "required", "required" );
+		$('#lstDistrito').attr( "required", "required" );
+	} else {
+		$('#div-ubigeo').hide();
+		$('#lstDepartamento').removeAttr( "required" );
+		$('#lstProvincia').removeAttr( "required" );
 		$('#lstDistrito').removeAttr( "required" );
 	}
 	$(document).bind('keydown', 'ctrl+l', function(){
@@ -28,9 +39,13 @@ $(document).ready(function () {
 		var country = $('#lstCountry').val();
 		if (country == 1465) {
 			$('#div-ubigeo').show();
+			$('#lstDepartamento').attr( "required", "required" );
+			$('#lstProvincia').attr( "required", "required" );
 			$('#lstDistrito').attr( "required", "required" );
 		} else {
 			$('#div-ubigeo').hide();
+			$('#lstDepartamento').removeAttr( "required" );
+			$('#lstProvincia').removeAttr( "required" );
 			$('#lstDistrito').removeAttr( "required" );
 		}
 	});

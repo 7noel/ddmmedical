@@ -27,7 +27,7 @@ class CompanyRepo extends BaseRepo{
 			$data['is_provider'] = false;
 		}
 		if (isset($data['country_id']) and $data['country_id'] != 1465) {
-			$data['ubigeo_id'] == 1868;
+			$data['ubigeo_id'] = 1868;
 		}
 		return $data;
 	}

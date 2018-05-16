@@ -38,12 +38,12 @@ class FormCompanyRequest extends Request {
 		return [
 			'id_type_id'=>'required|numeric',
 			'doc' => $rules.'required|unique:companies,doc'.((empty($data)) ? ',NULL' : ','.$data['company']).',id,id_type_id,' . $type,
-			'company_name'=>'required_if:id_type_id,1',
+			'company_name'=>'required_if:id_type_id,1,6',
 			'name'=>'required_if:id_type_id,2,3,4',
 			'paternal_surname'=>'required_if:id_type_id,2,3,4',
 			'maternal_surname'=>'required_if:id_type_id,2,3,4',
 			'address'=>'required',
-			'ubigeo_id'=>'required|numeric',
+			'ubigeo_id'=>'required_if:country_id,1465|numeric',
 			'email'=>'email'
 		];
 	}
