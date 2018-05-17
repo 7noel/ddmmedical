@@ -13,7 +13,7 @@
           <table class="table table-hover table-condensed" id="tableStocks">
             <thead>
               <tr>
-                <th>Almacén <button type="button" class="btn btn-default btn-xs" id="btnNewStock"><i class="fas fa-plus"></i></button></th>
+                <th>Almacén <button type="button" class="btn btn-default btn-xs" id="btnNewStock">{!! config('options.icons.add') !!}</button></th>
                 <th>Stock</th>
                 <th>Stock Mínimo</th>
                 <th>Stock Máximo</th>
@@ -69,7 +69,7 @@
           <table class="table table-hover table-condensed" id="tableAccessories">
             <thead>
               <tr>
-                <th>Código <button type="button" class="btn btn-default btn-sm btn-xs" id="btnNewAccessory"><i class="fas fa-plus"></i></button></th>
+                <th>Código <button type="button" class="btn btn-default btn-sm btn-xs" id="btnNewAccessory">{!! config('options.icons.add') !!}</button></th>
                 <th>Accesorio</th>
                 <th>Acciones</th>
               </tr>
@@ -110,7 +110,7 @@
           <table class="table table-hover table-condensed" id="tableAttributes">
             <thead>
               <tr>
-                <th>Nombre <button type="button" class="btn btn-default btn-sm btn-xs" id="btnNewAttribute"><i class="fas fa-plus"></i></button></th>
+                <th>Nombre <button type="button" class="btn btn-default btn-sm btn-xs" id="btnNewAttribute">{!! config('options.icons.add') !!}</button></th>
                 <th>Valor</th>
                 <th>Acciones</th>
               </tr>

@@ -1,4 +1,12 @@
-						<a href="#" id="btnAddProduct" class="btn btn-success btn-sm pull-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a> Costo Expresado en : <div class="col-xs-2">{!! Form::select('currency_cost',$currencies , 2, ['class'=>'col-sm-2 form-control input-sm', 'id'=>'currency_cost']) !!}</div><br> <br>
+						<div class="form-group form-group-sm">
+							<div class="col-sm-2">
+								<a href="#" id="btnAddProduct" class="btn btn-success btn-sm pull-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a>
+							</div>
+							{!! Form::label('currency_cost','Costo expresado en:', ['class'=>'col-sm-2 col-sm-offset-2 control-label']) !!}
+							<div class="col-sm-2">
+								{!! Form::select('currency_cost',$currencies , 2, ['class'=>'form-control input-sm', 'id'=>'currency_cost']) !!}
+							</div>
+						</div>
 						@php $i=0; @endphp
 						<div class="table-responsive">
 						<table class="table table-condensed">
