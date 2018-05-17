@@ -15,10 +15,16 @@
 							<td>{{ $model->status }}</td>
 							<td>{{ $model->currency->symbol." ".$model->total}} </td>
 							<td>
-								<a href="{{ route('audit', ['model' => $model->getMorphClass(), 'id' => $model->id]) }}" target="_blank" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Historial</a>
-								<a href="{{ route( 'print_order' , $model->id ) }}" target="_blank" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Imprimir</a>
-								<a href="{{ route( str_replace('index', 'edit', Request::route()->getAction()['as']) , $model) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</a>
-								<a href="#" class="btn-delete btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar</a>
+								@if(\Auth::user()->is_superuser)
+								<a href="{{ route('audit', ['model' => $model->getMorphClass(), 'id' => $model->id]) }}" target="_blank" class="btn btn-default btn-xs" title="Histórico">{!! config('options.icons.history') !!}</a>
+								@endif
+								@if($model->checked_at)
+								<a href="{{ route( 'print_order' , $model->id ) }}" target="_blank" class="btn btn-success btn-xs" title="Imprimir">{!! config('options.icons.printer') !!} </a>
+								@else
+								<a href="#" class="btn btn-success btn-xs" title="Imprimir" disabled="disabled">{!! config('options.icons.printer') !!}</a>
+								@endif
+								<a href="{{ route( str_replace('index', 'edit', Request::route()->getAction()['as']) , $model) }}" class="btn btn-primary btn-xs" title="Editar">{!! config('options.icons.edit') !!}</a>
+								<a href="#" class="btn-delete btn btn-danger btn-xs" title="Eliminar">{!! config('options.icons.remove') !!}</a>
 							</td>
 						</tr>
 						@endforeach

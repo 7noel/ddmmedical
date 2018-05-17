@@ -1,5 +1,7 @@
 $(document).ready(function () {
-
+	$("[disabled=disabled]").click(function (e) {
+		e.preventDefault()
+	})
 	if (parseInt($('#listDoc').val()) == 6) {
 		$('#lstCountry').attr('disabled', false);
 		//$('#lstDistrito').removeAttr( "required" );

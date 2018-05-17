@@ -11,7 +11,7 @@
 				@endif
 				<div class="panel-body">
 					@include('partials.search')
-					<p><a class="btn btn-info" href="{{ route( $routes['create'] ) }}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{ config($labels['index'].'.create') }}</a></p>
+					<p><a class="btn btn-info" href="{{ route( $routes['create'] ) }}" role="button">{!! config('options.icons.add') !!} {{ config($labels['index'].'.create') }}</a></p>
 					<br>
 					<div class="table-responsive">
 					@include( $views['table'] )

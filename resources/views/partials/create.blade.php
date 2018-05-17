@@ -19,7 +19,7 @@
 					@include( $views['fields'] )
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> {{ config( $labels['create'] .'.create') }}</button>
+							<button type="submit" class="btn btn-primary">{!! config('options.icons.save') !!} {{ config( $labels['create'] .'.create') }}</button>
 						</div>
 					</div>
 					{!! Form::close() !!}

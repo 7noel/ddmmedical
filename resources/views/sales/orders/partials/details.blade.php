@@ -1,4 +1,4 @@
-						<a href="#" id="btnAddProduct" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a></td>
+						<a href="#" id="btnAddProduct" class="btn btn-success btn-sm" title="Agregar Producto">{!! config('options.icons.add') !!} Agregar</a>
 						@php $i=0; @endphp
 						
 						<table class="table table-condensed">

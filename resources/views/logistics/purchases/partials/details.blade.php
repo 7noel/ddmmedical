@@ -1,6 +1,6 @@
 						<div class="form-group form-group-sm">
 							<div class="col-sm-2">
-								<a href="#" id="btnAddProduct" class="btn btn-success btn-sm pull-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a>
+								<a href="#" id="btnAddProduct" class="btn btn-success btn-sm pull-left" title="Agregar Producto">{!! config('options.icons.add') !!} Agregar</a>
 							</div>
 							{!! Form::label('currency_cost','Costo expresado en:', ['class'=>'col-sm-2 col-sm-offset-2 control-label']) !!}
 							<div class="col-sm-2">

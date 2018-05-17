@@ -189,6 +189,12 @@
 			</tr>
 		</table>
 		@endif
+		<table>
+			<tr>
+				<td><strong>Elaborado por: </strong></td>
+				<td><strong>{{ $model->audits->first()->user->name }}</strong></td>
+			</tr>
+		</table>
 		
 	</div>
 	<p>Les saluda atentamente</p>
