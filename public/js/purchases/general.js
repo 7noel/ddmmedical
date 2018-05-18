@@ -1,10 +1,10 @@
 $(document).ready(function(){
 	if ($('#is_import').val()==1) {
-		$('.expenses').hide();
-		$('.dam').hide();
-	} else {
 		$('.expenses').show();
 		$('.dam').show();
+	} else {
+		$('.expenses').hide();
+		$('.dam').hide();
 	}
 	if ($('#payment_condition_id').val()==1) {
 		$('.due_date').hide();
@@ -69,7 +69,7 @@ $(document).ready(function(){
 		validateItem(this, '#'+this.id);
 		calcCost();
 	});
-	$(document).on('change','#exchange, #exchange2, #c1, #c2, #c3, #c4, #c5, #c6, #c7, #c8', function (e) {
+	$(document).on('change','#exchange, #exchange2, #c1, #c2, #c3, #c4, #c5, #c6, #c7, #c8, #currency_id, #currency_cost', function (e) {
 		calcCost();
 	});
 	$(document).on('change','#payment_condition_id', function (e) {
@@ -167,6 +167,14 @@ function calcFactor() {
 	$e6 = currencyConverter($c6, $c0, $e6);
 	$e7 = currencyConverter($c7, $c0, $e7);
 	$e8 = currencyConverter($c8, $c0, $e8);
+	console.log("E1(eur): " + currencyConverter($c0, '2', $e1));
+	console.log("E2(eur): " + currencyConverter($c0, '2', $e2));
+	console.log("E3(eur): " + currencyConverter($c0, '2', $e3));
+	console.log("E4(eur): " + currencyConverter($c0, '2', $e4));
+	console.log("E5(eur): " + currencyConverter($c0, '2', $e5));
+	console.log("E6(eur): " + currencyConverter($c0, '2', $e6));
+	console.log("E7(eur): " + currencyConverter($c0, '2', $e7));
+	console.log("E8(eur): " + currencyConverter($c0, '2', $e8));
 
 	var e = $e1 + $e2 + $e3 + $e4 + $e5 + $e6 + $e7 + $e8;
 	var exw = parseFloat($('#mGrossValue').text());
@@ -174,7 +182,12 @@ function calcFactor() {
 	var total = Math.round(subtotal * (100 + 18))/100;
 	$('#mSubTotal').text(subtotal.toFixed(2));
 	$('#mTotal').text(total.toFixed(2));
+	console.log("EXW($): " + currencyConverter($c0,'2',exw));
+	console.log("FOB($): " + currencyConverter($c0,'2',(exw + $e1)));
+	console.log("CIF($): " + currencyConverter($c0,'2',(exw + $e1 + $e2 + $e3)));
+	console.log("Total($): " + currencyConverter($c0, '2', (exw + e)));
 	if (exw > 0) {
+		console.log("Factor: " + ((exw + e)/(exw)))
 		return (exw + e)/(exw);
 	} else {
 		return 1;
@@ -188,35 +201,35 @@ function calcFactor() {
  * @return {decimal}     [monto en la nueva moneda]
  */
 function currencyConverter($c0, $c, $e) {
-	const $tc1 = parseFloat($('#exchange').val());
-	const $tc2 = parseFloat($('#exchange2').val());
+	var $tc1 = parseFloat($('#exchange').val());
+	var $tc2 = parseFloat($('#exchange2').val());// lo equivale a un euro en dolares
 	if (isNaN($tc1)) {$tc1=1}
 	if (isNaN($tc2)) {$tc2=1}
 	if ($c0 == '1') {
 		if ($c == '1') {
 			return $e;
-		} else if ($c == '2') {
-			return $e*$tc1;
+		} else if ($c == '2') { //
+			return $e/$tc1;
 		} else if ($c == '3') {
-			return $e*$tc2;
+			return ($e/$tc1)/$tc2;
 		} else {
 			return $e;
 		}
 	} else if ($c0 == '2') {
 		if ($c == '1') {
-			return $e/$tc1;
+			return $e*$tc1;
 		} else if ($c == '2') {
 			return $e;
 		} else if ($c == '3') {
-			return $e*$tc2/$tc1;
+			return $e/$tc2;
 		} else {
 			return $e;
 		}
 	} else if ($c0 == '3') {
 		if ($c == '1') {
-			return $e/$tc2;
+			return $e*$tc2*$tc1;
 		} else if ($c == '2') {
-			return $e*$tc1/$tc2;
+			return $e*$tc2;
 		} else if ($c == '3') {
 			return $e;
 		} else {

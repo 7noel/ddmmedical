@@ -61,7 +61,7 @@ class PurchasesController extends Controller {
 	{
 		$model = $this->repo->findOrFail($id);
 		$document_types = $this->documentTypeRepo->getList();
-		$currencies = $this->currencyRepo->getList();
+		$currencies = $this->currencyRepo->getList('symbol');
 		$payment_conditions = $this->paymentConditionRepo->getList();
 		$warehouses = $this->warehouseRepo->getList('id','id');
 		$items = 0;

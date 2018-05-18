@@ -9,7 +9,7 @@ class Purchase extends Model implements Auditable {
 	use \OwenIt\Auditing\Auditable;
 	use SoftDeletes;
 
-	protected $fillable = ['date', 'document_type_id', 'series', 'number', 'dispatch_note_date', 'dispatch_note_series', 'dispatch_note_number', 'company_id', 'payment_condition_id', 'due_date', 'currency_id', 'exchange', 'exchange2', 'gross_value', 'subtotal', 'tax', 'total'];
+	protected $fillable = ['date', 'document_type_id', 'series', 'number', 'dispatch_note_date', 'dispatch_note_series', 'dispatch_note_number', 'company_id', 'is_import', 'payment_condition_id', 'due_date', 'currency_id', 'exchange', 'exchange2', 'gross_value', 'subtotal', 'tax', 'total'];
 
 	public function document_type()
 	{

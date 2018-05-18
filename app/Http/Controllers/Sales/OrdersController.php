@@ -51,7 +51,7 @@ class OrdersController extends Controller {
 	{
 		$model = $this->repo->findOrFail($id);
 		$payment_conditions = $this->paymentConditionRepo->getList();
-		$currencies = $this->currencyRepo->getList();
+		$currencies = $this->currencyRepo->getList('symbol');
 		$sellers = $this->employeeRepo->getListSellers();
 		$details = [];
 		return view('partials.edit', compact('model', 'payment_conditions', 'currencies', 'sellers'));
