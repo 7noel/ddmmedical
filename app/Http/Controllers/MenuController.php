@@ -45,7 +45,7 @@ class MenuController extends Controller
     public function arrayLinks()
     {
         $links = [
-            'Seguridad'=>[
+            'Seguridad y Admin'=>[
                 ['name' => 'Usuarios', 'route' => 'users.index' ],
                 ['name' => 'Roles', 'route' => 'roles.index', 'div' => '1' ],
                 ['name' => 'Grupos', 'route' => 'permission_groups.index' ],
@@ -53,10 +53,11 @@ class MenuController extends Controller
             ],
             'Almacén'=>[
                 ['name' => 'Vales de Ingreso y Salida', 'url' => '#' ],
-                ['name' => 'Aprobar Notas de Pedido', 'url' => '#' ],
+                // ['name' => 'Aprobar Notas de Pedido', 'url' => '#' ],
                 ['name' => 'Productos', 'route' => 'products.index' ],
                 ['name' => 'Almacenes', 'route' => 'warehouses.index' ],
-                ['name' => 'Categorías', 'route' => 'categories.index', 'div' => '1' ],
+                ['name' => 'Marcas', 'route' => 'brands.index', 'div' => '1' ],
+                ['name' => 'Categorías', 'route' => 'categories.index'],
                 ['name' => 'Sub Categorías', 'route' => 'sub_categories.index' ],
                 ['name' => 'Tipos de Unidad', 'route' => 'unit_types.index' ],
                 ['name' => 'Unidades', 'route' => 'units.index' ],
@@ -64,15 +65,15 @@ class MenuController extends Controller
             'Recursos Humanos'=>[
                 ['name' => 'Empleados', 'route' => 'employees.index' ],
                 ['name' => 'Cargos', 'route' => 'jobs.index' ],
-                ['name' => 'Planilla', 'url' => '#' ],
+                // ['name' => 'Planilla', 'url' => '#' ],
                 ['name' => 'Documentos', 'route' => 'id_types.index' ],
             ],
             'Finanzas'=>[
-                ['name' => 'Cuentas por Cobrar', 'url' => '#' ],
-                ['name' => 'Cuentas por Pagar', 'url' => '#' ],
+                ['name' => 'Empresas', 'route' => 'companies.index' ],
+                // ['name' => 'Cuentas por Cobrar', 'url' => '#' ],
+                // ['name' => 'Cuentas por Pagar', 'url' => '#' ],
                 ['name' => 'Monedas', 'route' => 'currencies.index', 'div' => '1' ],
                 ['name' => 'Tipo de Cambio', 'route' => 'exchanges.index' ],
-                ['name' => 'Empresas', 'route' => 'companies.index' ],
                 ['name' => 'Documentos', 'route' => 'document_types.index' ],
                 ['name' => 'Control de Documentos', 'route' => 'document_controls.index' ],
                 ['name' => 'Condiciones de Pago', 'route' => 'payment_conditions.index' ],
@@ -80,13 +81,12 @@ class MenuController extends Controller
             ],
             'Ventas'=>[
                 ['name' => 'Cotizaciones', 'route' => 'orders.index' ],
-                ['name' => 'Validar Notas de Pedido', 'url' => '#' ],
-                ['name' => 'Facturación', 'url' => '#' ],
+                // ['name' => 'Validar Notas de Pedido', 'url' => '#' ],
+                // ['name' => 'Facturación', 'url' => '#' ],
             ],
             'Logística'=>[
-                //['name' => 'Ordenes de Compra', 'url' => '#' ],
+                // ['name' => 'Ordenes de Compra', 'url' => '#' ],
                 ['name' => 'Compras', 'route' => 'purchases.index' ],
-                ['name' => 'Marca', 'route' => 'brands.index', 'div' => '1' ],
             ],
         ];
         return $links;
