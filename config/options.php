@@ -6,6 +6,8 @@ return array(
 		'3'=>'A pedido',
 		'2'=>'Inactivo'
 	],
+	'purchase_status' => [],
+	'order_status' => ['REGISTRADO', 'VERIFICADO', 'APROBADO', 'FACTURADO', 'ENVIADO', 'CANCELADO'],
 	'tax' => [
 		'igv' => 18
 	],

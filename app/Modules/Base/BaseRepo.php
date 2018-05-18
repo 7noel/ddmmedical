@@ -115,10 +115,10 @@ abstract class BaseRepo{
 	{
 		$toSave = [];
 		$toEdit = [];
-		//dd($k1);
+		$toDelete = [];
 		foreach ($allData as $key => $data) {
 			if (isset($data['is_deleted'])) {
-				if (isset($data['id'])) {
+				if (isset($data['id']) and $data['id']>0) {
 					# Array con ids a eliminar
 					$toDelete[] = $data[$k2];
 				}
@@ -127,7 +127,6 @@ abstract class BaseRepo{
 				$toSave[] = $data;
 			}
 		}
-
 		# Elimina registros
 		if (isset($toDelete)) {
 			if (empty($k3)) {
@@ -136,7 +135,6 @@ abstract class BaseRepo{
 				$this->model->where($k3['key'], $k3['value'])->where($k1['key'], $k1['value'])->whereIn($k2, $toDelete)->delete();
 			}
 		}
-		//dd($toSave);
 		# Guardar registros
 		foreach ($toSave as $key => $data) {
 			$data[$k1['key']] = $k1['value'];

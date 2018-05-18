@@ -1,1 +1,1 @@
-{!! Html::script('js/purchases/general.js') !!}
+{!! Html::script('js/logistics/purchases.js') !!}

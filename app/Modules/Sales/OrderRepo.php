@@ -14,6 +14,7 @@ class OrderRepo extends BaseRepo{
 	}
 	public function save($data, $id=0)
 	{
+		$data = $this->prepareData($data);
 		$gross_value = 0;
 		$discount = 0;
 		if (isset($data['details'])) {
@@ -36,32 +37,37 @@ class OrderRepo extends BaseRepo{
 			$orderDetailRepo= new OrderDetailRepo;
 			$orderDetailRepo->syncMany($data['details'], ['key' => 'order_id', 'value' => $model->id], 'product_id');
 		}
+		if (isset($data['send_alert']) and $data['status'] == config('options.order_status.1')) {
+			//dd($data['status']);
+			$this->sendAlert($model);
+		}
 		return $model;
 	}
 	public function prepareData($data)
 	{
-		$data['status'] = 'REGISTRADO';
+		$data['status'] = config('options.order_status.0');
+		if (isset($data['checked_at'])) {
+			if ($data['checked_at'] == "on") {
+				$data['checked_at'] = date('Y-m-d H:i:s');
+				$data['send_alert'] = 1;
+			}
+			$data['status'] = config('options.order_status.1');
+		} else {
+			$data['checked_at'] = null;
+		}
 		if (isset($data['approved_at'])) {
 			if ($data['approved_at'] == "on") {
 				$data['approved_at'] = date('Y-m-d H:i:s');
 			}
-			$data['status'] = 'APROBADO';
+			$data['status'] = config('options.order_status.2');
 		} else {
 			$data['approved_at'] = null;
-		}
-		if (isset($data['checked_at'])) {
-			if ($data['checked_at'] == "on") {
-				$data['checked_at'] = date('Y-m-d H:i:s');
-			}
-			$data['status'] = 'VERIFICADO';
-		} else {
-			$data['checked_at'] = null;
 		}
 		if (isset($data['invoiced_at'])) {
 			if ($data['invoiced_at'] == "on") {
 				$data['invoiced_at'] = date('Y-m-d H:i:s');
 			}
-			$data['status'] = 'FACTURADO';
+			$data['status'] = config('options.order_status.3');
 		} else {
 			$data['invoiced_at'] = null;
 		}
@@ -69,7 +75,7 @@ class OrderRepo extends BaseRepo{
 			if ($data['sent_at'] == "on") {
 				$data['sent_at'] = date('Y-m-d H:i:s');
 			}
-			$data['status'] = 'ENVIADO';
+			$data['status'] = config('options.order_status.4');
 		} else {
 			$data['sent_at'] = null;
 		}
@@ -77,10 +83,21 @@ class OrderRepo extends BaseRepo{
 			if ($data['canceled_at'] == "on") {
 				$data['canceled_at'] = date('Y-m-d H:i:s');
 			}
-			$data['status'] = 'CANCELADO';
+			$data['status'] = config('options.order_status.5');
 		} else {
 			$data['canceled_at'] = null;
 		}
 		return $data;
+	}
+	private function sendAlert($model)
+	{
+		$data['model'] = $model;
+        \Mail::send('emails.notificacion', $data, function($message)
+        {
+            $message->to('noel.logan@gmail.com');
+            //$message->cc(['noel.logan@gmail.com', 'sistemas@masaki.com.pe']);
+            $message->subject('Verificar Cotización');
+            $message->from('sistemas@ddmmedical.com', 'logan');
+        });
 	}
 }

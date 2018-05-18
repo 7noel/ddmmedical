@@ -56,21 +56,25 @@
 					<div class="form-group form-group-sm">
 						{!! Form::label('status','Status:', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-8 status-checked">
-							<label class="checkbox-inline">
-								{!! Form::checkbox('approved_at', (isset($model)) ? $model->approved_at : "on") !!} Aprobado
-							</label>
-							<label class="checkbox-inline">
+							@if(\Auth::user()->is_superuser)
+							<label class="checkbox-inline" title="Verificado por Administración">
 								{!! Form::checkbox('checked_at', (isset($model)) ? $model->checked_at : "on") !!} Verificado
 							</label>
-							<label class="checkbox-inline">
+							@endif
+							<label class="checkbox-inline" title="Aprobado por el Cliente">
+								{!! Form::checkbox('approved_at', (isset($model)) ? $model->approved_at : "on") !!} Aprobado
+							</label>
+							@if(\Auth::user()->is_superuser)
+							<label class="checkbox-inline" title="Facturado al Cliente">
 								{!! Form::checkbox('invoiced_at', (isset($model)) ? $model->invoiced_at : "on") !!} Facturado
 							</label>
-							<label class="checkbox-inline">
+							<label class="checkbox-inline" title="Productos fueron enviados al Cliente">
 								{!! Form::checkbox('sent_at', (isset($model)) ? $model->sent_at : "on") !!} Enviado
 							</label>
-							<label class="checkbox-inline">
+							<label class="checkbox-inline" title="Documento Cancelado">
 								{!! Form::checkbox('canceled_at', (isset($model)) ? $model->canceled_at : "on") !!} Cancelado
 							</label>
+							@endif
 						</div>
 					</div>
 					@include('sales.orders.partials.details')

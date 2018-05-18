@@ -1,10 +1,12 @@
 $(document).ready(function(){
 	if ($('#is_import').val()==1) {
-		$('.expenses').show();
-		$('.dam').show();
+		$('.isImport').show();
+		$('.isNotImport').hide();
+		$('#currency_cost').val($('#currency_id').val());
+		calcCost();
 	} else {
-		$('.expenses').hide();
-		$('.dam').hide();
+		$('.isImport').hide();
+		$('.isNotImport').show();
 	}
 	if ($('#payment_condition_id').val()==1) {
 		$('.due_date').hide();
@@ -25,13 +27,13 @@ $(document).ready(function(){
 			$('#lstSeller').focus();
 			if (ui.item.country_id==1465) {
 				$('#is_import').val(0);
-				$('.expenses').hide();
-				$('.dam').hide();
+				$('.isImport').hide();
+				$('.isNotImport').show();
 				$('#document_type_id').val('1');
 			} else {
 				$('#is_import').val(1);
-				$('.expenses').show();				
-				$('.dam').show();				
+				$('.isImport').show();
+				$('.isNotImport').hide();	
 				$('#document_type_id').val('5');
 			}
 		}
@@ -155,37 +157,35 @@ function calcTotalOrder () {
 }
 
 function calcFactor() {
+	const $cc = $('#currency_cost').val();
 	const $c0 = $('#currency_id').val();
-	const $c1 = $('#c1').val(), $c2 = $('#c2').val(), $c3 = $('#c3').val(), $c4 = $('#c4').val(), $c5 = $('#c5').val(), $c6 = $('#c6').val(), $c7 = $('#c7').val(), $c8 = $('#c8').val();
-	var $e1 = parseFloat($('#e1').val()), $e2 = parseFloat($('#e2').val()), $e3 = parseFloat($('#e3').val()), $e4 = parseFloat($('#e4').val()), $e5 = parseFloat($('#e5').val()), $e6 = parseFloat($('#e6').val()), $e7 = parseFloat($('#e7').val()), $e8 = parseFloat($('#e8').val());
-
-	$e1 = currencyConverter($c1, $c0, $e1);
-	$e2 = currencyConverter($c2, $c0, $e2);
-	$e3 = currencyConverter($c3, $c0, $e3);
-	$e4 = currencyConverter($c4, $c0, $e4);
-	$e5 = currencyConverter($c5, $c0, $e5);
-	$e6 = currencyConverter($c6, $c0, $e6);
-	$e7 = currencyConverter($c7, $c0, $e7);
-	$e8 = currencyConverter($c8, $c0, $e8);
-	console.log("E1(eur): " + currencyConverter($c0, '2', $e1));
-	console.log("E2(eur): " + currencyConverter($c0, '2', $e2));
-	console.log("E3(eur): " + currencyConverter($c0, '2', $e3));
-	console.log("E4(eur): " + currencyConverter($c0, '2', $e4));
-	console.log("E5(eur): " + currencyConverter($c0, '2', $e5));
-	console.log("E6(eur): " + currencyConverter($c0, '2', $e6));
-	console.log("E7(eur): " + currencyConverter($c0, '2', $e7));
-	console.log("E8(eur): " + currencyConverter($c0, '2', $e8));
-
-	var e = $e1 + $e2 + $e3 + $e4 + $e5 + $e6 + $e7 + $e8;
 	var exw = parseFloat($('#mGrossValue').text());
-	var subtotal = exw + $e1 + $e2 + $e3;
+	if ($('#is_import').val()==1) {
+		const $c1 = $('#c1').val(), $c2 = $('#c2').val(), $c3 = $('#c3').val(), $c4 = $('#c4').val(), $c5 = $('#c5').val(), $c6 = $('#c6').val(), $c7 = $('#c7').val(), $c8 = $('#c8').val();
+		var $e1 = parseFloat($('#e1').val()), $e2 = parseFloat($('#e2').val()), $e3 = parseFloat($('#e3').val()), $e4 = parseFloat($('#e4').val()), $e5 = parseFloat($('#e5').val()), $e6 = parseFloat($('#e6').val()), $e7 = parseFloat($('#e7').val()), $e8 = parseFloat($('#e8').val());
+		$e1 = currencyConverter($c1, $c0, $e1);
+		$e2 = currencyConverter($c2, $c0, $e2);
+		$e3 = currencyConverter($c3, $c0, $e3);
+		$e4 = currencyConverter($c4, $c0, $e4);
+		$e5 = currencyConverter($c5, $c0, $e5);
+		$e6 = currencyConverter($c6, $c0, $e6);
+		$e7 = currencyConverter($c7, $c0, $e7);
+		$e8 = currencyConverter($c8, $c0, $e8);
+		var e = $e1 + $e2 + $e3 + $e4 + $e5 + $e6 + $e7 + $e8;
+		var fob = exw + $e1
+		var cif = exw + $e1 + $e2 + $e3
+		var tot = exw + e
+		$('#exw').text(currencyConverter($c0, $cc, exw).toFixed(2))
+		$('#fob').text(currencyConverter($c0, $cc, fob).toFixed(2))
+		$('#cif').text(currencyConverter($c0, $cc, cif).toFixed(2))
+		$('#tot').text(currencyConverter($c0, $cc, tot).toFixed(2))
+	} else {
+		var e = 0
+	}
+	var subtotal = exw;
 	var total = Math.round(subtotal * (100 + 18))/100;
 	$('#mSubTotal').text(subtotal.toFixed(2));
 	$('#mTotal').text(total.toFixed(2));
-	console.log("EXW($): " + currencyConverter($c0,'2',exw));
-	console.log("FOB($): " + currencyConverter($c0,'2',(exw + $e1)));
-	console.log("CIF($): " + currencyConverter($c0,'2',(exw + $e1 + $e2 + $e3)));
-	console.log("Total($): " + currencyConverter($c0, '2', (exw + e)));
 	if (exw > 0) {
 		console.log("Factor: " + ((exw + e)/(exw)))
 		return (exw + e)/(exw);
@@ -241,6 +241,7 @@ function currencyConverter($c0, $c, $e) {
 }
 function calcCost() {
 	$factor = calcFactor();
+	$('#factor').val($factor.toFixed(4))
 	const $c0 = $('#currency_id').val();
 	const $cc = $('#currency_cost').val();
 	$('#tableItems tr .txtPrecio').each(function (index, d) {

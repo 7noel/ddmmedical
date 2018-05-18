@@ -18,17 +18,20 @@ class PurchaseRepo extends BaseRepo{
 			return Purchase::orderBy('id', 'DESC')->with('company', 'document_type', 'payment_condition', 'currency')->paginate();
 		}
 	}
-	/*public function prepareData($data)
+	public function prepareData($data)
 	{
-		if (isset($data['purchase_details'])) {
-			foreach ($data['purchase_details'] as $key => $value) {
-				$data['purchase_details'][$key]['total'] = $data['purchase_details'][$key]['price'] * $data['purchase_details'][$key]['quantity'] * (100- $data['purchase_details'][$key]['discount']) / 100;
+		if (isset($data['expenses'])) {
+			if ($data['is_import'] != 1) {
+				foreach ($data['expenses'] as $key => $exp) {
+					$data['expenses'][$key]['is_deleted'] = 1;
+				}
 			}
 		}
 		return $data;
-	}*/
+	}
 	public function save($data, $id=0)
 	{
+		$data = $this->prepareData($data);
 		$gross_value = 0;
 		$expenses = 0;
 		$expenseCif = 0;
@@ -38,7 +41,7 @@ class PurchaseRepo extends BaseRepo{
 					$expenseCif += $expense['value'];
 				}
 				$expenses += $expense['value'];
-				$data['expenses'][$key]['currency_id'] = 2;
+				//$data['expenses'][$key]['currency_id'] = 2;
 			}
 		}
 		//dd($data['expenses']);
