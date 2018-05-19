@@ -16,8 +16,8 @@
 								<td>{{ $model->sub_category->name }} </td>
 								<td>{{ $model->unit->symbol }} </td>
 								<td>
-									<a href="{{ route( $routes['edit'] , $model) }}" class="btn btn-primary btn-xs">{!! config('options.icons.edit') !!} Editar</a>
-									<a href="#" class="btn-delete btn btn-danger btn-xs">{!! config('options.icons.remove') !!} Eliminar</a>
+									<a href="{{ route( $routes['edit'] , $model) }}" class="btn btn-primary btn-xs" title="Editar">{!! config('options.icons.edit') !!}</a>
+									<a href="#" class="btn-delete btn btn-danger btn-xs" title="Eliminar">{!! config('options.icons.remove') !!}</a>
 								</td>
 							</tr>
 							@endforeach

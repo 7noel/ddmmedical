@@ -45,6 +45,7 @@ class UsersController extends Controller {
 	public function edit($id)
 	{
 		$model = $this->repo->findOrFail($id);
+		dd($model->employee);
 		$roles = $this->roleRepo->all();
 		return view('partials.edit', compact('model', 'roles'));
 	}

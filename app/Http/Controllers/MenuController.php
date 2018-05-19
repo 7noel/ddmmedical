@@ -45,7 +45,7 @@ class MenuController extends Controller
     public function arrayLinks()
     {
         $links = [
-            'Seguridad y Admin'=>[
+            'Seguridad'=>[
                 ['name' => 'Usuarios', 'route' => 'users.index' ],
                 ['name' => 'Roles', 'route' => 'roles.index', 'div' => '1' ],
                 ['name' => 'Grupos', 'route' => 'permission_groups.index' ],

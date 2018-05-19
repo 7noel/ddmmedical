@@ -1,12 +1,21 @@
 					<div class="form-group form-group-sm">
 						{!! Form::label('txtcompany','Compañía:', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-4">
-							{!! Form::hidden('company_id', null, ['id'=>'company_id']) !!}
-							{!! Form::text('company', ((isset($model->company_id)) ? $model->company->company_name : null), ['class'=>'form-control', 'id'=>'txtCompany', 'required']) !!}
+							@if(isset($company))
+								{!! Form::hidden('company_id', $company->id, ['id'=>'company_id']) !!}
+								{!! Form::text('company', $company->company_name, ['class'=>'form-control', 'id'=>'txtCompany', 'required']) !!}
+							@else
+								{!! Form::hidden('company_id', null, ['id'=>'company_id']) !!}
+								{!! Form::text('company', ((isset($model->company_id)) ? $model->company->company_name : null), ['class'=>'form-control', 'id'=>'txtCompany', 'required']) !!}
+							@endif
 						</div>
 						{!! Form::label('txtSeller','Vendedor', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-4">
-						{!! Form::select('seller_id', $sellers, ((isset($model->seller_id)) ? $model->seller_id : null),['class'=>'form-control', 'id'=>'lstSeller']); !!}
+							@if(\Auth::user()->employee->job_id == 6)
+							{!! Form::select('seller_id', [\Auth::user()->employee->id => \Auth::user()->employee->full_name], \Auth::user()->employee->id, ['class'=>'form-control', 'id'=>'lstSeller']); !!}
+							@else
+							{!! Form::select('seller_id', $sellers, ((isset($model->seller_id)) ? $model->seller_id : null),['class'=>'form-control', 'id'=>'lstSeller']); !!}
+							@endif
 						</div>
 					</div>
 					<div class="form-group form-group-sm">

@@ -1,9 +1,15 @@
 					<div class="form-group form-group-sm">
 						{!! Form::label('txtcompany','Compañía:', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-4">
-							{!! Form::hidden('company_id', null, ['id'=>'company_id']) !!}
-							{!! Form::hidden('is_import', null, ['id'=>'is_import']) !!}
-							{!! Form::text('company', ((isset($model->company_id)) ? $model->company->company_name : null), ['class'=>'form-control', 'id'=>'txtCompany', 'required']) !!}
+							@if(isset($company))
+								{!! Form::hidden('company_id', $company->id, ['id'=>'company_id']) !!}
+								{!! Form::hidden('is_import', (($company->country_id==1465) ? 0 : 1), ['id'=>'is_import']) !!}
+								{!! Form::text('company', $company->company_name, ['class'=>'form-control', 'id'=>'txtCompany', 'required']) !!}
+							@else
+								{!! Form::hidden('company_id', null, ['id'=>'company_id']) !!}
+								{!! Form::hidden('is_import', null, ['id'=>'is_import']) !!}
+								{!! Form::text('company', ((isset($model->company_id)) ? $model->company->company_name : null), ['class'=>'form-control', 'id'=>'txtCompany', 'required']) !!}
+							@endif
 						</div>
 						{!! Form::label('dam','DAM:', ['class'=>'col-sm-2 control-label isImport']) !!}
 						<div class="col-sm-2">

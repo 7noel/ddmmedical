@@ -16,7 +16,7 @@
 								<td>{{ $model->email }} </td>
 								<td align="center">
 									@if($model->is_superuser)
-									<span class="glyphicon glyphicon-ok"></span>
+									{!! config('options.icons.check') !!}
 									@endif
 								</td>
 								<td>

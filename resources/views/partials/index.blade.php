@@ -13,7 +13,7 @@
 					@include('partials.search')
 					<p><a class="btn btn-info" href="{{ route( $routes['create'] ) }}" role="button">{!! config('options.icons.add') !!} {{ config($labels['index'].'.create') }}</a></p>
 					<br>
-					<div class="table-responsive">
+					<div class="">
 					@include( $views['table'] )
 					</div>
 					{!! $models->appends(\Request::only(['name']))->render() !!}

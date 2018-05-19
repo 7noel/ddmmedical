@@ -40,10 +40,7 @@ class PurchasesController extends Controller {
 		$document_types = $this->documentTypeRepo->getList();
 		$currencies = $this->currencyRepo->getList('symbol');
 		$payment_conditions = $this->paymentConditionRepo->getList();
-		$warehouses = $this->warehouseRepo->getList('id','id');
-		$items = 0;
-		$purchase_details = [];
-		return view('partials.create', compact('document_types', 'currencies', 'payment_conditions', 'warehouses','items','purchase_details'));
+		return view('partials.create', compact('document_types', 'currencies', 'payment_conditions'));
 	}
 
 	public function store()
@@ -63,10 +60,7 @@ class PurchasesController extends Controller {
 		$document_types = $this->documentTypeRepo->getList();
 		$currencies = $this->currencyRepo->getList('symbol');
 		$payment_conditions = $this->paymentConditionRepo->getList();
-		$warehouses = $this->warehouseRepo->getList('id','id');
-		$items = 0;
-		$purchase_details = [];
-		return view('partials.edit', compact('model','document_types', 'currencies', 'payment_conditions', 'warehouses','items','purchase_details'));
+		return view('partials.edit', compact('model','document_types', 'currencies', 'payment_conditions', 'warehouses','items'));
 	}
 
 	public function update($id)
@@ -80,5 +74,13 @@ class PurchasesController extends Controller {
 		$model = $this->repo->destroy($id);
 		if (\Request::ajax()) {	return $model; }
 		return redirect()->route('purchases.index');
+	}
+	public function createByCompany($company_id)
+	{
+		$document_types = $this->documentTypeRepo->getList();
+		$currencies = $this->currencyRepo->getList('symbol');
+		$payment_conditions = $this->paymentConditionRepo->getList();
+		$company = $this->companyRepo->findOrFail($company_id);
+		return view('partials.create', compact('document_types', 'currencies', 'payment_conditions', 'company'));
 	}
 }

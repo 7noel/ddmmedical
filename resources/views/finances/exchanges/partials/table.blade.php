@@ -18,8 +18,8 @@
 								<td>{{ $model->sales }}</td>
 								<td>{{ $model->purchase }}</td>
 								<td>
-									<a href="{{ route($routes['edit'] , $model) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</a>
-									<a href="#" class="btn-delete btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar</a>
+									<a href="{{ route($routes['edit'] , $model) }}" class="btn btn-primary btn-xs" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{!! config('options.icons.edit') !!}</a>
+									<a href="#" class="btn-delete btn btn-danger btn-xs" title="Eliminar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>{!! config('options.icons.remove') !!}</a>
 								</td>
 							</tr>
 							@endforeach

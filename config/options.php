@@ -31,7 +31,9 @@ return array(
 		'search' => '<i class="fas fa-search"></i>',
 		'shipping' => '<i class="fas fa-shipping-fast"></i>',
 		'config' => '<i class="fas fa-cog"></i>',
-		'history' => '<i class="fas fa-history"></i>'
+		'history' => '<i class="fas fa-history"></i>',
+		'check' => '<i class="fas fa-check"></i>',
+		'external' => '<i class="fas fa-external-link-square-alt"></i>'
 	],
 	'bank_accounts' => [
 		['label' => 'Cuenta Corriente Dólares Interbank',

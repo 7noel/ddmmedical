@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Sales\OrderRepo;
 use App\Modules\Finances\PaymentConditionRepo;
+use App\Modules\Finances\CompanyRepo;
 use App\Modules\Base\CurrencyRepo;
 use App\Modules\HumanResources\EmployeeRepo;
 class OrdersController extends Controller {
@@ -14,12 +15,14 @@ class OrdersController extends Controller {
 	protected $paymentConditionRepo;
 	protected $currencyRepo;
 	protected $employeeRepo;
+	protected $companyRepo;
 
-	public function __construct(EmployeeRepo $employeeRepo, OrderRepo $repo, PaymentConditionRepo $paymentConditionRepo, CurrencyRepo $currencyRepo) {
+	public function __construct(EmployeeRepo $employeeRepo, OrderRepo $repo, PaymentConditionRepo $paymentConditionRepo, CurrencyRepo $currencyRepo, CompanyRepo $companyRepo) {
 		$this->repo = $repo;
 		$this->paymentConditionRepo = $paymentConditionRepo;
 		$this->currencyRepo = $currencyRepo;
 		$this->employeeRepo = $employeeRepo;
+		$this->companyRepo = $companyRepo;
 	}
 
 	public function index()
@@ -38,7 +41,8 @@ class OrdersController extends Controller {
 
 	public function store()
 	{
-		$this->repo->save(\Request::all());
+		$model = $this->repo->save(\Request::all());
+		$this->sendAlert($model);
 		return \Redirect::route('orders.index');
 	}
 
@@ -85,5 +89,28 @@ class OrdersController extends Controller {
 		$pdf = \PDF::loadView('pdfs.order_pdf', compact('model'));
 		return $pdf->stream();
 	}
-
+	/**
+	 * Envía Correo al generar cotización
+	 * @param  Obj $model Modelo de la cotización
+	 * @return boolean        Retorna true indicando que se envió con exito
+	 */
+	private function sendAlert($model)
+	{
+		$data['model'] = $model;
+        \Mail::send('emails.notificacion', $data, function($message)
+        {
+            $message->to('awsnoel@gmail.com');
+            $message->cc(['noel.logan@gmail.com', 'sistema@masaki.com.pe']);
+            $message->subject('Verificar Cotización');
+            $message->from(env('CONTACT_MAIL'), env('CONTACT_NAME'));
+        });
+	}
+	public function createByCompany($company_id)
+	{
+		$payment_conditions = $this->paymentConditionRepo->getList();
+		$currencies = $this->currencyRepo->getList('symbol');
+		$sellers = $this->employeeRepo->getListSellers();
+		$company = $this->companyRepo->findOrFail($company_id);
+		return view('partials.create', compact('payment_conditions', 'currencies', 'sellers', 'company'));
+	}
 }

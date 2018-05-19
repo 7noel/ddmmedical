@@ -37,10 +37,6 @@ class OrderRepo extends BaseRepo{
 			$orderDetailRepo= new OrderDetailRepo;
 			$orderDetailRepo->syncMany($data['details'], ['key' => 'order_id', 'value' => $model->id], 'product_id');
 		}
-		if (isset($data['send_alert']) and $data['status'] == config('options.order_status.1')) {
-			//dd($data['status']);
-			$this->sendAlert($model);
-		}
 		return $model;
 	}
 	public function prepareData($data)
@@ -49,7 +45,6 @@ class OrderRepo extends BaseRepo{
 		if (isset($data['checked_at'])) {
 			if ($data['checked_at'] == "on") {
 				$data['checked_at'] = date('Y-m-d H:i:s');
-				$data['send_alert'] = 1;
 			}
 			$data['status'] = config('options.order_status.1');
 		} else {
@@ -88,16 +83,5 @@ class OrderRepo extends BaseRepo{
 			$data['canceled_at'] = null;
 		}
 		return $data;
-	}
-	private function sendAlert($model)
-	{
-		$data['model'] = $model;
-        \Mail::send('emails.notificacion', $data, function($message)
-        {
-            $message->to('noel.logan@gmail.com');
-            //$message->cc(['noel.logan@gmail.com', 'sistemas@masaki.com.pe']);
-            $message->subject('Verificar Cotización');
-            $message->from('sistemas@ddmmedical.com', 'logan');
-        });
 	}
 }

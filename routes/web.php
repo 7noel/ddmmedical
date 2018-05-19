@@ -92,10 +92,12 @@ Route::group(['prefix'=>'humanresources', 'middleware'=>['auth', 'permissions'],
 Route::group(['prefix'=>'sales', 'middleware'=>['auth', 'permissions'], 'namespace'=>'Sales'], function(){
 	Route::resource('orders','OrdersController');
 	Route::get('orders/print/{id}', ['as' => 'print_order','uses' => 'OrdersController@print']);
+	Route::get('orders/createByCompany/{company_id}', ['as' => 'create_order_by_company','uses' => 'OrdersController@createByCompany']);
 });
 
 Route::group(['prefix'=>'logistics', 'middleware'=>['auth', 'permissions'], 'namespace'=>'Logistics'], function(){
 	Route::resource('purchases','PurchasesController');
+	Route::get('purchases/createByCompany/{company_id}', ['as' => 'create_purchase_by_company','uses' => 'PurchasesController@createByCompany']);
 	Route::resource('brands','BrandsController');
 });
 
