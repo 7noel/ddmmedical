@@ -17,7 +17,6 @@ class CreateMovesTable extends Migration
             $table->increments('id');
             $table->string('document', 100);
             $table->string('code_document', 10);
-            $table->string('series', 20);
             $table->string('number', 20);
             $table->string('type_op', 10);
             $table->decimal('input', 15,4);
@@ -29,8 +28,8 @@ class CreateMovesTable extends Migration
             $table->boolean('change_value')->default(false);
             $table->decimal('avarage_value_before', 15,4);
             $table->decimal('avarage_value_after', 15,4);
-            $table->string('document_model', 100);
-            $table->string('document_id', 100);
+            $table->string('move_type', 100);
+            $table->string('move_id', 100);
             $table->timestamps();
             $table->softDeletes();
         });

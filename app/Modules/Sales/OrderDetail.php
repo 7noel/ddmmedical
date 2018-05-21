@@ -25,4 +25,8 @@ class OrderDetail extends Model implements Auditable
 	{
 		return $this->hasOne('App\Modules\Storage\Unit','id','unit_id');
 	}
+	public function moves()
+	{
+		return $this->morphMany('App\Modules\Storage\Move', 'move');
+	}
 }

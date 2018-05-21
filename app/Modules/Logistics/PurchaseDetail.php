@@ -23,4 +23,8 @@ class PurchaseDetail extends Model implements Auditable {
 	{
 		return $this->belongsto('App\Modules\Storage\Product');
 	}
+	public function moves()
+	{
+		return $this->morphMany('App\Modules\Storage\Move', 'move');
+	}
 }
