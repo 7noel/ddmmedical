@@ -4,6 +4,8 @@ use App\Modules\Base\BaseRepo;
 use App\Modules\Logistics\Purchase;
 use App\Modules\Logistics\PurchaseDetailRepo;
 use App\Modules\Base\ExpenseRepo;
+use App\Modules\Storage\MoveRepo;
+use App\Modules\Storage\Stock;
 
 class PurchaseRepo extends BaseRepo{
 
@@ -18,20 +20,50 @@ class PurchaseRepo extends BaseRepo{
 			return Purchase::orderBy('id', 'DESC')->with('company', 'document_type', 'payment_condition', 'currency')->paginate();
 		}
 	}
-	public function prepareData($data)
-	{
-		if (isset($data['expenses'])) {
-			if ($data['is_import'] != 1) {
-				foreach ($data['expenses'] as $key => $exp) {
-					$data['expenses'][$key]['is_deleted'] = 1;
-				}
-			}
-		}
-		return $data;
-	}
+
 	public function save($data, $id=0)
 	{
 		$data = $this->prepareData($data);
+
+		$model = parent::save($data, $id);
+		// Registra Movimientos
+		if (isset($data['details'])) {
+			$detailRepo = new PurchaseDetailRepo;
+			$toDelete = $detailRepo->syncMany($data['details'], ['key' => 'purchase_id', 'value' => $model->id], 'product_id');
+
+			if (1==1) {
+				$mov = new MoveRepo;
+				$mov->destroy($toDelete);
+				$mov->saveAll($model, 1);
+			}
+		}
+		$this->saveExpenses($data, $model);
+		return $model;
+	}
+
+	public function prepareData($data)
+	{
+		if ($data['document_type_id'] == 3) {
+			$data['mov'] = 0;
+		} else {
+			$data['mov'] = 1;
+		}
+
+		if ($data['is_import']) {
+			$data['type_op'] = '18'; //2152
+		} else {
+			$data['type_op'] = '02'; //2136
+		}
+		
+		
+		if (!isset($data['warehouse_id']) or $data['warehouse_id'] == '' or $data['warehouse_id'] == '0') {
+			$data['warehouse_id'] = 1;
+		}
+		if (isset($data['expenses']) and $data['is_import'] != 1) {
+			foreach ($data['expenses'] as $key => $exp) {
+				$data['expenses'][$key]['is_deleted'] = 1;
+			}
+		}
 		$gross_value = 0;
 		$expenses = 0;
 		$expenseCif = 0;
@@ -70,18 +102,39 @@ class PurchaseRepo extends BaseRepo{
 		}
 		$data['gross_value'] = $gross_value;
 		$data['subtotal'] = $gross_value + $expenseCif;
-		$data['total'] = round(1.18*$data['subtotal'], 2);
+		$data['total'] = round($data['subtotal'] * (100 + config('options.tax.igv')) / 100, 2);
 		$data['tax'] = $data['total'] - $data['subtotal'];
 
-		$model = parent::save($data, $id);
+		// Obteniendo el stock_id
 		if (isset($data['details'])) {
-			$detailRepo= new PurchaseDetailRepo;
-			$detailRepo->syncMany($data['details'], ['key' => 'purchase_id', 'value' => $model->id], 'product_id');
+			foreach ($data['details'] as $key => $detail) {
+				if (!isset($detail['stock_id']) and 1 == 1) {
+					if (!isset($detail['warehouse_id'])) {
+						$detail['warehouse_id'] = $data['warehouse_id'];
+					}
+					$s = Stock::firstOrCreate(['product_id' => $detail['product_id'], 'warehouse_id' => $detail['warehouse_id']]);
+					$data['details'][$key]['stock_id'] = $s->id;
+				}
+			}
 		}
+		return $data;
+	}
+
+	/**
+	 * guarda gastos de exportacion
+	 * @param  [array] $expenses     [Data de los gastos]
+	 * @param  [int] $model_id     [id de la importación]
+	 * @param  [string] $expense_type [Modelo de la importación]
+	 * @return [boolean]               [Retorna true al terminar de guardar]
+	 */
+	protected function saveExpenses($data, $model)
+	{
 		if (isset($data['expenses'])) {
-			$expenseRepo= new ExpenseRepo;
-			$expenseRepo->syncMany($data['expenses'], ['key'=>'expense_id', 'value'=>$model->id], 'name', ['key'=>'expense_type', 'value' => $model->getMorphClass()]);
+			$expenseRepo = new ExpenseRepo;
+			$expenseRepo->syncMany($data['expenses'], ['key' => 'expense_id', 'value' => $model->id], 'name', ['key'=>'expense_type', 'value' => $model->getMorphClass()]);
+			return true;
+		} else {
+			return false;
 		}
-		return $model;
 	}
 }

@@ -9,11 +9,11 @@ class PurchaseDetail extends Model implements Auditable {
 	use \OwenIt\Auditing\Auditable;
 	use SoftDeletes;
 
-	protected $fillable = ['purchase_id', 'product_id', 'unit_id', 'quantity', 'discount', 'price', 'total', 'cost'];
+	protected $fillable = ['purchase_id', 'product_id', 'stock_id', 'unit_id', 'quantity', 'discount', 'price', 'total', 'cost'];
 
-	public function purchase()
+	public function parent()
 	{
-		return $this->belongsto('App\Modules\Logistics\Purchase');
+		return $this->hasOne('App\Modules\Logistics\Purchase','id','purchase_id');
 	}
 	public function stock()
 	{

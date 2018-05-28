@@ -5,11 +5,26 @@ namespace App\Modules\Storage;
 use App\Modules\Base\BaseRepo;
 use App\Modules\Storage\Move;
 use App\Modules\Storage\StockRepo;
+use App\Modules\Storage\Unit;
 
 class MoveRepo extends BaseRepo{
 
 	public function getModel(){
 		return new Move;
+	}
+
+	public function prepareData($data)
+	{
+		$unit_model = Unit::find($data['unit_id']);
+		if ($unit_model->value == 1) {
+			$data['unit_id'] = $unit_model->id;
+		} else {
+			$unit_base = Unit::where('unit_type_id', $unit_model->unit_type_id)->where('value', 1)->first();
+			$data['unit_id'] = $unit_base->id;
+		}
+		$data['input'] = $data['input'] * $unit_model->value;
+		$data['output'] = $data['output'] * $unit_model->value;
+		return $data;
 	}
 
 	/**
@@ -22,21 +37,27 @@ class MoveRepo extends BaseRepo{
 	{
 		$data = $this->prepareData($data);
 		$stockRepo = new StockRepo;
-		$st_model = $stockRepo->firstOrCreate(['id' => $data['stock_id']], $data);
-		dd($st_model->getMorphClass());
-		dd($data);
-		//$data[''] = $st_model->id;
+		$st_model = $stockRepo->find($data['stock_id']);
+		// saber si ya tiene un movimiento
+		$model_current = $this->model->where('move_type', $data['move_type'])->where('move_id', $data['move_id'])->first();
+		if ($model_current) {
+			$id = $model_current->id;
+		}
 		/**
 		 * IF: Modificar un movimiento. FOREACH: itera con el movimiento a modificar y con los posteriores.
 		 * ELSE: Agregar un movimiento
 		 */
+		$last_stock = 0;
+		$last_avarage = 0;
+		$model = '';
 		if ($id > 0) {
+			// $moves_before = $this->model->where('id', '>=', $id)->where('stock_id', $data['stock_id'])->orderBy('date', 'asc')->orderBy('id', 'asc')->get();
 			$moves_before = $this->model->where('id', '>=', $id)->where('stock_id', $data['stock_id'])->orderBy('id', 'asc')->get();
 			foreach ($moves_before as $key => $move_before) {
 				if ($move_before->id == $id) {
 					$last_stock = $move_before->stock + $move_before->output - $move_before->input;
-					$q = $data['input'] - $data['output'];
 					$last_avarage = $move_before->avarage_value_before;
+					$q = $data['input'] - $data['output'];
 					$v = ($data['change_value']) ? $data['value'] : $last_avarage;
 				} else {
 					unset($data);
@@ -50,6 +71,7 @@ class MoveRepo extends BaseRepo{
 				$model = parent::save($data, $move_before->id);
 			}
 		} else {
+			// $move_before = $this->model->where('stock_id', $data['stock_id'])->orderBy('date', 'desc')->orderBy('id', 'desc')->first();
 			$move_before = $this->model->where('stock_id', $data['stock_id'])->orderBy('id', 'desc')->first();
 			if ($move_before) {
 				$last_stock = $move_before->stock;
@@ -72,6 +94,45 @@ class MoveRepo extends BaseRepo{
 		return $model;
 	}
 
+	public function destroy($toDelete)
+	{
+		if (is_null($toDelete)) {
+			return false;
+		}
+		if (count($toDelete) > 0) {
+			return false;
+		}
+		foreach ($toDelete as $key2 => $id) {
+			$last_stock = 0;
+			$last_avarage = 0;
+			$model = '';
+			//encuentra los movimientos desde este id en adelante correspondiente a este stock_id
+			$move_current = $this->model->find($id);
+			$moves_before = $this->model->where('id', '>=', $id)->where('stock_id', $move_current->stock_id)->orderBy('id', 'asc')->get();
+			foreach ($moves_before as $key => $move_before) {
+				if ($move_before->id == $id) {
+					$last_stock = $move_before->stock + $move_before->output - $move_before->input;
+					$last_avarage = $move_before->avarage_value_before;
+					$q = 0;
+					$v = $last_avarage;
+				} else {
+					unset($data);
+					$q = $move_before->input - $move_before->output;
+					$v = ($move_before->change_value) ? $move_before->value : $last_avarage;
+				}
+				$data['id'] = $move_before->id;
+				$data = $this->calcAvarage($last_stock, $last_avarage, $q, $v);
+				$last_stock = $data['stock'];
+				$last_avarage =	$data['avarage_value_after'];
+				$model = $move_before->delete();
+			}
+			$st_model->stock = $last_stock;
+			$st_model->avarage_value = $last_avarage;
+			$st_model->save();
+		}
+		return true;
+	}
+
 	/**
 	 * Calcula el valor promedio.
 	 * @param  decimal $q0 Stock antes del movimiento.
@@ -89,4 +150,48 @@ class MoveRepo extends BaseRepo{
 		return $arr;
 	}
 
+	public function getMove($move_type, $detail_id)
+	{
+		return $this->model->where('move_type', $move_type)->where('move_id', $detail_id)->first();
+	}
+
+	public function saveAll($model, $change_value)
+	{
+		\DB::transaction(function () use ($model, $change_value){
+			foreach ($model->details as $key => $detail) {
+				// prepara la trama para usar el metodo save de MoveRepo
+				// $d['date'] = $model->date;
+				$d['document'] = $model->document_type->name;
+				$d['code_document'] = $model->document_type->code;
+				$d['change_value'] = $change_value;
+				$d['type_op'] = $model->type_op;
+				$d['number'] = $model->id;
+				if (isset($model->number)) {
+					$d['number'] = $model->number;
+				}
+				if ($model->mov) {
+					$d['input'] = $detail->quantity;
+					$d['output'] = 0;
+				} else {
+					$d['input'] = 0;
+					$d['output'] = $detail->quantity;
+				}
+				$d['stock_id'] = $detail->stock_id;
+				$d['unit_id'] = $detail->unit_id;
+				if (isset($detail->price)) {
+					$d['value'] = $detail->price;
+				} else {
+					$d['value'] = 0;
+				}
+				$d['move_type'] = $detail->getMorphClass();
+				$d['move_id'] = $detail->id;
+				$this->save($d);
+			}
+		});
+	}
+
+	public function kardex($stock_id)
+	{
+		return $this->model->where('stock_id', $stock_id)->with('move.parent.document_type')->get();
+	}
 }

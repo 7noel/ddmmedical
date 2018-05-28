@@ -15,7 +15,9 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('note', 20);
+            $table->boolean('mov');
+            $table->string('type_op');
+            $table->integer('document_type_id')->unsigned();
             $table->integer('company_id')->unsigned();
             $table->integer('payment_condition_id')->unsigned();
             $table->integer('currency_id')->unsigned();
@@ -42,6 +44,7 @@ class CreateOrdersTable extends Migration
             $table->decimal('exchange_sunat', 12,2);
             $table->text('comment');
 
+            $table->foreign('document_type_id')->references('id')->on('document_types');
             $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('payment_condition_id')->references('id')->on('payment_conditions');
             $table->foreign('currency_id')->references('id')->on('currencies');

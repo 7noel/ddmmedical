@@ -31,23 +31,17 @@ class StockRepo extends BaseRepo{
 			}
 		}
 	}
-	public function autocomplete($term, $warehouse_id)
+	public function autocomplete($warehouse_id, $term)
 	{
-		return \DB::table('stocks')
-			->join('products', 'stocks.product_id', '=', 'products.id')
-			->join('units','products.unit_id','=','units.id')
-			->where('stocks.warehouse_id','=',$warehouse_id)
-			->where(function($q) use ($term){
-				$q->where('products.name', 'like', "%$term%")
-				->orWhere('products.intern_code', 'like', "%$term%")
-				->orWhere('products.provider_code', 'like', "%$term%")
-				->orWhere('products.manufacturer_code', 'like', "%$term%");
-			})
-			->select('products.*', 'stocks.product_id', 'stocks.stock', 'units.symbol as unit_symbol', 'units.value as unit_value','stocks.id as stock_id','stocks.warehouse_id')
-			->get();
+		return Stock::with('product.unit')->where('warehouse_id', '=', $warehouse_id)
+			->whereHas('product', function ($q) use ($term){
+				$q->where('name','like',"%$term%")
+				->orWhere('intern_code','like',"%$term%");
+			})->get();
 	}
 	public function ajaxGetData($warehouse_id, $product_id)
 	{
 		return Stock::where('warehouse_id', $warehouse_id)->where('product_id',$product_id)->with('product','product.unit')->first();
 	}
+
 }

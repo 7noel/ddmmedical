@@ -6,12 +6,18 @@ return array(
 		'3'=>'A pedido',
 		'2'=>'Inactivo'
 	],
+	'mov' => [
+		'' => 'Seleccionar',
+		'1' => 'Entrada',
+		'0' => 'Salida',
+	],
 	'purchase_status' => [],
 	'order_status' => ['REGISTRADO', 'VERIFICADO', 'APROBADO', 'FACTURADO', 'ENVIADO', 'CANCELADO'],
 	'tax' => [
 		'igv' => 18
 	],
 	'icons' => [
+		'store' => '<i class="fas fa-store"></i>',
 		'view' => '<i class="fas fa-eye"></i>',
 		'add' => '<i class="fas fa-plus"></i>',
 		'edit' => '<i class="fas fa-pencil-alt"></i>',
@@ -210,35 +216,11 @@ return array(
 			'show'   => ['panel'=>'Vizualizando Producto:'],
 			'edit'   => ['panel'=>'Editar Producto: ', 'update'=>'Actualizar Producto', 'delete'=>'Eliminar Producto']
 		],
-		'basic_designs' => [
-			'index'  => ['panel'=>'Diseños Básicos', 'create'=>'Crear Diseño Básico'],
-			'create' => ['panel'=>'Nuevo Diseño Básico', 'create'=>'Crear Diseño Básico'],
-			'show'   => ['panel'=>'Vizualizando Diseño Básico:'],
-			'edit'   => ['panel'=>'Editar Diseño Básico: ', 'update'=>'Actualizar Diseño Básico', 'delete'=>'Eliminar Diseño Básico']
-		],
-		'sizes' => [
-			'index'  => ['panel'=>'Tallas', 'create'=>'Crear Talla'],
-			'create' => ['panel'=>'Nueva Talla', 'create'=>'Crear Talla'],
-			'show'   => ['panel'=>'Vizualizando Talla:'],
-			'edit'   => ['panel'=>'Editar Talla: ', 'update'=>'Actualizar Talla', 'delete'=>'Eliminar Talla']
-		],
-		'size_types' => [
-			'index'  => ['panel'=>'Tipos de Talla', 'create'=>'Crear Tipo de Talla'],
-			'create' => ['panel'=>'Nuevo Tipo de Talla', 'create'=>'Crear Tipo de Talla'],
-			'show'   => ['panel'=>'Vizualizando Tipo de Talla:'],
-			'edit'   => ['panel'=>'Editar Tipo de Talla: ', 'update'=>'Actualizar Tipo de Talla', 'delete'=>'Eliminar Tipo de Talla']
-		],
-		'colors' => [
-			'index'  => ['panel'=>'Colors', 'create'=>'Crear Color'],
-			'create' => ['panel'=>'Nueva Color', 'create'=>'Crear Color'],
-			'show'   => ['panel'=>'Vizualizando Color:'],
-			'edit'   => ['panel'=>'Editar Color: ', 'update'=>'Actualizar Color', 'delete'=>'Eliminar Color']
-		],
-		'materials' => [
-			'index'  => ['panel'=>'Materias Prima', 'create'=>'Crear Materia Prima'],
-			'create' => ['panel'=>'Nueva Materia Prima', 'create'=>'Crear Materia Prima'],
-			'show'   => ['panel'=>'Vizualizando Materia Prima:'],
-			'edit'   => ['panel'=>'Editar Materia Prima: ', 'update'=>'Actualizar Materia Prima', 'delete'=>'Eliminar Materia Prima']
+		'tickets' => [
+			'index'  => ['panel'=>'Tickets', 'create'=>'Crear Ticket'],
+			'create' => ['panel'=>'Nuevo Ticket', 'create'=>'Crear Ticket'],
+			'show'   => ['panel'=>'Vizualizando Ticket:'],
+			'edit'   => ['panel'=>'Editar Ticket: ', 'update'=>'Actualizar Ticket', 'delete'=>'Eliminar Ticket']
 		],
 
 	// ]

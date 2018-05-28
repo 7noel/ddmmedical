@@ -15,6 +15,30 @@ class OrderRepo extends BaseRepo{
 	public function save($data, $id=0)
 	{
 		$data = $this->prepareData($data);
+		$model = parent::save($data, $id);
+
+		if (isset($data['details'])) {
+			$detailRepo= new OrderDetailRepo;
+			$toDelete = $detailRepo->syncMany($data['details'], ['key' => 'order_id', 'value' => $model->id], 'product_id');
+
+			if (isset($data['sent_at'])) {
+				$mov = new MoveRepo;
+				$mov->destroy($toDelete);
+				$mov->saveAll($model, 0);
+			}
+		}
+		return $model;
+	}
+	public function prepareData($data)
+	{
+		$data['document_type_id'] = 6;
+		$data['mov'] = 0;
+		$data['type_op'] = '01'; //2135
+		if (!isset($data['warehouse_id']) or $data['warehouse_id'] == '' or $data['warehouse_id'] == '0') {
+			$data['warehouse_id'] = 1;
+		}
+		
+		//Calculando totales
 		$gross_value = 0;
 		$discount = 0;
 		if (isset($data['details'])) {
@@ -29,18 +53,19 @@ class OrderRepo extends BaseRepo{
 				$data['subtotal'] = $gross_value - $discount;
 				$data['total'] = round($data['subtotal'] * (100 + config('options.tax.igv')) / 100, 2);
 				$data['tax'] = $data['total'] - $data['subtotal'];
+
+				// Obteniendo el stock_id
+				if (!isset($detail['stock_id']) and isset($data['sent_at']) ) {
+					if (!isset($detail['warehouse_id'])) {
+						$detail['warehouse_id'] = $data['warehouse_id'];
+					}
+					$s = Stock::firstOrCreate(['product_id' => $detail['product_id'], 'warehouse_id' => $detail['warehouse_id']]);
+					$data['details'][$key]['stock_id'] = $s->id;
+				}
 			}
 		}
-		$model = parent::save($data, $id);
-		//dd($data["details"]);
-		if (isset($data['details'])) {
-			$orderDetailRepo= new OrderDetailRepo;
-			$orderDetailRepo->syncMany($data['details'], ['key' => 'order_id', 'value' => $model->id], 'product_id');
-		}
-		return $model;
-	}
-	public function prepareData($data)
-	{
+
+		// Actualizando Status
 		$data['status'] = config('options.order_status.0');
 		if (isset($data['checked_at'])) {
 			if ($data['checked_at'] == "on") {

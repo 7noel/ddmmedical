@@ -10,7 +10,7 @@ class Stock extends Model implements Auditable {
 	use \OwenIt\Auditing\Auditable;
 	use SoftDeletes;
 
-	protected $fillable = ['warehouse_id', 'product_id', 'stock', 'stock_initial', 'stock_min', 'stock_max', 'currency_id', 'avarege_value'];
+	protected $fillable = ['warehouse_id', 'product_id', 'stock', 'stock_initial', 'stock_min', 'stock_max', 'currency_id', 'avarage_value'];
 
 	public function warehouse()
 	{

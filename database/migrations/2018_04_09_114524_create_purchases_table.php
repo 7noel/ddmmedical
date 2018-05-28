@@ -18,6 +18,8 @@ class CreatePurchasesTable extends Migration {
             $table->increments('id');
             $table->date('date');
             $table->boolean('is_import');
+            $table->boolean('mov');
+            $table->string('type_op');
             $table->integer('document_type_id')->unsigned();
             $table->string('number');
             $table->date('dispatch_note_date');

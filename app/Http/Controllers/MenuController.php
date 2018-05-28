@@ -52,7 +52,7 @@ class MenuController extends Controller
                 ['name' => 'Permisos', 'route' => 'permissions.index' ],
             ],
             'Almacén'=>[
-                ['name' => 'Vales de Ingreso y Salida', 'url' => '#' ],
+                ['name' => 'Tickets de Ingreso y Salida', 'route' => 'tickets.index' ],
                 // ['name' => 'Aprobar Notas de Pedido', 'url' => '#' ],
                 ['name' => 'Productos', 'route' => 'products.index' ],
                 ['name' => 'Almacenes', 'route' => 'warehouses.index' ],
@@ -81,8 +81,7 @@ class MenuController extends Controller
             ],
             'Ventas'=>[
                 ['name' => 'Cotizaciones', 'route' => 'orders.index' ],
-                // ['name' => 'Validar Notas de Pedido', 'url' => '#' ],
-                // ['name' => 'Facturación', 'url' => '#' ],
+                // ['name' => 'Facturación', 'route' => 'sales.index' ],
             ],
             'Logística'=>[
                 // ['name' => 'Ordenes de Compra', 'url' => '#' ],

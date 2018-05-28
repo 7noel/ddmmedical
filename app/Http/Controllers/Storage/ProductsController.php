@@ -12,17 +12,19 @@ use App\Modules\Base\UnitTypeRepo;
 use App\Modules\Storage\CategoryRepo;
 use App\Modules\Storage\SubCategoryRepo;
 use App\Modules\Storage\ProductRepo;
+use App\Modules\Storage\StockRepo;
 use App\Modules\Storage\Product;
 use App\Modules\Base\CurrencyRepo;
 use App\Modules\Base\SunatRepo;
 use App\Modules\Logistics\BrandRepo;
+use App\Modules\Storage\MoveRepo;
 
 use App\Http\Requests\Logistics\FormProductRequest;
-use App\Modules\Storage\Stock;
 
 class ProductsController extends Controller {
 
 	protected $repo;
+	protected $stockRepo;
 	protected $categoryRepo;
 	protected $subCategoryRepo;
 	protected $unitRepo;
@@ -30,9 +32,11 @@ class ProductsController extends Controller {
 	protected $currencyRepo;
 	protected $sunatRepo;
 	protected $brandRepo;
+	protected $moveRepo;
 
-	public function __construct(ProductRepo $repo, SubCategoryRepo $subCategoryRepo, CategoryRepo $categoryRepo, UnitRepo $unitRepo, UnitTypeRepo $unitTypeRepo, CurrencyRepo $currencyRepo, SunatRepo $sunatRepo, BrandRepo $brandRepo) {
+	public function __construct(ProductRepo $repo, StockRepo $stockRepo,SubCategoryRepo $subCategoryRepo, CategoryRepo $categoryRepo, UnitRepo $unitRepo, UnitTypeRepo $unitTypeRepo, CurrencyRepo $currencyRepo, SunatRepo $sunatRepo, BrandRepo $brandRepo, MoveRepo $moveRepo) {
 		$this->repo = $repo;
+		$this->stockRepo = $stockRepo;
 		$this->categoryRepo = $categoryRepo;
 		$this->subCategoryRepo = $subCategoryRepo;
 		$this->unitRepo = $unitRepo;
@@ -40,6 +44,7 @@ class ProductsController extends Controller {
 		$this->currencyRepo = $currencyRepo;
 		$this->sunatRepo = $sunatRepo;
 		$this->brandRepo = $brandRepo;
+		$this->moveRepo = $moveRepo;
 	}
 
 	public function index()
@@ -114,21 +119,23 @@ class ProductsController extends Controller {
 		return \Response::json($result);
 	}
 
-	public function ajaxAutocompleteVProducts()
+	public function ajaxAutocomplete2($warehouse_id = 1)
 	{
 		$term = \Input::get('term');
-		$models = $this->repo->autocomplete_vproducts($term);
+		ini_set('memory_limit','1024M');
+		$models = $this->stockRepo->autocomplete($warehouse_id, $term);
+		// dd($models);
 		$result=[];
 		foreach ($models as $model) {
 			$result[]=[
-				'value' => $model->name,
+				'value' => $model->product->name,
 				'id' => $model,
-				'label' => $model->code_cut.'  '.$model->name
+				'label' => $model->product->intern_code.' | '.$model->product->name
 			];
 		}
 		return \Response::json($result);
 	}
-	public function ajaxGetData($warehouse_id,$product_id)
+	public function ajaxGetData($warehouse_id, $product_id)
 	{
 		$term = \Input::get('term');
 		$result = $this->repo->ajaxGetData($warehouse_id,$product_id);
@@ -138,5 +145,11 @@ class ProductsController extends Controller {
 	{
 		$result = $this->repo->getById($id);
 		return \Response::json($result);
+	}
+	public function kardex($id)
+	{
+		$models = $this->moveRepo->kardex($id);
+		// dd($models);
+		return view('storage.products.kardex', compact('models'));
 	}
 }

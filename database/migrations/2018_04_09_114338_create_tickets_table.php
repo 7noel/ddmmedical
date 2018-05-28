@@ -15,10 +15,15 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('document_type_id')->unsigned();
             $table->date('date');
-            $table->string('mov');
+            $table->integer('company_id')->unsigned();
+            $table->boolean('mov');
+            $table->string('type_op');
             $table->string('description');
 
+            $table->foreign('document_type_id')->references('id')->on('document_types');
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -13,7 +13,7 @@ class OrderDetail extends Model implements Auditable
 
 	protected $fillable = ['order_id', 'product_id', 'unit_id', 'price', 'quantity', 'discount', 'total', 'comment'];
 
-	public function order()
+	public function parent()
 	{
 		return $this->hasOne('App\Modules\Sales\Order','id','order_id');
 	}

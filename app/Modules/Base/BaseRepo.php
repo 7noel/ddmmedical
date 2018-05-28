@@ -85,19 +85,7 @@ abstract class BaseRepo{
 	public function save($data, $id=0)
 	{
 		$data = $this->prepareData($data);
-		return $model = $this->model->updateOrCreate([$this->model->getKeyName() => $id], $data);
-		/*if ($id>0) {
-			$model = $this->model->findOrFail($id);
-			$model->fill($data);
-		} else {
-			$newModel = $this->getModel();
-			$model = $newModel->fill($data);			
-		}
-		if ($model->save()) {
-			return $model;
-		} else {
-			return false;
-		}*/
+		return $this->model->updateOrCreate([$this->model->getKeyName() => $id], $data);
 	}
 	public function prepareData($data)
 	{
@@ -109,7 +97,7 @@ abstract class BaseRepo{
 	 * @param  [array] $k1      [tiene key y value del padre desde donde ingresa]
 	 * @param  [string] $k2      [nombre del key de los items]
 	 * @param  [array] $k3      [tiene key y value del tipo de modelo en un polimorfismo]
-	 * @return [boolean]          [description]
+	 * @return [array]          [retorna los ids de los elementos eliminados]
 	 */
 	public function syncMany($allData,$k1,$k2,$k3=[])
 	{
@@ -146,7 +134,7 @@ abstract class BaseRepo{
 			
 		}
 
-		return true;
+		return $toDelete;
 	}
 
 	/**
