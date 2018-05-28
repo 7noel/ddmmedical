@@ -1,4 +1,5 @@
-<?php namespace App\Modules\Sales;
+<?php
+namespace App\Modules\Sales;
 
 use App\Modules\Base\BaseRepo;
 use App\Modules\Sales\Order;

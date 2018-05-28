@@ -99,8 +99,8 @@ class OrdersController extends Controller {
 		$data['model'] = $model;
         \Mail::send('emails.notificacion', $data, function($message)
         {
-            $message->to('awsnoel@gmail.com');
-            $message->cc(['noel.logan@gmail.com', 'sistema@masaki.com.pe']);
+            $message->to('jchu@ddmmedical.com');
+            $message->cc(['onavarro@ddmmedical.com', 'asistente@ddmmedical.com']);
             $message->subject('Verificar Cotización');
             $message->from(env('CONTACT_MAIL'), env('CONTACT_NAME'));
         });

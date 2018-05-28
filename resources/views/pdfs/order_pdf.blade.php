@@ -199,11 +199,11 @@
 	</div>
 	<p>Les saluda atentamente</p>
 	<div class="firma">
-		<div>Alfonso Serrano</div>
+		<div>{{ $model->seller->full_name }}</div>
 		<div>Proyectos y Licitaciones</div>
 		<div>Teléfono: +51-1-6830884</div>
-		<div>Móvil: +51-955593510</div>
-		<div>email: pyl1@ddmmedical.com</div>
+		<div>Móvil: +51-{{ $model->seller->mobile_company }}</div>
+		<div>email: {{ $model->seller->email_company }}</div>
 	</div>
 </body>
 </html>
