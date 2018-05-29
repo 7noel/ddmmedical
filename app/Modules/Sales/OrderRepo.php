@@ -44,10 +44,10 @@ class OrderRepo extends BaseRepo{
 		$discount = 0;
 		if (isset($data['details'])) {
 			foreach ($data['details'] as $key => $detail) {
-				$data['details'][$key]['total'] = round($detail['price']*$detail['quantity']*(100-$detail['discount']))/100;
+				$data['details'][$key]['total'] = round($detail['value']*$detail['quantity']*(100-$detail['discount']))/100;
 				if (!isset($detail['is_deleted'])) {
-					$gross_value += round($detail['price']*$detail['quantity'], 2);
-					$discount += round($detail['price']*$detail['quantity']*$detail['discount'])/100;
+					$gross_value += round($detail['value']*$detail['quantity'], 2);
+					$discount += round($detail['value']*$detail['quantity']*$detail['discount'])/100;
 				}
 				$data['gross_value'] = $gross_value;
 				$data['discount'] = $discount;

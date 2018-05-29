@@ -83,7 +83,7 @@ class PurchaseRepo extends BaseRepo{
 					if (!isset($detail['discount'])) {
 						$detail['discount'] = 0;
 					}
-					$data['details'][$key]['total'] = round($detail['price']*$detail['quantity']*(100-$detail['discount']))/100;
+					$data['details'][$key]['total'] = round($detail['value']*$detail['quantity']*(100-$detail['discount']))/100;
 					$gross_value += $data['details'][$key]['total'];
 				}
 			}
@@ -96,7 +96,7 @@ class PurchaseRepo extends BaseRepo{
 		if (isset($data['details'])) {
 			foreach ($data['details'] as $key => $detail) {
 				if (!isset($detail['is_deleted'])) {
-					$data['cost'] = round(($detail['price']*$factor), 2);
+					$data['cost'] = round(($detail['value']*$factor), 2);
 				}
 			}
 		}

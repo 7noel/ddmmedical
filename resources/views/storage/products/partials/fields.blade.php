@@ -61,13 +61,13 @@
 						</div>
 					</div>
 					<div class="form-group form-group-sm">
-						{!! Form::label('price','Precio', ['class'=>'col-sm-2 control-label']) !!}
+						{!! Form::label('value','Precio', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
 								<div class="input-group">
 									<span class="input-group-addon">
-										{!! Form::checkbox('use_set_price', '1', null, ['id'=>'useSetPrice']) !!}
+										{!! Form::checkbox('use_set_value', '1', null, ['id'=>'useSetValue']) !!}
 									</span>
-									{!! Form::text('price', null, ['class'=>'form-control', 'readonly'=>'readonly']) !!}
+									{!! Form::text('value', null, ['class'=>'form-control', 'readonly'=>'readonly']) !!}
 								</div>
 						</div>
 					</div>

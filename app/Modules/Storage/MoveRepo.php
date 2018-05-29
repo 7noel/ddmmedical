@@ -178,8 +178,10 @@ class MoveRepo extends BaseRepo{
 				}
 				$d['stock_id'] = $detail->stock_id;
 				$d['unit_id'] = $detail->unit_id;
-				if (isset($detail->price)) {
-					$d['value'] = $detail->price;
+				if (isset($detail->cost)) {
+					$d['value'] = $detail->value;
+				} elseif (isset($detail->value)) {
+					$d['value'] = $detail->value;
 				} else {
 					$d['value'] = 0;
 				}

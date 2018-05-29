@@ -1,4 +1,5 @@
 					<div class="form-group form-group-sm">
+						{!! Form::hidden('with_tax', 1, ['id'=>'with_tax']) !!}
 						{!! Form::label('txtcompany','Compañía:', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-4">
 							@if(isset($company))

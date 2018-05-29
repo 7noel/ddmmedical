@@ -19,7 +19,8 @@
 									<th class="col-sm-1">#</th>
 									<th class="col-sm-5">Descripción</th>
 									<th class="col-sm-1">Cantidad</th>
-									<th class="col-sm-1">V. Unit</th>
+									<th class="col-sm-1 withTax">Precio</th>
+									<th class="col-sm-1 withoutTax">Valor</th>
 									<th class="col-sm-1 isImport">Costo</th>
 									<th class="col-sm-1 import">V. Tot</th>
 									<th class="col-sm-2">Acciones</th>
@@ -35,7 +36,8 @@
 									<td><span class='form-control input-sm intern_code text-right' data-labelid>{{ $detail->product->intern_code }}</span></td>
 									<td>{!! Form::text("details[$i][txtProduct]", $detail->product->name, ['class'=>'form-control input-sm txtProduct', 'data-product'=>'', 'required'=>'required', 'disabled']); !!}</td>
 									<td>{!! Form::text("details[$i][quantity]", $detail->quantity, ['class'=>'form-control input-sm txtCantidad text-right', 'data-cantidad'=>'']) !!}</td>
-									<td>{!! Form::text("details[$i][price]", $detail->price, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
+									<td class="withTax">{!! Form::text("details[$i][price]", $detail->price, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
+									<td class="withoutTax">{!! Form::text("details[$i][value]", $detail->value, ['class'=>'form-control input-sm txtValue text-right', 'data-value'=>'']) !!}</td>
 									<td class="isImport">
 										{!! Form::hidden("details[$i][cost]", $detail->cost, ['class'=>'form-control input-sm cost', 'data-cost'=>'']) !!}
 										{!! Form::text("details[$i][text_cost]", $detail->cost, ['class'=>'form-control input-sm txtCost text-right', 'data-textcost'=>'', 'readonly'=>'readonly']) !!}
@@ -60,7 +62,8 @@
 								<td><span class='form-control input-sm intern_code text-right' data-labelid></span></td>
 								<td>{!! Form::text('data3', null, ['class'=>'form-control input-sm txtProduct', 'data-product'=>'', 'required'=>'required']); !!}</td>
 								<td>{!! Form::text('data4', null, ['class'=>'form-control input-sm txtCantidad text-right', 'data-cantidad'=>'']) !!}</td>
-								<td>{!! Form::text('data5', null, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
+								<td class="withTax">{!! Form::text('data5', null, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
+								<td class="withoutTax">{!! Form::text('data5', null, ['class'=>'form-control input-sm txtValue text-right', 'data-value'=>'']) !!}</td>
 								<td class="isImport">
 									{!! Form::hidden('data6', null, ['class'=>'form-control input-sm cost', 'data-cost'=>'', 'readonly'=>'readonly']) !!}
 									{!! Form::text('data7', null, ['class'=>'form-control input-sm txtCost text-right', 'data-textcost'=>'', 'readonly'=>'readonly']) !!}

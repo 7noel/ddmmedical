@@ -1,4 +1,8 @@
 $(document).ready(function () {
+	// $('#with_tax').change(function(){
+	// 	$('.txtValue').toggleClass('hide');
+	// 	$('.txtPrice').toggleClass('hide');
+	// })
 	$("[disabled=disabled]").click(function (e) {
 		e.preventDefault()
 	})

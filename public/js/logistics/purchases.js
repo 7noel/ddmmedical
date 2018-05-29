@@ -8,6 +8,15 @@ $(document).ready(function(){
 		$('.isImport').hide();
 		$('.isNotImport').show();
 	}
+
+	if ($('#with_tax').val() == 1) {
+		$('.withTax').show();
+		$('.withoutTax').hide();
+	} else {
+		$('.withTax').hide();
+		$('.withoutTax').show();
+	}
+
 	if ($('#payment_condition_id').val()==1) {
 		$('.due_date').hide();
 	} else {
@@ -54,7 +63,7 @@ $(document).ready(function(){
 			});
 		}
 	});
-	$(document).on('change','.txtCantidad, .txtPrecio, .txtDscto', function (e) {
+	$(document).on('change','.txtCantidad, .txtPrecio, .txtValue, .txtDscto', function (e) {
 		calcTotalItem(this);
 		calcTotalOrder();
 	});
@@ -103,7 +112,8 @@ function setRowProduct($this, $p) {
 		$($this).parent().parent().find('.productId').val($p.id);
 		$($this).parent().parent().find('.txtProduct').val($p.name);
 		$($this).parent().parent().find('.unitId').val($p.unit_id);
-		$($this).parent().parent().find('.txtPrecio').val($p.price);
+		$($this).parent().parent().find('.txtPrecio').val($p.value);
+		$($this).parent().parent().find('.txtValue').val(($p.value*1.18).toFixed(2));
 		$($this).parent().parent().find('.intern_code').text($p.intern_code);
 		$($this).parent().parent().find('.txtCantidad').focus();
 	}
@@ -119,6 +129,21 @@ function addRowProduct(data='') {
 	} else{
 		renderTemplateRowProduct(data);
 	};
+	if ($('#is_import').val()==1) {
+		$('.isImport').show();
+		$('.isNotImport').hide();
+	} else {
+		$('.isImport').hide();
+		$('.isNotImport').show();
+	}
+
+	if ($('#with_tax').val() == 1){
+		$('.withTax').show();
+		$('.withoutTax').hide();
+	} else {
+		$('.withTax').hide();
+		$('.withoutTax').show();
+	}
 }
 
 function validateItem (myElement, id) {
@@ -131,9 +156,17 @@ function validateItem (myElement, id) {
 function calcTotalItem (myElement) {
 	cantidad = validateItem(myElement,'.txtCantidad');
 	precio = validateItem(myElement,'.txtPrecio');
+	value = validateItem(myElement,'.txtValue');
 	dscto = validateItem(myElement,'.txtDscto');
-	D = Math.round(cantidad * precio * dscto) / 100;
-	total = Math.round((cantidad*precio-D)*100)/100;
+	if ($(myElement).hasClass('txtPrecio')) {
+		$(myElement).parent().parent().find('.txtValue').val( (precio/1.18).toFixed(2) )
+		value = validateItem(myElement,'.txtValue');
+	} else if($(myElement).hasClass('txtValue')) {
+		$(myElement).parent().parent().find('.txtPrecio').val( (value*1.18).toFixed(2) )
+		precio = validateItem(myElement,'.txtPrecio');
+	}
+	D = Math.round(cantidad * value * dscto) / 100;
+	total = Math.round((cantidad*value-D)*100)/100;
 	$(myElement).parent().parent().find('.txtTotal').text( total.toFixed(2) );
 }
 function calcTotalOrder () {
@@ -269,6 +302,7 @@ function renderTemplateRowProduct (data) {
 	clone.querySelector("[data-unitid]").setAttribute("name", "details[" + items + "][unit_id]");
 	clone.querySelector("[data-product]").setAttribute("name", "details[" + items + "][txtProduct]");
 	clone.querySelector("[data-cantidad]").setAttribute("name", "details[" + items + "][quantity]");
+	clone.querySelector("[data-value]").setAttribute("name", "details[" + items + "][value]");
 	clone.querySelector("[data-precio]").setAttribute("name", "details[" + items + "][price]");
 	clone.querySelector("[data-cost]").setAttribute("name", "details[" + items + "][cost]");
 	clone.querySelector("[data-textcost]").setAttribute("name", "details[" + items + "][text_cost]");

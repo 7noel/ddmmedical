@@ -1,5 +1,17 @@
 var addAccessory = false;
 $(document).ready(function(){
+	if ($('#with_tax').val() == 1) {
+		$('.withTax').show();
+		$('.withoutTax').hide();
+	} else {
+		$('.withTax').hide();
+		$('.withoutTax').show();
+	}
+
+	$('#with_tax').change(function(){
+		$('.withTax').toggle();
+		$('.withoutTax').toggle();
+	})
 
 	$('#txtCompany').autocomplete({
 		source: "/api/companies/autocompleteAjax/",
@@ -26,7 +38,7 @@ $(document).ready(function(){
 			});
 		}
 	});
-	$(document).on('change','.txtCantidad, .txtPrecio, .txtDscto', function (e) {
+	$(document).on('change','.txtCantidad, .txtPrecio, .txtValue, .txtDscto', function (e) {
 		calcTotalItem(this);
 		calcTotalOrder();
 	});
@@ -52,7 +64,8 @@ function setRowProduct($this, $p) {
 		$($this).parent().parent().find('.productId').val($p.id);
 		$($this).parent().parent().find('.txtProduct').val($p.name);
 		$($this).parent().parent().find('.unitId').val($p.unit_id);
-		$($this).parent().parent().find('.txtPrecio').val($p.price);
+		$($this).parent().parent().find('.txtPrecio').val($p.value);
+		$($this).parent().parent().find('.txtValue').val(($p.value*1.18).toFixed(2));
 		$($this).parent().parent().find('.intern_code').text($p.intern_code);
 		$($this).parent().parent().find('.txtCantidad').focus();
 	}
@@ -73,6 +86,13 @@ function addRowProduct(data='') {
 	} else{
 		renderTemplateRowProduct(data);
 	};
+	if ($('#with_tax').val() == 1){
+		$('.withTax').show();
+		$('.withoutTax').hide();
+	} else {
+		$('.withTax').hide();
+		$('.withoutTax').show();
+	}
 }
 
 function validateItem (myElement, id) {
@@ -85,9 +105,17 @@ function validateItem (myElement, id) {
 function calcTotalItem (myElement) {
 	cantidad = validateItem(myElement,'.txtCantidad');
 	precio = validateItem(myElement,'.txtPrecio');
+	value = validateItem(myElement,'.txtValue');
 	dscto = validateItem(myElement,'.txtDscto');
-	D = Math.round(cantidad * precio * dscto) / 100;
-	total = Math.round((cantidad*precio-D)*100)/100;
+	if ($(myElement).hasClass('txtPrecio')) {
+		$(myElement).parent().parent().find('.txtValue').val( (precio/1.18).toFixed(2) )
+		value = validateItem(myElement,'.txtValue');
+	} else if($(myElement).hasClass('txtValue')) {
+		$(myElement).parent().parent().find('.txtPrecio').val( (value*1.18).toFixed(2) )
+		precio = validateItem(myElement,'.txtPrecio');
+	}
+	D = Math.round(cantidad * value * dscto) / 100;
+	total = Math.round((cantidad*value-D)*100)/100;
 	$(myElement).parent().parent().find('.txtTotal').text( total.toFixed(2) );
 }
 function calcTotalOrder () {
@@ -99,9 +127,10 @@ function calcTotalOrder () {
 	$('#tableItems tr').each(function (index, vtr) {
 		q = parseFloat($(vtr).find('.txtCantidad').val());
 		p = parseFloat($(vtr).find('.txtPrecio').val());
+		v = parseFloat($(vtr).find('.txtValue').val());
 		d = parseFloat($(vtr).find('.txtDscto').val());
-		gross_value = Math.round(q*p*100)/100 + gross_value;
-		discount = Math.round(q*p*d)/100 + discount;
+		gross_value = Math.round(q*v*100)/100 + gross_value;
+		discount = Math.round(q*v*d)/100 + discount;
 	});
 	subtotal = gross_value - discount;
 	total = Math.round(subtotal * (100 + 18))/100;
@@ -121,8 +150,6 @@ function renderTemplateRowProduct (data) {
 	if (data != "") {
 		ele = document.getElementById("tableItems").lastElementChild.querySelector("[data-product]");
 		if (!isDesignEnabled(ele, data.id)) {return true;}
-		
-		
 	}
 	var clone = activateTemplate("#template-row-item");
 	var items = $('#items').val();

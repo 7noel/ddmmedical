@@ -7,9 +7,10 @@
 									<th class="col-sm-1">#</th>
 									<th class="col-sm-5">Descripción</th>
 									<th class="col-sm-1">Cantidad</th>
-									<th class="col-sm-1">Precio</th>
+									<th class="col-sm-1 withTax">Precio</th>
+									<th class="col-sm-1 withoutTax">Valor</th>
 									<th class="col-sm-1">Dscto(%)</th>
-									<th class="col-sm-1">V.Venta</th>
+									<th class="col-sm-1">V.Total</th>
 									<th class="col-sm-2">Acciones</th>
 								</tr>
 							</thead>
@@ -23,7 +24,8 @@
 									<td><span class='form-control input-sm intern_code text-right' data-labelid>{{ $detail->product->intern_code }}</span></td>
 									<td>{!! Form::text("details[$i][txtProduct]", $detail->product->name, ['class'=>'form-control input-sm txtProduct', 'data-product'=>'', 'required'=>'required', 'disabled']); !!}</td>
 									<td>{!! Form::text("details[$i][quantity]", $detail->quantity, ['class'=>'form-control input-sm txtCantidad text-right', 'data-cantidad'=>'']) !!}</td>
-									<td>{!! Form::text("details[$i][price]", $detail->price, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
+									<td class="withTax">{!! Form::text("details[$i][price]", $detail->price, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
+									<td class="withoutTax">{!! Form::text("details[$i][value]", $detail->value, ['class'=>'form-control input-sm txtValue text-right', 'data-value'=>'']) !!}</td>
 									<td>{!! Form::text("details[$i][discount]", $detail->discount, ['class'=>'form-control input-sm txtDscto text-right', 'data-dscto'=>'']) !!}</td>
 									<td> <span class='form-control input-sm txtTotal text-right' data-total>{{ $detail->total }}</span> </td>
 									<td class="text-center form-inline">
@@ -54,19 +56,20 @@
 								<td><span class='form-control input-sm intern_code text-right' data-labelid></span></td>
 								<td>{!! Form::text('data3', null, ['class'=>'form-control input-sm txtProduct', 'data-product'=>'', 'required'=>'required']); !!}</td>
 								<td>{!! Form::text('data4', null, ['class'=>'form-control input-sm txtCantidad text-right', 'data-cantidad'=>'']) !!}</td>
-								<td>{!! Form::text('data5', null, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
+								<td class="withTax">{!! Form::text('data5', null, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
+								<td class="withoutTax">{!! Form::text('data7', null, ['class'=>'form-control input-sm txtValue text-right', 'data-precio'=>'']) !!}</td>
 								<td>{!! Form::text('data6', null, ['class'=>'form-control input-sm txtDscto text-right', 'data-dscto'=>'']) !!}</td>
 								<td> <span class='form-control input-sm txtTotal text-right' data-total></span> </td>
 								<td class="text-center form-inline">
 									<div class="btn-group">
 										<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<span class="glyphicon glyphicon-list" aria-hidden="true"></span> <span class="caret"></span>
+											{!! config('options.icons.more') !!} <span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu select-accessory">
 										</ul>
 									</div>
 									<div class="checkbox">
-										<label><input type="checkbox" name="data7" data-isdeleted class="isdeleted"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></label>
+										<label><input type="checkbox" name="data7" data-isdeleted class="isdeleted">{!! config('options.icons.remove') !!} </label>
 									</div>
 								</td>
 							</tr>

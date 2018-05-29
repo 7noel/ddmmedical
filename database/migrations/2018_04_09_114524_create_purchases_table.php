@@ -31,6 +31,7 @@ class CreatePurchasesTable extends Migration {
             $table->integer('currency_id')->unsigned();
             $table->decimal('exchange', 10, 4);
             $table->decimal('exchange2', 10, 4);
+            $table->boolean('with_tax');
             $table->decimal('gross_value', 12,2);
             $table->decimal('subtotal',14,2);
             $table->decimal('tax',14,2);
