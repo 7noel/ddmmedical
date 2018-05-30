@@ -1,8 +1,9 @@
 $(document).ready(function () {
-	// $('#with_tax').change(function(){
-	// 	$('.txtValue').toggleClass('hide');
-	// 	$('.txtPrice').toggleClass('hide');
-	// })
+	$('.dropdown-submenu a.test').on("click", function(e){
+		$(this).next('ul').toggle();
+		e.stopPropagation();
+		e.preventDefault();
+	});
 	$("[disabled=disabled]").click(function (e) {
 		e.preventDefault()
 	})

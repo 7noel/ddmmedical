@@ -60,7 +60,7 @@ class ProductRepo extends BaseRepo{
 	}
 	public function autocomplete($term)
 	{
-		return Product::with('accessories.accessory')->where('name','like',"%$term%")->orWhere('intern_code','like',"%$term%")->get();
+		return Product::with('accessories.accessory.sub_category')->where('name','like',"%$term%")->orWhere('intern_code','like',"%$term%")->get();
 	}
 	public function ajaxGetData($warehouse_id, $product_id)
 	{

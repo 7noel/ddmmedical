@@ -32,7 +32,20 @@ $(document).ready(function(){
 				source: "/api/products/autocompleteAjax",
 				minLength: 4,
 				select: function(event, ui){
+					arr = {}
 					$p = ui.item.id;
+					$.each($p.accessories, function (index, $a) {
+						if (!($a.accessory.sub_category.name in arr)) {
+							arr[$a.accessory.sub_category.name]=[$a.accessory];
+						} else {
+							arr[$a.accessory.sub_category.name].push($a.accessory);
+						}
+
+						// renderTemplateLiAccessory($ul, $a.accessory);
+						// label=$a.accessory.sub_category.name
+						// arreglo.push({ label : $a});
+					});
+					console.log(arr)
 					setRowProduct($this, $p);
 				}
 			});

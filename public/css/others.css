@@ -95,6 +95,17 @@ body {
     padding-top: 0;
     padding-bottom: 0;
 }
+
+
 input[type="date"] { 
     padding: 5px !important;
+}
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
 }
