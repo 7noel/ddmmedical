@@ -32,21 +32,17 @@ $(document).ready(function(){
 				source: "/api/products/autocompleteAjax",
 				minLength: 4,
 				select: function(event, ui){
-					arr = {}
+					$categories = {}
 					$p = ui.item.id;
 					$.each($p.accessories, function (index, $a) {
-						if (!($a.accessory.sub_category.name in arr)) {
-							arr[$a.accessory.sub_category.name]=[$a.accessory];
+						if (!($a.accessory.sub_category.name in $categories)) {
+							$categories[$a.accessory.sub_category.name]=[$a.accessory];
 						} else {
-							arr[$a.accessory.sub_category.name].push($a.accessory);
+							$categories[$a.accessory.sub_category.name].push($a.accessory);
 						}
-
-						// renderTemplateLiAccessory($ul, $a.accessory);
-						// label=$a.accessory.sub_category.name
-						// arreglo.push({ label : $a});
 					});
-					console.log(arr)
-					setRowProduct($this, $p);
+					//console.log($categories)
+					setRowProduct($this, $p, $categories);
 				}
 			});
 		}
@@ -55,8 +51,13 @@ $(document).ready(function(){
 		calcTotalItem(this);
 		calcTotalOrder();
 	});
-	$(document).on('click','.select-accessory a', function (e) {
+	$(document).on('click','.select-accessory > dropdown-submenu > a', function (e) {
 		e.preventDefault();
+	});
+	$(document).on('click','.select-accessory .ul-submenu a', function (e) {
+		e.preventDefault();
+		$(this).parent().parent().hide()
+		console.log("click accesorio")
 		window.addAccessory = true;
 		accessoryId = this.getAttribute('data-accessoryId');
 		page = "/api/products/getById/" + accessoryId;
@@ -71,8 +72,8 @@ $(document).ready(function(){
 	});
 });
 
-function setRowProduct($this, $p) {
-	//console.log($this)
+function setRowProduct($this, $p, $categories) {
+	//console.log($categories)
 	if(isDesignEnabled($this, $p.id)){
 		$($this).parent().parent().find('.productId').val($p.id);
 		$($this).parent().parent().find('.txtProduct').val($p.name);
@@ -84,9 +85,14 @@ function setRowProduct($this, $p) {
 	}
 	$ul = $($this).parent().parent().find('.select-accessory');
 	$ul.empty();
-	$.each($p.accessories, function (index, $a) {
-		renderTemplateLiAccessory($ul, $a.accessory);
-	});
+	// $.each($p.accessories, function (index, $a) {
+	// 	renderTemplateLiAccessory($ul, $a.accessory);
+	// });
+	if ($categories != 0) {
+		$.each($categories, function ($index, $accessories) {
+			renderTemplateLiAccessory($ul, $index, $accessories);
+		});
+	}
 }
 function addRowProduct(data='') {
 	var items = $('#items').val();
@@ -171,6 +177,7 @@ function renderTemplateRowProduct (data) {
 	clone.querySelector("[data-product]").setAttribute("name", "details[" + items + "][txtProduct]");
 	clone.querySelector("[data-cantidad]").setAttribute("name", "details[" + items + "][quantity]");
 	clone.querySelector("[data-precio]").setAttribute("name", "details[" + items + "][price]");
+	clone.querySelector("[data-value]").setAttribute("name", "details[" + items + "][value]");
 	clone.querySelector("[data-dscto]").setAttribute("name", "details[" + items + "][discount]");
 	clone.querySelector("[data-isdeleted]").setAttribute("name", "details[" + items + "][is_deleted]");
 	if (items>0) {$("input[name='details["+(items-1)+"][txtProduct]']").attr('disabled', true);};
@@ -180,17 +187,30 @@ function renderTemplateRowProduct (data) {
 	$("#tableItems").append(clone);
 	el = document.getElementById("tableItems").lastElementChild.querySelector("[data-product]");
 	if (data != '') {
-		setRowProduct(el, data);
+		setRowProduct(el, data, 0);
 	}
 
 	$("input[name='details["+(items-1)+"][txtProduct]']").focus();
 }
-function renderTemplateLiAccessory ($ul, $a) {
-	var clone = activateTemplate("#template-li-accessory");
-	clone.querySelector("[data-accessoryId]").setAttribute("data-accessoryId", $a.id);
-	clone.querySelector("[data-accessoryId]").textContent = $a.intern_code + " | " + $a.name;
-	$($ul).append(clone);
+function renderTemplateLiAccessory ($ul, $label, $accessories) {
+	var clone_ul = activateTemplate("#template-ul-accessory");
+	clone_ul.querySelector(".ul-label").innerHTML = $label + '<span class="caret"></span>';
+	$clone_ul = $(clone_ul)
+
+	$.each($accessories, function ($index, $a) {
+		var clone_li = activateTemplate("#template-li-accessory");
+		clone_li.querySelector("[data-accessoryId]").setAttribute("data-accessoryId", $a.id);
+		clone_li.querySelector("[data-accessoryId]").textContent = $a.intern_code + " | " + $a.name;
+		$clone_ul.find('.ul-submenu').append(clone_li);
+	});
+	$($ul).append($clone_ul);
 }
+// function renderTemplateLiAccessory ($ul, $a) {
+// 	var clone = activateTemplate("#template-li-accessory");
+// 	clone.querySelector("[data-accessoryId]").setAttribute("data-accessoryId", $a.id);
+// 	clone.querySelector("[data-accessoryId]").textContent = $a.intern_code + " | " + $a.name;
+// 	$($ul).append(clone);
+// }
 function isDesignEnabled (myElement, product_id) {
 	var b = true
 	$('#tableItems tr .productId').each(function (index, d) {

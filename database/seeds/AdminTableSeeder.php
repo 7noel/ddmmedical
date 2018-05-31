@@ -370,8 +370,6 @@ class AdminTableSeeder extends Seeder {
         SubCategory::create(['name' => 'CO2 Sidestream - ACCESORIOS DE MONITOR PM 2000XL PRO', 'category_id' => 2]);
         SubCategory::create(['name' => 'CO2 Mainstream  - ACCESORIOS DE MONITOR PM 2000XL PRO', 'category_id' => 2]);
         SubCategory::create(['name' => 'ACCESORIOS ADICIONALES DE MONITOR PM 2000XL PRO', 'category_id' => 2]);
-        SubCategory::create(['name' => 'VENTILADORES', 'category_id' => 2]);
-        SubCategory::create(['name' => 'VENTILADORES', 'category_id' => 2]);
 
         Brand::create(['name' => 'ADVANCED', 'is_car' => '0']);
         Brand::create(['name' => 'EUROCOLUMBUS', 'is_car' => '0']);
@@ -657,11 +655,6 @@ class AdminTableSeeder extends Seeder {
         Stock::create(['product_id' => '132', 'warehouse_id' => 1, 'stock' => 0]);
         Stock::create(['product_id' => '133', 'warehouse_id' => 1, 'stock' => 0]);
 
-        ProductAccessory::create(['product_id' => 1, 'accessory_id' => 5]);
-        ProductAccessory::create(['product_id' => 1, 'accessory_id' => 3]);
-        ProductAccessory::create(['product_id' => 1, 'accessory_id' => 4]);
-        ProductAccessory::create(['product_id' => 2, 'accessory_id' => 5]);
-        ProductAccessory::create(['product_id' => 2, 'accessory_id' => 6]);
         ProductAccessory::create(['product_id' => 23, 'accessory_id' => 37]);
         ProductAccessory::create(['product_id' => 26, 'accessory_id' => 37]);
         ProductAccessory::create(['product_id' => 29, 'accessory_id' => 37]);

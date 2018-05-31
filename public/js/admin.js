@@ -1,8 +1,12 @@
 $(document).ready(function () {
-	$('.dropdown-submenu a.test').on("click", function(e){
+	$(document).on("click", '.dropdown-submenu a.test', function(e){
+		$(this).parent().parent().find('.ul-submenu').not($(this).next('ul')).hide()
 		$(this).next('ul').toggle();
 		e.stopPropagation();
 		e.preventDefault();
+	});
+	$(".dropdown-menu").focusout(function(){
+		$(document).find('.ul-submenu').hide()
 	});
 	$("[disabled=disabled]").click(function (e) {
 		e.preventDefault()
