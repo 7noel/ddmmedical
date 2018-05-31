@@ -10,6 +10,7 @@ use App\Modules\Finances\PaymentConditionRepo;
 use App\Modules\Finances\CompanyRepo;
 use App\Modules\Base\CurrencyRepo;
 use App\Modules\HumanResources\EmployeeRepo;
+
 class OrdersController extends Controller {
 
 	protected $repo;
@@ -64,7 +65,6 @@ class OrdersController extends Controller {
 
 	public function update($id)
 	{
-		//dd(\Request::all());
 		$this->repo->save(\Request::all(), $id);
 		return \Redirect::route('orders.index');
 	}
@@ -84,8 +84,6 @@ class OrdersController extends Controller {
 	public function print($id)
 	{
 		$model = $this->repo->findOrFail($id);
-		// dd($model);
-		//return view('pdfs.order_pdf', compact('model'));
 		\PDF::setOptions(['isPhpEnabled' => true]);
 		$pdf = \PDF::loadView('pdfs.order_pdf', compact('model'));
 		return $pdf->stream();
