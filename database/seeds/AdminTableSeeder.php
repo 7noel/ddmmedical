@@ -430,7 +430,6 @@ class AdminTableSeeder extends Seeder {
         Product::create(['name' => '5-Lead ECG Trunk Cable AHA ', 'intern_code' => 'AM CB-71514', 'description' => '', 'country_id' => 1352, 'brand_id' => 1, 'model' => '', 'sub_category_id' => 14, 'unit_id' => 1, 'currency_id' => 1, 'is_downloadable' => 1, 'status' => 1]);
         Product::create(['name' => '3-Lead Wire Set,Neonatal,Clip,Reusable ', 'intern_code' => 'AM LW6090029/3A', 'description' => '', 'country_id' => 1352, 'brand_id' => 1, 'model' => '', 'sub_category_id' => 14, 'unit_id' => 1, 'currency_id' => 1, 'is_downloadable' => 1, 'status' => 1]);
         Product::create(['name' => '5-Lead Wire Set,Neonatal,Clip,Reusable ', 'intern_code' => 'AM LW-6090029/5', 'description' => '', 'country_id' => 1352, 'brand_id' => 1, 'model' => '', 'sub_category_id' => 14, 'unit_id' => 1, 'currency_id' => 1, 'is_downloadable' => 1, 'status' => 1]);
-        Product::create(['name' => '5-Lead Wire Set,Neonatal,Clip,Reusable ', 'intern_code' => 'AM LW-6090029/5', 'description' => '', 'country_id' => 1352, 'brand_id' => 1, 'model' => '', 'sub_category_id' => 14, 'unit_id' => 1, 'currency_id' => 1, 'is_downloadable' => 1, 'status' => 1]);
         Product::create(['name' => '5-Lead Wire Set,Adult,Snap,Reusable ', 'intern_code' => 'AM LW-2090029/5A', 'description' => '', 'country_id' => 1352, 'brand_id' => 1, 'model' => '', 'sub_category_id' => 14, 'unit_id' => 1, 'currency_id' => 1, 'is_downloadable' => 1, 'status' => 1]);
         Product::create(['name' => '12-lead ECG Kit, Snap (AHA)', 'intern_code' => 'AI PM040A150001', 'description' => '', 'country_id' => 1352, 'brand_id' => 1, 'model' => '', 'sub_category_id' => 14, 'unit_id' => 1, 'currency_id' => 1, 'is_downloadable' => 1, 'status' => 1]);
         Product::create(['name' => '10-lead ECG trunk Cable (Defibrillation) (AHA)', 'intern_code' => 'AI PM040A040001', 'description' => '', 'country_id' => 1352, 'brand_id' => 1, 'model' => '', 'sub_category_id' => 14, 'unit_id' => 1, 'currency_id' => 1, 'is_downloadable' => 1, 'status' => 1]);
@@ -519,6 +518,7 @@ class AdminTableSeeder extends Seeder {
         Product::create(['name' => 'Thermal Paper (500mm*20m) for Patient Monitors', 'intern_code' => 'AI PM038A010005', 'description' => '', 'country_id' => 1352, 'brand_id' => 1, 'model' => '', 'sub_category_id' => 25, 'unit_id' => 1, 'currency_id' => 1, 'is_downloadable' => 1, 'status' => 1]);
         Product::create(['name' => 'ASUS wireless AP (WL-330gE AP)Kit ', 'intern_code' => 'AI PM038A010008', 'description' => '', 'country_id' => 1352, 'brand_id' => 1, 'model' => '', 'sub_category_id' => 25, 'unit_id' => 1, 'currency_id' => 1, 'is_downloadable' => 1, 'status' => 1]);
         Product::create(['name' => 'Wireless Adapter TP-LINK TL-WA5210G', 'intern_code' => 'AI PM038A010002 ', 'description' => '', 'country_id' => 1352, 'brand_id' => 1, 'model' => '', 'sub_category_id' => 25, 'unit_id' => 1, 'currency_id' => 1, 'is_downloadable' => 1, 'status' => 1]);
+;
 
 
         Stock::create(['product_id' => '1', 'warehouse_id' => 1, 'stock' => 0]);
@@ -653,7 +653,6 @@ class AdminTableSeeder extends Seeder {
         Stock::create(['product_id' => '130', 'warehouse_id' => 1, 'stock' => 0]);
         Stock::create(['product_id' => '131', 'warehouse_id' => 1, 'stock' => 0]);
         Stock::create(['product_id' => '132', 'warehouse_id' => 1, 'stock' => 0]);
-        Stock::create(['product_id' => '133', 'warehouse_id' => 1, 'stock' => 0]);
 
         ProductAccessory::create(['product_id' => 23, 'accessory_id' => 37]);
         ProductAccessory::create(['product_id' => 26, 'accessory_id' => 37]);
@@ -1039,10 +1038,6 @@ class AdminTableSeeder extends Seeder {
         ProductAccessory::create(['product_id' => 26, 'accessory_id' => 132]);
         ProductAccessory::create(['product_id' => 29, 'accessory_id' => 132]);
         ProductAccessory::create(['product_id' => 32, 'accessory_id' => 132]);
-        ProductAccessory::create(['product_id' => 23, 'accessory_id' => 133]);
-        ProductAccessory::create(['product_id' => 26, 'accessory_id' => 133]);
-        ProductAccessory::create(['product_id' => 29, 'accessory_id' => 133]);
-        ProductAccessory::create(['product_id' => 32, 'accessory_id' => 133]);
 
     }
 }
