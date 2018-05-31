@@ -11,7 +11,7 @@ class OrderRepo extends BaseRepo{
 		return new Order;
 	}
 	public function findOrFail($id){
-		return Order::with('details.product.brand')->findOrFail($id);
+		return Order::with('details.product.brand', 'details.product.accessories.accessory.sub_category')->findOrFail($id);
 	}
 	public function save($data, $id=0)
 	{

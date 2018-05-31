@@ -17,15 +17,30 @@
 							<tbody id="tableItems">
 							@if(isset($model->details))
 							@foreach($model->details as $detail)
+								@php $categories=[]; @endphp
 								<tr data-id="{{ $detail->id }}">
 									<td class="text-center form-inline">
-										<div class="btn-group">
+										<div class="btn-group dropdown">
 											<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="glyphicon glyphicon-list" aria-hidden="true"></span> <span class="caret"></span>
+												{!! config('options.icons.more') !!} <span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu select-accessory">
 												@foreach($detail->product->accessories as $acc)
-												<li><a href="#" data-accessoryId="{{ $acc->accessory->id }}">{{ $acc->accessory->name }}</a></li>
+													@php
+													$categories[$acc->accessory->sub_category->name][]=$acc->accessory;
+													@endphp
+												@endforeach
+
+												@foreach($categories as $key => $accessories)
+
+													<li class="dropdown-submenu">
+														<a class="test ul-label" tabindex="-1" href="#">{{ $key }}<span class="caret"></span></a>
+														<ul class="dropdown-menu ul-submenu">
+															@foreach($accessories as $accessory)
+															<li><a tabindex="-1" href="#" data-accessoryId="{{ $acc->accessory->id }}">{{ $accessory->name }}</a></li>
+															@endforeach
+														</ul>
+													</li>
 												@endforeach
 											</ul>
 										</div>
@@ -52,7 +67,7 @@
 						<template id="template-row-item">
 							<tr>
 								<td class="text-center form-inline">
-									<div class="btn-group dropup">
+									<div class="btn-group dropdown">
 										<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											{!! config('options.icons.more') !!} <span class="caret"></span>
 										</button>
