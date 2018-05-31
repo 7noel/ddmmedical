@@ -146,13 +146,26 @@ function calcTotalOrder () {
 	$('#tableItems tr').each(function (index, vtr) {
 		q = parseFloat($(vtr).find('.txtCantidad').val());
 		p = parseFloat($(vtr).find('.txtPrecio').val());
-		v = parseFloat($(vtr).find('.txtValue').val());
+		v = p * 100 / (100 + 18);
+		// v = parseFloat($(vtr).find('.txtValue').val());
 		d = parseFloat($(vtr).find('.txtDscto').val());
-		gross_value = Math.round(q*v*100)/100 + gross_value;
-		discount = Math.round(q*v*d)/100 + discount;
+		gross_value = (q*v) + gross_value;
+		// gross_value = (Math.round(q*v*100)/100) + gross_value;
+		discount = (q*v*d)/100 + discount;
+		// discount = (Math.round(q*v*d)/100) + discount;
+		subtotal = gross_value - ((q*v*d)/100);
+		// subtotal = gross_value - (Math.round(q*v*d)/100) + subtotal;
+		total = q*p*(100-d)/100 + total;
 	});
-	subtotal = gross_value - discount;
-	total = Math.round(subtotal * (100 + 18))/100;
+	gross_value = Math.round(100 * gross_value) / 100;
+	subtotal = Math.round(100 * subtotal) / 100;
+	total = Math.round(100 * total) / 100;
+	if ($('#with_tax').val() == 1){
+		subtotal = Math.round(total * 10000 / (100 + 18)) / 100;
+	} else {
+		total = Math.round(subtotal * (100 + 18))/100;
+	}
+	discount = (gross_value - subtotal);
 
 
 	$('#mGrossValue').text(gross_value.toFixed(2));

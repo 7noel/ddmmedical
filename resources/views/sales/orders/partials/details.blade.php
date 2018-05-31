@@ -5,8 +5,8 @@
 							<thead>
 								<tr>
 									<th class="col-sm-2">Acciones</th>
-									<th class="col-sm-1">#</th>
-									<th class="col-sm-5">Descripción</th>
+									<th class="col-sm-2">#</th>
+									<th class="col-sm-4">Descripción</th>
 									<th class="col-sm-1">Cantidad</th>
 									<th class="col-sm-1 withTax">Precio</th>
 									<th class="col-sm-1 withoutTax">Valor</th>

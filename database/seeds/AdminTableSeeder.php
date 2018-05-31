@@ -32,7 +32,7 @@ class AdminTableSeeder extends Seeder {
     public function run()
     {
         User::create(['name' => 'Noel', 'email' => 'noel.logan@gmail.com', 'password' => '123', 'is_superuser' => true]);
-        User::create(['name' => 'ESTELLE LITA CAMILA', 'email' => 'asistente@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
+        User::create(['name' => 'ESTELLE CAMILA', 'email' => 'asistente@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
         User::create(['name' => 'CRUZ KAREN LORENA', 'email' => 'pyl3@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
         User::create(['name' => 'MORAZZANI GIOVANNI CARLOS', 'email' => 'pyl5@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
         User::create(['name' => 'SANCHEZ ERIC ENRIQUE', 'email' => 'pyl6@ddmmedical.com', 'password' => '123', 'is_superuser' => true]);
