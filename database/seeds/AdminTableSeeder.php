@@ -124,6 +124,13 @@ class AdminTableSeeder extends Seeder {
         Company::create(['company_name'=>'INVERCONSULT  S.A.', 'id_type_id'=>'1', 'doc'=>'20477983708', 'address'=>'CAL. CARLOS GONZALES NRO. 250 URB. MARANGA', 'ubigeo_id'=>'1310', 'country_id' => 1465]);
         Company::create(['company_name'=>'COMERCIALIZADORA Y SERVICIOS HAMBERT E.I.R.L.', 'id_type_id'=>'1', 'doc'=>'20462004380', 'address'=>'CAL. ROBLES APARICIO NRO. 1599', 'ubigeo_id'=>'1275', 'country_id' => 1465]);
         Company::create(['company_name'=>'VASCULAR S.R.L.', 'id_type_id'=>'1', 'doc'=>'20338896825', 'address'=>'CAL. SAN MIGUELITO NRO. 144 URB. SAN MIGUELITO', 'ubigeo_id'=>'1310', 'country_id' => 1465]);
+        Company::create(['company_name'=>'ADVANCED INSTRUMENTATIONS, INC.', 'id_type_id'=>'6', 'doc'=>'', 'address'=>'6800 NW 77TH COURT - MIAMI, FL 33166 ', 'ubigeo_id'=>'1868', 'country_id' => 1352, 'phone' => '(+1) 305-477-6331', 'mobile' => '', 'email' => 'jcdiaz@advanced-inst.com']);
+        Company::create(['company_name'=>'FAMED ŻYWIEC SP. Z O.O.', 'id_type_id'=>'6', 'doc'=>'', 'address'=>'UL. FABRYCZNA 1, 34-300 ŻYWIEC', 'ubigeo_id'=>'1868', 'country_id' => 1467, 'phone' => '(+48) 33 861 30 79', 'mobile' => '(+48) 784 078 397', 'email' => 'p.adamek@famed.com.pl']);
+        Company::create(['company_name'=>'TECME S.A', 'id_type_id'=>'6', 'doc'=>'', 'address'=>'AVENIDA CIRCUNVALACIÓN AGUSTÍN TOSCO 3040, X5011CXX X5008HJY, CÓRDOBA, ARGENTINA', 'ubigeo_id'=>'1868', 'country_id' => 1299, 'phone' => '(54 351) 4144623', 'mobile' => '', 'email' => 'carlos.salinas@tecme.com.ar; agustina.aguero@tecme.com.ar']);
+        Company::create(['company_name'=>'AMELIFE LLC', 'id_type_id'=>'6', 'doc'=>'', 'address'=>'WILMINGTON DELAWARE 19801', 'ubigeo_id'=>'1868', 'country_id' => 1352, 'phone' => '1 305 851 5035', 'mobile' => '(+54)91133668998', 'email' => 'ezzy@ame-life.com']);
+        Company::create(['company_name'=>'FLIGHT MEDICAL INNOVATIONS LTD', 'id_type_id'=>'6', 'doc'=>'', 'address'=>'H\'ATNUFA 7 ST PO BOX 3172 PETAH TIKVA 4951025 ', 'ubigeo_id'=>'1868', 'country_id' => 1404, 'phone' => '', 'mobile' => '972-3-6731660', 'email' => 'yafitl@flight-medical.com']);
+        Company::create(['company_name'=>'FAMED LODZ S.A.', 'id_type_id'=>'6', 'doc'=>'', 'address'=>'21A, CIASNA STREET 93-53 LODZ', 'ubigeo_id'=>'1868', 'country_id' => 1467, 'phone' => '', 'mobile' => '(+48) 601 276 583', 'email' => 'a.lesniewicz@famed.pl']);
+        Company::create(['company_name'=>'HILLUSA CORPORATION ', 'id_type_id'=>'6', 'doc'=>'', 'address'=>'7215 NW 46TH STREET - MIAMI', 'ubigeo_id'=>'1868', 'country_id' => 1352, 'phone' => '(305) 594-7474', 'mobile' => '', 'email' => 'sales4@hillusa.com']);
 
 
 
