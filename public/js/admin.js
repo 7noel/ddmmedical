@@ -5,9 +5,6 @@ $(document).ready(function () {
 		e.stopPropagation();
 		e.preventDefault();
 	});
-	$(".dropdown-menu").focusout(function(){
-		$(document).find('.ul-submenu').hide()
-	});
 	$("[disabled=disabled]").click(function (e) {
 		e.preventDefault()
 	})

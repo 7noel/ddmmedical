@@ -1,27 +1,27 @@
 					<div class="form-group form-group-sm">
 						{!! Form::label('name','Nombre', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-10">
-						{!! Form::text('name', null, ['class'=>'form-control uppercase']) !!}
+						{!! Form::text('name', null, ['class'=>'form-control uppercase', 'required'=>'required']) !!}
 						</div>
 					</div>
 					<div class="form-group form-group-sm">
 						{!! Form::label('sub_category_id','SubCategoría', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
-						{!! Form::select('sub_category_id', $sub_categories, ((isset($model->sub_category_id)) ? $model->sub_category_id : null),['class'=>'form-control', 'id'=>'lstSubCategories']); !!}
+						{!! Form::select('sub_category_id', $sub_categories, ((isset($model->sub_category_id)) ? $model->sub_category_id : null),['class'=>'form-control', 'id'=>'lstSubCategories', 'required'=>'required']); !!}
 						</div>
 						{!! Form::label('unit_id','Unidad', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
-						{!! Form::select('unit_id', $units, ((isset($model->unit_id)) ? $model->unit_id : 1),['class'=>'form-control', 'id'=>'lstUnit']) !!}
+						{!! Form::select('unit_id', $units, ((isset($model->unit_id)) ? $model->unit_id : 1),['class'=>'form-control', 'id'=>'lstUnit', 'required'=>'required']) !!}
 						</div>
 						{!! Form::label('status','Status', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
-						{!! Form::select('status', config('options.product_status'), ((isset($model->status)) ? $model->status : 1),['class'=>'form-control', 'id'=>'lstUnit']); !!}
+						{!! Form::select('status', config('options.product_status'), ((isset($model->status)) ? $model->status : 1),['class'=>'form-control', 'id'=>'lstUnit', 'required'=>'required']); !!}
 						</div>
 					</div>
 					<div class="form-group form-group-sm">
 						{!! Form::label('model','Modelo', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
-							{!! Form::text('model', null, ['class'=>'form-control', 'required'=>'required']) !!}
+							{!! Form::text('model', null, ['class'=>'form-control']) !!}
 						</div>
 						{!! Form::label('brand_id','Marca', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
@@ -49,7 +49,7 @@
 					<div class="form-group form-group-sm">
 						{!! Form::label('currency_id','Moneda', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
-							{!! Form::select('currency_id', $currencies, null, ['class'=>'form-control']); !!}
+							{!! Form::select('currency_id', $currencies, null, ['class'=>'form-control', 'required'=>'required']); !!}
 						</div>
 						{!! Form::label('last_purchase','Costo', ['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-2">
