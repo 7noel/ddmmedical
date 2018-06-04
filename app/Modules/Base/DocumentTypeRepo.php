@@ -20,4 +20,12 @@ class DocumentTypeRepo extends BaseRepo{
 		}
 		return $data;
 	}
+	public function getList2($name='name', $id='id')
+	{
+		return [""=>"Seleccionar"] + $this->model->where('to_purchases', 1)->pluck($name, $id)->toArray();
+	}
+	public function getList3($name='name', $id='id')
+	{
+		return [""=>"Seleccionar"] + $this->model->where('to_sales', 1)->pluck($name, $id)->toArray();
+	}
 }

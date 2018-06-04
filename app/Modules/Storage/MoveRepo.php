@@ -24,6 +24,7 @@ class MoveRepo extends BaseRepo{
 		}
 		$data['input'] = $data['input'] * $unit_model->value;
 		$data['output'] = $data['output'] * $unit_model->value;
+		$data['value'] = $data['value'] / $unit_model->value;
 		return $data;
 	}
 

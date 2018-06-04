@@ -37,7 +37,7 @@ class PurchasesController extends Controller {
 
 	public function create()
 	{
-		$document_types = $this->documentTypeRepo->getList();
+		$document_types = $this->documentTypeRepo->getList2();
 		$currencies = $this->currencyRepo->getList('symbol');
 		$payment_conditions = $this->paymentConditionRepo->getList();
 		return view('partials.create', compact('document_types', 'currencies', 'payment_conditions'));
@@ -57,7 +57,7 @@ class PurchasesController extends Controller {
 	public function edit($id)
 	{
 		$model = $this->repo->findOrFail($id);
-		$document_types = $this->documentTypeRepo->getList();
+		$document_types = $this->documentTypeRepo->getList2();
 		$currencies = $this->currencyRepo->getList('symbol');
 		$payment_conditions = $this->paymentConditionRepo->getList();
 		return view('partials.edit', compact('model','document_types', 'currencies', 'payment_conditions', 'warehouses','items'));
