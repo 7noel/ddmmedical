@@ -4,14 +4,14 @@
 						<table class="table table-condensed">
 							<thead>
 								<tr>
-									<th class="col-sm-2">Acciones</th>
-									<th class="col-sm-2">#</th>
+									<th class="col-sm-1">Acciones</th>
+									<th class="col-sm-2">Código</th>
 									<th class="col-sm-4">Descripción</th>
 									<th class="col-sm-1">Cantidad</th>
-									<th class="col-sm-1 withTax">Precio</th>
-									<th class="col-sm-1 withoutTax">Valor</th>
+									<th class="col-sm-2 withTax">Precio</th>
+									<th class="col-sm-2 withoutTax">Valor</th>
 									<th class="col-sm-1">Dscto(%)</th>
-									<th class="col-sm-1">V.Total</th>
+									<!-- <th class="col-sm-1">V.Total</th> -->
 								</tr>
 							</thead>
 							<tbody id="tableItems">
@@ -57,7 +57,7 @@
 									<td class="withTax">{!! Form::text("details[$i][price]", $detail->price, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
 									<td class="withoutTax">{!! Form::text("details[$i][value]", $detail->value, ['class'=>'form-control input-sm txtValue text-right', 'data-value'=>'']) !!}</td>
 									<td>{!! Form::text("details[$i][discount]", $detail->discount, ['class'=>'form-control input-sm txtDscto text-right', 'data-dscto'=>'']) !!}</td>
-									<td> <span class='form-control input-sm txtTotal text-right' data-total>{{ $detail->total }}</span> </td>
+									<!-- <td> <span class='form-control input-sm txtTotal text-right' data-total>{{ $detail->total }}</span> </td> -->
 								</tr>
 								@php $i++; @endphp
 							@endforeach
@@ -86,7 +86,7 @@
 								<td class="withTax">{!! Form::text('data5', null, ['class'=>'form-control input-sm txtPrecio text-right', 'data-precio'=>'']) !!}</td>
 								<td class="withoutTax">{!! Form::text('data7', null, ['class'=>'form-control input-sm txtValue text-right', 'data-value'=>'']) !!}</td>
 								<td>{!! Form::text('data6', null, ['class'=>'form-control input-sm txtDscto text-right', 'data-dscto'=>'']) !!}</td>
-								<td> <span class='form-control input-sm txtTotal text-right' data-total></span> </td>
+								<!-- <td> <span class='form-control input-sm txtTotal text-right' data-total></span> </td> -->
 							</tr>
 						</template>
 						{!! Form::hidden('items', $i, ['id'=>'items']) !!}
